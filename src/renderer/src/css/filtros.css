@@ -1,0 +1,77 @@
+.filtroContainer {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    flex-wrap: wrap;
+    gap: 5px;
+
+}
+
+.filtroContainer div {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.filtroContainer h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.filtroContainer hr {
+    margin:8px 0 12px 0;
+}
+
+.div-filter-actions{
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filtroContainer select {
+    color: black;
+    width: 150px;
+    height: 3rem;
+    border: 1px;
+    border-style: solid;
+    border-color: #999;
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+.filtroContainer input {
+    color: black;
+    width: 150px;
+    height: 3rem;
+    border: 1px;
+    border-style: solid;
+    border-color: #999;
+    border-radius: 8px;
+    margin-right: 8px;
+    padding: 8px;
+}
+
+.filtroContainer button {
+    background-color: var(--color-Celifrut);
+    color: white;
+    border-radius: 8px;
+    padding: 0px 8px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.filtroContainer button:hover {
+    background-color: var(--color-Celifrut-dark);
+}
+
+.filtroContainer button:active {
+    background-color: var(--color-Celifrut);
+}
+
+.filtroContainer .input-imagenes {
+    width: auto;
+}

@@ -1,0 +1,9 @@
+.orden-vaceo-div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.orden-vaceo-div .div1{
+    padding: 5px;
+}

@@ -1,0 +1,244 @@
+.table-container {
+    width: 100%;
+    max-height: 58vh;
+    min-height: 53vh;
+
+    position: relative;
+    overflow-x: auto;
+    overflow-y: auto;
+
+    padding-bottom: 50px;
+    scrollbar-width: thin;
+    scrollbar-color: #bbb #f1f1f1;
+}
+
+.table-main {
+    background-color: white;
+    width: 100%;
+
+    position: absolute;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: auto;
+
+    margin-top: 15px;
+    color: black;
+    border-radius: 8px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+
+}
+
+.table-main thead {
+    background-color: var(--color-Celifrut);
+    border-collapse: collapse;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 100%;
+
+}
+
+.table-main thead tr {
+    height: 50px;
+    font-size: 13px;
+    padding-left: 5px;
+}
+
+.fondo-par {
+    background-color: rgb(251, 251, 251);
+}
+
+.fondo-impar {
+    background-color: rgb(222, 223, 224);
+}
+
+.table-main tbody {
+    width: 100%;
+}
+
+.table-main tbody tr td {
+    font-size: 14px;
+    text-align: center;
+    min-height: 40px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #eeeeee;
+    max-width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+.table-main tbody tr td div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.table-main tbody tr td input,
+.table-main tbody tr td select {
+    border: 1px solid #cccccc;
+    width: 80%;
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    outline: none;
+}
+
+.table-main tbody tr td button {
+    color: var(--color-Celifrut);
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.table-main-noDocument {
+    color: red;
+    font-size: 20px;
+}
+
+/* -------------------------
+   Para navegadores basados en WebKit (Chrome, Safari, Edge Chromium)
+   ------------------------- */
+.table-container::-webkit-scrollbar {
+    width: 10px;
+    /* Ancho de la barra de desplazamiento */
+    height: 10px;
+    /* Alto de la barra de desplazamiento horizontal */
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Color del fondo de la pista */
+    border-radius: 5px;
+    /* Radio de borde si lo deseas */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #bbb;
+    /* Color de la “thumb” (el deslizador) */
+    border-radius: 5px;
+    /* Radio de borde para la “thumb” */
+    border: 2px solid #f1f1f1;
+    /* Opcional: un borde que crea un efecto de espacio */
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background-color: #999;
+    /* Color al hacer hover */
+}
+
+/* -------------------------
+   Tabla para los informes
+   ------------------------- */
+
+.table-main-informe-proveedor {
+    background-color: white;
+    width: 100%;
+    margin-top: 15px;
+    color: black;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+
+}
+
+.table-main-informe-proveedor thead {
+    background-color: var(--color-Celifrut);
+    border-collapse: collapse;
+}
+
+.table-main-informe-proveedor thead tr {
+    height: 45px;
+    font-size: 12px;
+    min-height: 100px;
+    padding-left: 5px;
+    max-width: 350px;
+    overflow: hidden;
+}
+
+.fondo-par {
+    background-color: rgb(251, 251, 251);
+}
+
+.fondo-impar {
+    background-color: rgb(222, 223, 224);
+}
+
+.table-main-informe-proveedor tbody tr td {
+    font-size: 14px;
+    text-align: center;
+    min-height: 100px;
+    padding-left: 5px;
+    max-width: 350px;
+    overflow: hidden;
+
+}
+
+.table-main-informe-proveedor tbody tr td:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.table-main-informe-proveedor tbody tr td div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.table-main-informe-proveedor tbody tr td input {
+    border: 1px solid black;
+    width: 80%;
+    padding: 4px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.table-main-informe-proveedor tbody tr td button {
+    color: var(--color-Celifrut);
+    font-size: 30px;
+}
+
+.table-main-noDocument {
+    color: red;
+    font-size: 20px;
+}
+
+
+/* Estilo general para el botón de la fila*/
+.table-row-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover: fondo más visible y cambio de color */
+.table-row-button:hover {
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+/* Ícono del botón */
+.table-row-button svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+}
+
+/* Hover en el ícono */
+.table-row-button:hover svg {
+    transform: scale(1.2);
+}
+
+/* Estado deshabilitado */
+.table-row-button:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    opacity: 0.7;
+}

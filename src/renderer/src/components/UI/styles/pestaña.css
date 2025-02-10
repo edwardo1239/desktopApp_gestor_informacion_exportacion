@@ -1,0 +1,74 @@
+.pestaña-container{
+    height: 40px;
+    min-height: 40px;
+    background-color: var(--color-fondo);
+    border-style: solid;
+    border-right-width: 2px;
+    border-color: var(--border-Color);
+    display: flex;
+    gap: 1px;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.pestaña-style{
+    border: 1px solid var(--border-Color);
+    padding: 4px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: 2px;
+    min-width: 100px; 
+    max-width: 180px;
+    overflow: hidden;
+    
+}
+
+.pestaña-style:hover{
+    cursor: pointer;
+    background-color: var(--color-fondo-hover);
+}
+
+.pestaña-style p {
+    font-size: 12px;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    flex-grow: 1;
+}
+
+.pestaña-seleccionada {
+    background-color: var(--color-fondo-hover);
+    border: 1px solid var(--border-Color);
+    padding: 4px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: 2px;
+    min-width: 100px; 
+    max-width: 180px;
+    overflow: hidden;
+}
+
+.pestaña-seleccionada:hover{
+    cursor: pointer;
+    background-color: var(--color-fondo-hover);
+}
+
+.pestaña-seleccionada p {
+    font-size: 12px;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    flex-grow: 1;
+}
+
+.pestaña-close:hover{
+    color:red;
+}

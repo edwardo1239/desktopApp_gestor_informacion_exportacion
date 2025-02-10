@@ -1,0 +1,7 @@
+{
+    "version": "0.0.1",
+    "operario": "Operarío",
+    "tipoFruta": "Tipo de fruta",
+    "unidades": "Unidades revisadas",
+    "defectos": "Cantidad de defectos"
+}

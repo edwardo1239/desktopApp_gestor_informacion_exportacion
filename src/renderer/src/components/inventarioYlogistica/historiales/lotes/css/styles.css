@@ -1,0 +1,70 @@
+.lotes-filtros-columnas-div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 8px;
+    border-radius: 18px;
+
+}
+.lotes-filtros-columnas-label{
+    display: flex;
+    flex-direction: row;
+    width: 140px;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    font-size: 14px;
+    gap: 0;
+}
+
+.lotes-filtros-columnas-label input{
+    height: 15px; 
+    width: auto;
+}
+
+.lotes-proceso-promedios-div{
+    background-color: var(--color-ListaEmpaqueFondo);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.lotes-proceso-promedios-div h3{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.lotes-proceso-promedios-div2{
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding: 12px;
+    background-color: var(--color-fondo);
+    border-radius: 8px;
+}
+
+.lotes-select-tipo-grafica-div{
+    padding-top: 15px;
+    width: 50%;
+}
+
+.lotes-grafica-container{
+    padding: .1rem;
+    width: 100%;
+    padding-top: 5px;
+}
+
+.lotes-graficas-div{
+    background-color: white;
+    padding: 2px;
+    border-radius: 8px;
+}
+
+.lote-proceso-tabla-exportacion-div{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+}

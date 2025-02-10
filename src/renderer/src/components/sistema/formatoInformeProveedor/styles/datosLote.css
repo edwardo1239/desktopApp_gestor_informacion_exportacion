@@ -1,0 +1,99 @@
+.container-informe-calidad-lote {
+    background-color: rgb(212, 212, 212);
+    color: black;
+    margin: 0.75rem;
+    border-radius: 15px;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-informe-calidad-lote hr {
+    color: black;
+    border: none;
+    height: 2px;
+    background-color: black;
+    width: 100%;
+}
+
+.informe-calidad-lote-div {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    border-radius: 15px;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.informe-calidad-total-fila {
+    margin-bottom: 5px !important;
+    height: 40px;
+}
+
+.informe-calidad-modificar-div {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 8px;
+}
+
+.informe-calidad-modificar-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 15px;
+}
+
+.informe-calidad-modificar-menu-context {
+    background-color: var(--color-fondo);
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: fixed;
+    border-radius: 15px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+    /* Comienza desde la esquina superior derecha */
+    transform-origin: top right;
+
+    /* Transición en ambos ejes para la animación de apertura */
+    transition:
+        width 0.3s ease-in-out,
+        height 0.3s ease-in-out 0.3s;
+}
+
+/* Estado de apertura */
+.informe-calidad-modificar-menu-context.open {
+    width: 250px;
+    height: 50px !important;
+
+
+}
+
+/* Estado de cierre */
+.informe-calidad-modificar-menu-context.close {
+    width: 0;
+    height: 0;
+
+    /* Cambia el origen para cerrar de abajo a izquierda */
+    transform-origin: bottom left;
+
+    /* Transición inversa para el cierre */
+    transition:
+        height 0.3s ease-in-out,
+        width 0.3s ease-in-out 0.3s;
+}
+
+
+.informe-calidad-modificar-menu-context button {
+    width: 100%;
+}
+
+.informe-calidad-modificar-menu-context button:hover {
+    background-color: var(--color-fondo-hover);
+}

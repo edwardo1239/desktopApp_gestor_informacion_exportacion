@@ -1,0 +1,104 @@
+
+.formulario-inspeccion-mula-container{
+    margin: 25px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgb(205, 205, 222);
+    -webkit-box-shadow: 0px 9px 10px 1px rgba(186, 186, 186, 1);
+    -moz-box-shadow: 0px 9px 10px 1px rgba(186, 186, 186, 1);
+    box-shadow: 0px 9px 10px 1px var(--color-shadow);
+    
+}
+
+.formulario-inspeccion-mula-container label {
+    color: black;
+    font-weight: 500;
+    width: 15%;
+    text-align: start;
+}
+
+.formulario-inspeccion-mula-container hr {
+    border: none; /* Elimina el borde predeterminado */
+    border-top: 1px solid black; /* Crea una línea superior */
+    color: black;
+    background-color: black;
+    height: 1px; /* Ajusta el grosor de la línea */
+}
+
+.formulario-inspeccion-mula-container-input {
+    color: black;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 4px 8px;
+    border-style: solid;
+    border-color: #999;
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+.formulario-inspeccion-mula-titulo-div h4 {
+    color: black;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.formulario-inspeccion-mula-titulo-div-action {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.formulario-inspeccion-mula-titulo-div-label{
+    margin-top: 5px;
+    
+}
+
+.formulario-inspeccion-mula-titulo-div-label-checkbox{
+    height: 20px;
+    width: 20px;
+    margin-left: 8px;
+}
+
+.formulario-inspeccionMula-button{
+    background-color: var(--color-Celifrut);
+    padding: 10px 15px; 
+    border-radius: 8px;
+}
+
+.formulario-inspeccionMula-button:hover{
+    background-color: var(--color-Celifrut-dark);
+}
+
+.formulario-inspeccionMula-div-button{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    padding-right: 40px;
+}
+
+.formulario-inspeccion-mula-fieldset{
+    border-style: solid;
+    border-color: rgb(163, 162, 169);
+    border-width: 2px;
+    padding: 8px 5px;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.formulario-inspeccion-mulas-programacion{
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.formulario-inspeccion-mulas-programacion span{
+    font-weight: bold;
+}

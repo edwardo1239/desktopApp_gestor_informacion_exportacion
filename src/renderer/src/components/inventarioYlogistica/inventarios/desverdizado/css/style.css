@@ -1,0 +1,29 @@
+.inventario-desverdizado-botones-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    align-items: center;
+}
+.inventario-desverdizado-botones-container h3{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.inventario-desverdizado-botones-container .boton-desverdizado{
+    background-color: rgb(0, 17, 255);
+    padding: 8px 18px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    color: white;
+    
+}
+
+
+.inventario-desverdizado-botones-container .boton-desverdizado:hover{
+    background-color: rgb(2, 9, 107);
+}
+
+.inventario-desverdizado-botones-container .boton-desverdizado:active{
+    background-color: rgb(0, 17, 255);
+
+}

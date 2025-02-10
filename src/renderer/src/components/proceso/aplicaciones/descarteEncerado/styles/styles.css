@@ -1,0 +1,29 @@
+.proceso-aplicaciones-descarteLavado-div1 {
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.proceso-aplicaciones-descarteLavado-div1 h3 {
+    font-weight: bold;
+}
+
+.proceso-aplicaciones-descarteLavado-div-form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    align-items: center;
+    /* Para alinear los items verticalmente en el centro */
+}
+
+.proceso-aplicaciones-descarteLavado-div-form p,
+.proceso-aplicaciones-descarteLavado-div-form input {
+    margin: 0;
+    /* Eliminar el margen predeterminado */
+    padding: 5px;
+    /* Añadir algo de padding si es necesario */
+    width: 33%;
+    color: black;
+    font-weight: bold;
+}

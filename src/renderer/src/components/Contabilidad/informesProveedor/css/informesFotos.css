@@ -1,0 +1,25 @@
+.informe-calidad-lote-fotos-div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 12px;
+
+}
+
+.informe-calidad-lote-fotos-div div{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 18px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.informe-calidad-lote-fotos-div p{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    padding-bottom: 5px;
+}

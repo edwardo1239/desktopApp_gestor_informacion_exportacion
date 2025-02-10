@@ -1,0 +1,417 @@
+/* Estilos generales del dialog */
+dialog {
+  border: none;
+  border-radius: 15px;
+  padding: 0;
+  overflow: hidden;
+  max-width: 1050px;
+  width: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Cuando el dialog está abierto */
+dialog[open] {
+  transform: scale(1);
+  opacity: 1;
+  scale: 1;
+
+  @starting-style {
+    scale: 0;
+    opacity: 0;
+  }
+
+}
+
+/* Fondo semi-transparente al abrir el dialog */
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+}
+
+/* Header del dialog */
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+  background: #f9f9f9;
+}
+
+.dialog-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+}
+
+/* Cuerpo del dialog */
+.dialog-body {
+  padding: 20px;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.form-field {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.form-field textarea {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+/* Footer del dialog */
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid #eee;
+  background: #f9f9f9;
+}
+
+/* Botones */
+.default-button-agree {
+  background-color: var(--color-Celifrut);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.default-button-agree:hover {
+  background-color: var(--color-Celifrut-dark);
+}
+
+.default-button-error {
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.default-button-error:hover {
+  background-color: #e6e6e6;
+}
+
+/* Ajustes para scroll suave en el body */
+.dialog-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dialog-body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.dialog-body::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+
+.form-field {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  /* puedes ajustar color según tu preferencia, por ejemplo:
+       color: #333;
+    */
+}
+
+/* Estilos para input tipo texto */
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="password"] {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  width: 100%;
+  /* Ajusta para que ocupe todo el ancho del contenedor */
+  box-sizing: border-box;
+  /* Evita problemas de overflow horizontal */
+}
+
+/* Efecto hover */
+.form-field input:hover {
+  border-color: #b5b5b5;
+  /* Un tono ligeramente más oscuro */
+}
+
+/* Efecto focus */
+.form-field input:focus {
+  border-color: var(--color-Celifrut);
+  /* mismo color que tus botones “agree” */
+  box-shadow: 0 0 0 2px rgba(126, 186, 39, 0.2);
+  /* Ajusta el color y opacidad */
+}
+
+/* Placeholder */
+.form-field input::placeholder {
+  color: #aaa;
+}
+
+/* Estado deshabilitado */
+.form-field input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Estilos para input checkbox */
+.form-field input[type="checkbox"] {
+  appearance: none; /* Oculta el estilo nativo del checkbox */
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-Celifrut); /* Borde principal */
+  border-radius: 4px; /* Borde redondeado */
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Cuando está marcado */
+.form-field input[type="checkbox"]:checked {
+  background-color: var(--color-Celifrut); /* Fondo al estar marcado */
+  border-color: var(--color-Celifrut); /* Mantiene el borde del mismo color */
+}
+
+.form-field input[type="checkbox"]:checked::before {
+  content: "✔"; /* Marca de verificación */
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+}
+
+/* Hover */
+.form-field input[type="checkbox"]:hover {
+  border-color: var(--color-Celifrut-dark); /* Cambia el color del borde al pasar el cursor */
+}
+
+/* Focus */
+.form-field input[type="checkbox"]:focus {
+  outline: 2px solid rgba(126, 186, 39, 0.3); /* Añade un efecto de foco */
+  outline-offset: 2px;
+}
+
+/* Estado deshabilitado */
+.form-field input[type="checkbox"]:disabled {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+/* Estilos para el select múltiple */
+.form-field select[multiple] {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  
+  /* Ajusta la altura mínima para visualizar varias opciones */
+  min-height: 6em;
+}
+
+/* Hover */
+.form-field select[multiple]:hover {
+  border-color: #b5b5b5;
+}
+
+/* Focus */
+.form-field select[multiple]:focus {
+  border-color: var(--color-Celifrut); /* O tu color principal */
+  box-shadow: 0 0 0 2px rgba(126, 186, 39, 0.2); 
+}
+
+/* Deshabilitado */
+.form-field select[multiple]:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+
+/* datos con varias entradas que hacen un solo item */
+
+/* Contenedor general del grupo de ítems */
+.items-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los ítems se ajusten en múltiples líneas si es necesario */
+  gap: 20px; /* Espaciado entre ítems */
+  padding: 16px;
+  background: #f9f9f9; /* Fondo opcional */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Cada ítem */
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Asegura que los inputs ocupen el ancho completo del ítem */
+  background: #fff; /* Fondo del ítem */
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: calc(33.333% - 20px); /* Tres ítems por fila (ajustar al diseño deseado) */
+  box-sizing: border-box;
+}
+
+/* Ajuste para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .item {
+    width: calc(50% - 20px); /* Dos ítems por fila */
+  }
+}
+
+@media (max-width: 480px) {
+  .item {
+    width: 100%; /* Un ítem por fila */
+  }
+}
+
+/* Título del ítem */
+.item-header {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Contenedor de los inputs del ítem */
+.item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espaciado entre inputs */
+}
+
+/* Inputs dentro de cada ítem */
+.item-body input,h4 {
+  flex: 1 1 calc(50% - 10px);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Placeholder de los inputs */
+.item-body input::placeholder {
+  color: #aaa;
+}
+
+/* Efecto hover */
+.item-body input:hover {
+  border-color: #b5b5b5;
+}
+
+/* Efecto focus */
+.item-body input:focus {
+  border-color: var(--color-Celifrut); /* Color principal */
+  box-shadow: 0 0 0 2px rgba(126, 186, 39, 0.2);
+}
+
+/* Botón de acción del ítem */
+.item-footer {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.item-footer button {
+  background-color: var(--color-Celifrut);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.item-footer button:hover {
+  background-color: var(--color-Celifrut-dark);
+}
+
+.item-footer .cancel {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.item-footer .cancel:hover {
+  background-color: #d32f2f;
+}
+
+

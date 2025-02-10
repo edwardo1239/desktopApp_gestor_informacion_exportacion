@@ -1,0 +1,73 @@
+.cargo-modificar-container {
+    background-color: rgb(219, 218, 204);
+    color: black;
+    padding: .75rem;
+    border-radius: 15px;
+    margin: 0 .5rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.cargo-modificar-container > ol > div{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.cargo-modificar-lista1>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cargo-modificar-lista1>hr {
+    border: 1px solid black;
+    width: 100%;
+    border-color: black;
+}
+
+.cargo-modificar-lista2>div {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1.75rem;
+}
+
+.cargo-modificar-lista2>div>h3 {
+    display: flex;
+    align-items: center;
+
+}
+
+.cargo-modificar-lista3>div {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 3.75rem;
+}
+
+.cargo-modificar-lista3>div>h3 {
+    display: flex;
+    align-items: center;
+
+}
+
+.cargo-modificar-lista4>div {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5.75rem;
+}
+
+.cargo-modificar-lista4>div>button {
+    color: red;
+}
+
+.cargo-modificar-lista4>div>h3 {
+    display: flex;
+    align-items: center;
+
+}
+
+.cargo-modificar-lista4>hr {
+    border: 1px dotted black;
+    width: 91%;
+    border-color: black;
+    margin-left: 5.75rem;
+    margin-right: 9.75rem;
+}

@@ -1,0 +1,160 @@
+.historiales-listaempaque-info-container{
+    background-color: beige;
+    margin: 8px 15px;
+    padding: 18px 10px;
+    border-radius: 15px;
+    color: black;
+    overflow: hidden;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.historiales-listaempaque-info-cabecera{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 8px;
+}
+
+.historiales-listaempaque-info-cabecera img{
+    width: 150px;
+}
+
+.historiales-listaempaque-info-cabecera p{
+    font-size: 12px;
+
+}
+
+.historiales-listaempaque-info-container section hr {
+    color: black;
+    border: 1px solid black;
+}
+.historiales-listaempaque-info-resumen{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    gap: 20px;
+}
+
+.historiales-listaempaque-info-container-filtros{
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.historial-listasempaque-busqueda{
+    padding: 15px;
+}
+
+.info-formulario-calidad-limpieza-area-container{
+    margin-left: 8px;
+}
+.info-formulario-calidad-limpieza-area-container p {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.info-formulario-calidad-limpieza-item-container{
+    margin-left: 18px;
+}
+
+.info-formulario-calidad-limpieza-item-container p{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.info-formulario-calidad-limpieza-item-data-container{
+    border: solid 1px black;
+    margin-left: 15px;
+    padding: 8px 8px;
+    border-radius: 15px;
+}
+
+.info-formulario-calidad-limpieza-item-data-status{
+    display:  flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+}
+
+.info-formulario-calidad-limpieza-item-data-observaciones{
+    background-color: rgb(248, 255, 240);
+    padding: 12px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
+
+.table-main-informe-proveedor{
+    background-color: white;
+    width: 100%;
+    margin-top: 15px;
+    color: black;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+
+}
+
+.table-main-informe-proveedor thead{
+    background-color: var(--color-Celifrut);
+    border-collapse: collapse;
+}
+
+.table-main-informe-proveedor thead tr{
+    height: 45px;
+    font-size: 12px;
+    min-height: 100px;
+    padding-left: 5px;
+    max-width: 350px;
+    overflow: hidden;
+}
+
+.fondo-par{
+    background-color: rgb(251, 251, 251);
+}
+
+.fondo-impar{
+    background-color: rgb(222, 223, 224);
+}
+
+.table-main-informe-proveedor tbody tr td{
+    font-size: 14px;
+    text-align: center;
+    min-height: 100px;
+    padding-left: 5px;
+    max-width: 350px;
+    overflow: hidden;
+
+}
+
+.table-main-informe-proveedor tbody tr td:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.table-main-informe-proveedor tbody tr td div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.table-main-informe-proveedor tbody tr td input{
+    border: 1px solid black;
+    width: 80%;
+    padding: 4px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.table-main-informe-proveedor tbody tr td button{
+    color: var(--color-Celifrut);
+    font-size: 30px;
+}
+
+.table-main-noDocument{
+    color: red;
+    font-size: 20px;
+}

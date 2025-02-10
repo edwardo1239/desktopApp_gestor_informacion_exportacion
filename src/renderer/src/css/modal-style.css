@@ -1,0 +1,205 @@
+.fondo-modal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--color-texto);
+}
+
+.modal-container{
+    background-color: var(--color-fondo);
+    opacity: 1;
+    width: auto;
+    height: auto;
+    border-radius: 18px;
+    overflow: auto;
+    max-height: 90%;
+    position: relative;
+}
+
+.modal-container .modal-container-close-button{
+    position: absolute;
+    top: 0;
+    right: 20px;
+    height: 25px;
+    width: 25px;
+    font-size: 48px;
+    color: red;
+    transition: scale .2s ease-in-out;
+}
+
+.modal-container .modal-container-close-button:hover{
+    color: rgb(219, 4, 4);
+}
+.modal-container .modal-container-close-button:active{
+    color: red;
+    scale: 0.9;
+}
+
+.modal-header-agree{
+    background-color: var(--color-Celifrut);
+    padding: 8px 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    width: 100%;
+
+}
+
+.modal-header-danger{
+    background-color: red;
+    padding: 8px 12px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.modal-header-warning{
+    background-color: rgb(255, 196, 0);
+    padding: 8px 12px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.modal-container-body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    gap: 10px;
+}
+
+.modal-container-body p{
+    font-size: 18px;
+}
+
+.modal-container-body input{
+    color: black;
+    width: 80%;
+    height: auto;
+    border: 1px;
+    padding: 4px 8px;
+    border-style: solid;
+    border-color: #999;
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+.modal-container-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 23px;
+    padding: 12px;
+}
+
+.modal-container-buttons .agree{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+    background-color: var(--color-Celifrut);
+    border-radius: 12px;
+    width: 110px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: transform 0.3s ease;
+    color: white;
+
+}
+
+.modal-container-buttons .agree:hover{
+    background-color: var(--color-Celifrut-dark);
+}
+
+
+.modal-container-buttons .agree:active{
+    background-color: var(--color-Celifrut);
+    transform: scale(0.95);
+}
+
+
+.modal-container-buttons .cancel{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+    background-color: rgb(185, 185, 185);
+    border-radius: 12px;
+    width: 110px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: transform 0.3s ease;
+
+}
+
+.modal-container-buttons .cancel:hover{
+    background-color: rgb(129, 128, 128);
+}
+
+
+.modal-container-buttons .cancel:active{
+    background-color: rgb(185, 185, 185);
+    transform: scale(0.95);
+}
+
+.modal-container-buttons .danger{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+    background-color: red;
+    border-radius: 12px;
+    width: 110px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: transform 0.3s ease;
+
+}
+
+.modal-container-buttons .danger:hover{
+    background-color: rgb(160, 3, 3);
+}
+
+.modal-container-buttons .danger:active{
+    background-color: red;
+    transform: scale(0.95);
+}
+
+
+.modal-container-buttons .warning{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+    background-color: rgb(255, 196, 0);
+    border-radius: 12px;
+    width: 110px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: transform 0.3s ease;
+
+}
+
+.modal-container-buttons .warning:hover{
+    background-color: rgb(172, 132, 1);
+
+}
+
+.modal-container-buttons .warning:active{
+    background-color: rgb(255, 196, 0);
+    transform: scale(0.95);
+}

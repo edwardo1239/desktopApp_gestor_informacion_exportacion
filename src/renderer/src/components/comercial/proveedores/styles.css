@@ -1,0 +1,183 @@
+.paises-div-crear-proveedor {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filtros-add-proveedores-container{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-left: 8px;
+    gap: 15px;
+}
+
+.paises-div-crear-proveedor button {
+    width: 100px;
+    overflow: hidden;
+    height: 40px;
+    font-size: 11px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+.filtro_proveedores-div {
+    padding: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+}
+
+button.add-record {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    /* Espacio entre el ícono y el texto (si lo hubiera) */
+    background-color: #7EBA27;
+    /* Color principal */
+    color: #fff;
+    /* Texto/ícono en blanco */
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+button.add-record:hover {
+    background-color: #6aa823;
+    /* Un tono más oscuro */
+}
+
+button.add-record:active {
+    transform: scale(0.97);
+    /* Efecto “clic” */
+    background-color: #5a8d1d;
+}
+
+button.add-record:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+
+
+
+.tool-select-label {
+    margin-right: 8px;
+    font-weight: 500;
+    color: var(--color-texto);
+    /* O el color que prefieras para el texto */
+}
+
+.tool-select {
+    /* Reseteo de estilos por consistencia */
+    appearance: none;
+    /* Quitar estilo por defecto en navegadores modernos */
+    -webkit-appearance: none;
+    /* Safari */
+    -moz-appearance: none;
+    /* Firefox */
+
+    /* Contenedor */
+    border: 2px solid #7EBA27;
+    /* Color principal */
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    font-weight: 400;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    /* Espacio para un ícono / flecha personalizada */
+    background-image: url("data:image/svg+xml,%3Csvg fill='%237EBA27' width='16' height='16' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 12px) center;
+    background-size: 16px;
+}
+
+.tool-select:hover {
+    border-color: #6aa823;
+    /* Un poco más oscuro al pasar el mouse */
+}
+
+.tool-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(126, 186, 39, 0.3);
+    /* Sombra verde suave */
+}
+
+.tool-select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+.tool-select:hover {
+    border-color: #F3930D;
+}
+
+.tool-select:focus {
+    box-shadow: 0 0 0 2px rgba(255, 205, 0, 0.4);
+}
+
+
+/* Etiqueta para el input (opcional, mejora accesibilidad) */
+.search-label {
+    margin-right: 8px;
+    font-weight: 500;
+    color: var(--color-texto);
+  }
+  
+  /* Contenedor para posicionar el ícono dentro del input */
+  .search-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    width: 200px;               /* Ajusta según tu barra de herramientas */
+    padding: 8px 12px;
+    padding-right: 40px;        /* Espacio extra para el ícono */
+    font-size: 1rem;
+    font-weight: 400;
+    color: #333;
+    background-color: #fff;
+    border: 2px solid #7EBA27;  /* Borde en color principal */
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Elimina estilos por defecto en navegadores */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  /* Efecto al pasar el mouse por encima */
+  .search-input:hover {
+    border-color: #6aa823; /* Un tono más oscuro del principal */
+  }
+  
+  /* Efecto al hacer focus en el input */
+  .search-input:focus {
+    box-shadow: 0 0 0 2px rgba(126, 186, 39, 0.3); /* Sombra verde suave */
+  }
+  
+  /* Ícono de búsqueda */
+  .search-icon {
+    position: absolute;
+    right: 12px;       /* Alineado al lado derecho */
+    color: #7EBA27;    /* Mismo color principal */
+    pointer-events: none; /* Para que el clic pase al input */
+    font-size: 1.2rem; /* Ajusta el tamaño según tu preferencia */
+  }

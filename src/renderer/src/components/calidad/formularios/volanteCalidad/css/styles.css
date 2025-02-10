@@ -1,0 +1,83 @@
+
+.volante-calidad-div-botones-cambio-tabla{
+    display: flex;
+    flex-direction: row;
+    width: 100%; 
+    gap: 15px;
+    color: white;
+    padding-left: 15px;
+}
+
+
+.volante-calidad-boton-cambio-tabla{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+    background-color: var(--color-Celifrut);
+    border-radius: 12px;
+    width: 150px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: transform 0.3s ease;
+}
+
+.volante-calidad-boton-cambio-tabla:hover{
+    background-color: var(--color-Celifrut-dark);
+}
+
+.volante-calidad-boton-cambio-tabla:active{
+    background-color: var(--color-Celifrut);
+    transform: scale(0.95);
+}
+
+.volante-calidad-div-graficas{
+    margin-top: 10px;   
+    display: flex;
+    justify-content: center;
+}
+
+.volante-calidad-div-graficas-container{
+    margin: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 12px;
+    width: 95%;
+    padding: 10px;
+    background-color: white;
+    color: black;
+}
+
+.volante-calidad-button-page-div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 22px;
+    gap: 20px;
+}
+
+
+.volante-calidad-button-page{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+    background-color: var(--color-Celifrut);
+    border-radius: 12px;
+    width: 35px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: transform 0.3s ease;
+}
+
+.volante-calidad-button-page:hover{
+    background-color: var(--color-Celifrut-dark);
+}
+
+.volante-calidad-button-page:active{
+    background-color: var(--color-Celifrut);
+    transform: scale(0.95);
+}

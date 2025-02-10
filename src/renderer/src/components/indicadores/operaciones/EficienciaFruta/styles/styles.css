@@ -1,0 +1,74 @@
+
+.indicadores-tarjetas-container{
+    padding: 8px;
+    position: relative;
+    max-width: 100%;
+}
+.indicadores-tarjeta{
+    width: 600px;
+    padding: 8px;
+    background-color: rgb(227, 253, 234);
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: absolute;
+    top: 15px;
+    left: 50px;
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+}
+.indicadores-tarjeta:hover{
+    cursor: grab;
+}
+.indicadores-tarjeta-top{
+    position: absolute;
+    width: 100%;
+    height: 15px;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 5;
+}
+.indicadores-tarjeta-top:hover{
+    cursor: n-resize;
+}
+
+.indicadores-tarjeta-left{
+    position: absolute;
+    height: 100%;
+    width: 15px;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 5;
+}
+.indicadores-tarjeta-left:hover{
+    cursor: e-resize;
+}
+.indicadores-tarjeta-rigth{
+    position: absolute;
+    height: 100%;
+    width: 15px;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 5;
+}
+.indicadores-tarjeta-rigth:hover{
+    cursor: e-resize;
+}
+.indicadores-tarjeta-bottom{
+    position: absolute;
+    width: 100%;
+    height: 15px;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 5;
+}
+.indicadores-tarjeta-bottom:hover{
+    cursor: s-resize;
+}

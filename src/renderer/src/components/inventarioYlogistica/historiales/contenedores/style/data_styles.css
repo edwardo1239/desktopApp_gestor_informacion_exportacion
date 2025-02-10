@@ -1,0 +1,76 @@
+.proceso-listaempaque-resumen-container {
+    padding: 15px;
+    border: 1px solid var(--color-texto);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.proceso-listaempaque-resumen-container section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: .55rem;
+    margin-top: .55rem;
+    padding: 8px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.proceso-listaempaque-resumen-container .resumen-container-buttons-div{
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* Para alinear el contenido del primer section */
+.proceso-listaempaque-resumen-filtro-button-hoy {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+.proceso-listaempaque-resumen-container section h3{
+    font-weight: 800;
+}
+
+.proceso-listaempaque-resumen-container section div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.proceso-listaempaque-resumen-container section div h4{
+    font-weight: 700;
+}
+
+.proceso-listaempaque-resumen-container section div p span{
+    font-weight: 600;
+}
+
+.proces-listaempaque-opciones-botones{
+    display: flex;
+    height: 80px;
+    gap: 25px;
+}
+
+.proceso-lista-empaque-pallets-sin-contenedor{
+    padding-left: 5%;
+}
+
+.historial-contenedores-mostrar-total-cajas-kilos-section{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 15px 24px;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.proceso-listaempaque-resumen-filtro-button-fecha label input{
+    border-radius: 8px;
+    color: black;
+
+}

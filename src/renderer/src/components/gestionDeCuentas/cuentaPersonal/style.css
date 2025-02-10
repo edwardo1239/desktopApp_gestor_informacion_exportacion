@@ -1,0 +1,74 @@
+.micuenta-container{
+    background-color: rgb(205, 205, 222);
+    margin: 12px 8px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    color: #000;
+}
+
+.micuenta-infogeneral{
+    border: solid 1px rgb(77, 77, 77); 
+    margin: 12px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    gap: 18px;
+}
+
+.micuenta-infogeneral-imagen img{
+    width: 250px;
+    height: 280px;
+    border-radius: 15px;
+}
+
+.micuenta-infogeneral-datos{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0 2px;  /* 0 para el espacio vertical, 2px para el espacio horizontal */
+    background-color: #000;  /* Color del borde */
+}
+
+
+
+.micuenta-infogeneral-datos div{
+    background-color: rgb(205, 205, 222);
+    padding: 20px;
+}
+.micuenta-infogeneral-datos div h3{
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.micuenta-infogeneral-datos div p{
+    margin-left: 4px;
+}
+
+.micuenta-acciones-container{
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+}
+
+.micuenta-nuevacontra-container{
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    border: solid 1px rgb(77, 77, 77); 
+    border-radius: 18px;
+    padding: 8px 12px;
+}
+
+.micuenta-nuevacontra-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 12px;
+}
+
+.micuenta-nuevacontra-inputs label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

@@ -1,0 +1,316 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../assets/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --color-fondo: #fff;
+  --color-fondo-hover: #ececec;
+  --color-texto: #000;
+  --color-Celifrut: #7EBA27;        /* Verde principal */
+  --color-Celifrut-dark: #75ac23;   /* Verde más oscuro */
+  --color-Celifrut-brigth: #8ecc30; /* Verde más claro */
+  --border-Color: #e5e7eb;
+
+  --color-ListaEmpaqueTexto: rgb(59 130 246);
+  --color-ListaEmpaqueFondo: rgb(233, 240, 251);
+  --color-shadow: rgba(186, 186, 186, 1);
+  --color-predioCard-ordenVaciado: rgb(228, 236, 232);
+
+  --sombra--boton-menu: rgba(0, 0, 0, 0.35);
+}
+
+.dark-theme {
+  --color-fondo: #090224;
+  --color-fondo-hover: #13044e;
+  --color-texto: #fff;
+  --color-ListaEmpaqueTexto: #fff;
+  --color-ListaEmpaqueFondo: rgb(54, 69, 94);
+  --color-shadow: rgb(92, 91, 96);
+  --color-predioCard-ordenVaciado: rgb(79, 88, 83);
+  --border-Color: #475569;
+
+  --sombra--boton-menu: rgba(255, 255, 255, 0.35);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif; /* Usamos la fuente Roboto en todo el documento */
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+main {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  background-color: var(--color-fondo);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.UI-container-navBar {
+  border: 2px solid var(--border-Color);
+}
+
+.UI-container-side-ventana {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.UI-ventana {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+}
+
+.ventana-main {
+  background-color: var(--color-fondo);
+  overflow-y: auto;
+  width: 100%;
+  padding-bottom: 100px;
+  box-sizing: border-box;
+}
+
+.componentContainer {
+  width: 100%;
+}
+
+.componentContainer h2 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+
+.custom-markdown {
+  background-color: var(--color-fondo) !important;
+  color: var(--color-texto) !important;
+  padding-left: 15px;
+}
+
+.defaultSelect {
+  color: black;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 4px 8px;
+  border-style: solid;
+  border-color: #999;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+.defaulButtonAgree {
+  background-color: var(--color-Celifrut) !important;
+  padding: 12px 20px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease-in-out, transform 0.1s ease-in-out;
+  cursor: pointer;
+  border: none;
+  /* Si es posible omitir el borde para un look más limpio */
+}
+
+.defaulButtonAgree:hover {
+  background-color: var(--color-Celifrut-dark) !important;
+}
+
+.defaulButtonAgree:active {
+  background-color: var(--color-Celifrut-brigth) !important;
+  transform: scale(0.98);
+}
+
+
+.defaulButtonError {
+  background-color: red;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+}
+
+.defaulButtonError:hover {
+  background-color: rgb(195, 3, 3);
+}
+
+.defaulButtonError:active {
+  background-color: rgb(255, 11, 11);
+}
+
+.defaulButtonCancel {
+  background-color: rgb(97, 97, 97);
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+}
+
+.defaulButtonWarning {
+  background-color: rgb(231, 198, 12);
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+}
+
+.defaulButtonWarning:hover {
+  background-color: rgb(153, 131, 5);
+
+}
+
+.defaulButtonWarning:active {
+  background-color: rgb(231, 198, 12);
+
+}
+
+.defaulButtonCancel {
+  background-color: rgb(97, 97, 97);
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+}
+
+.defaulButtonCancel:hover {
+  background-color: rgb(90, 90, 90);
+}
+
+.defaulButtonCancel:active {
+  background-color: rgb(163, 163, 163);
+}
+
+.cargo-modificar-button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem .75rem;
+}
+
+
+.paage-tabla-div-button {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+
+  margin-top: 25px;
+  padding-bottom: 25px;
+}
+
+.paage-tabla-div-button p {
+  text-align: center;
+}
+
+.paage-tabla-div-button button {
+  background-color: var(--color-Celifrut);
+  color: white;
+  height: 40px;
+  width: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  font-size: 35px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+
+
+
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 53px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.kebab-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: va(--color-fondo);
+  aspect-ratio: 1/2;
+  border-radius: 5px;
+  transition: transform all ease-in-out;
+}
+
+.kebab-button:hover {
+  box-shadow: var(--sombra--boton-menu) 0px 2px 8px;
+  scale: 1.1;
+}
+
+.kebab-button:active {
+  box-shadow: var(--sombra--boton-menu) 0px 2px 8px;
+  scale: 0.8;
+}

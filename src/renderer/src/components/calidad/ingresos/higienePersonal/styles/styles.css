@@ -1,0 +1,27 @@
+.form-container .formularios-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.form-container .formularios-container .formularios-checkbox{
+    border: 1px solid;
+    padding: .35rem .35rem;
+    border-radius: 15px;
+    width: 100%;
+}
+.form-container .formularios-container .formularios-checkbox label{
+    display: flex;
+    flex-direction: row;
+    gap: .75rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.form-container .formularios-container .formularios-checkbox label p{
+    width: 100%;
+    font-size: 15px;
+}
+
+.form-container .formularios-container .formularios-checkbox label input{
+    height: 32px;
+}

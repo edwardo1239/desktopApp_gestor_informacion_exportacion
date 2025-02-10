@@ -1,0 +1,27 @@
+.view-informes-datos-general-container{
+    padding-left: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 6px;
+    margin-bottom: 6px;
+    border-radius: 15px;
+    padding: 0.5rem;
+}
+
+.view-informes-datos-general-container div{
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
+    justify-content: space-between;
+}
+
+.view-informes-datos-general-container div p{
+    font-weight: bold;
+}
+
+.view-informes-datos-general-container div p span{
+    font-weight: normal;
+    margin-left: 2px;
+}

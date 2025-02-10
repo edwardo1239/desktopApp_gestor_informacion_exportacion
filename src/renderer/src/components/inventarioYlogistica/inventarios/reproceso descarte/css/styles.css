@@ -1,0 +1,147 @@
+.inventario-descartes-botones-container {
+    background-color: rgb(179, 174, 135);
+    padding: 8px;
+    margin: 5px;
+    border-radius: 8px;
+    box-shadow: rgba(92, 97, 100, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+}
+
+.inventario-descartes-botones-div-kilos-totales2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    gap: 18px;
+}
+
+.inventario-descartes-botones-div-kilos-totales {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    gap: 18px;
+}
+
+.inventario-descartes-botones-div-kilos-totales-lavado {
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 16px;
+    color: white;
+    width: 100%;
+
+}
+
+.inventario-descartes-botones-div-kilos-totales-lavado div {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+}
+
+
+.inventario-descartes-tarjeta-container {
+    padding: 10px;
+}
+
+.inventario-descartes-tarjeta-info-div {
+    background-color: var(--color-ListaEmpaqueFondo);
+    padding: 10px;
+    border-radius: 18px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    display: flex;
+    flex-direction: row;
+    border-left-width: 2px;
+    border-color: rgb(0, 140, 255);
+}
+
+.inventario-descartes-tarjeta-info-div2 {
+    min-width: 125px;
+    margin: 12px;
+}
+
+.inventario-descartes-tarjeta-info-div2 h5 {
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.inventario-descartes-tarjeta-info-div2 h3 {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.inventario-descartes-tarjeta-info-div-checkbox {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.inventario-descartes-tarjeta-info-div-checkbox h4 {
+    font-weight: bold;
+}
+
+.inventario-descartes-tarjeta-descarte-div {
+    background-color: var(--color-fondo);
+    border-radius: 18px;
+    padding: 8px;
+    width: 100%;
+}
+
+.inventario-descartes-tarjeta-descarte-lavado {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.inventario-descartes-tarjeta-descarte-lavado div {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+.inventario-descartes-tarjeta-descarte-lavado span {
+    font-weight: bold;
+}
+
+.inventario-descartes-botones-div-formulario-envio {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.inventario-descartes-botones-div-formulario-envio-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inventario-descartes-botones-div-formulario-envio-div input {
+    border-radius: 8px;
+    height: 30px;
+    color: black;
+    padding-left: 2px;
+}
+
+.modal-container-body-resumen-despacho {
+    padding: .75rem;
+    border: 1px solid;
+    border-radius: 15px;
+    margin: .75rem;
+
+}
+
+.modal-container-body-resumen-despacho-descarte{
+    display: flex;
+    flex-direction: row;
+    gap:0.75rem;
+}

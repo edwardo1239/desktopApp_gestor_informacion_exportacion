@@ -1,0 +1,37 @@
+.creacionformularioscalidad-container{
+    background-color: rgb(205, 205, 222);
+    margin: 12px 8px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    color: #000;
+}
+
+.creacionformulariocalidad-selection-container{
+    padding: 18px;
+}
+
+.creacionformulariocalidad-selection-container h3{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.creacionformularioscalidad-container-fechas{
+    display: flex;
+    flex-direction: column;
+    padding: 22px;
+}
+
+.creacionformularioscalidad-container-fechas label {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.creacionformularioscalidad-container-boton{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 14px;
+    margin-bottom: 22px;
+}

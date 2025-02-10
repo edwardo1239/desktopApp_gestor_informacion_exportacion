@@ -1,0 +1,15 @@
+{
+    "version": "0.0.1",
+    "responsable": "Responsable",
+    "botas": "Botas",
+    "pantalon": "Pantalon",
+    "camisa":"Camisa",
+    "tapaoidos":"Tapaoidos",
+    "cofia":"Cofia",
+    "tapabocas":"Tapabocas",
+    "uñas": "Uñas cortas",
+    "accesorios": "Accesorios",
+    "barba": "Barba",
+    "maquillaje": "Maquillaje",
+    "salud": "Estado de salud"
+}

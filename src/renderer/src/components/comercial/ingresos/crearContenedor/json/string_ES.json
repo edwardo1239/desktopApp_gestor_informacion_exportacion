@@ -1,0 +1,42 @@
+{
+    "title":"Crear contenedor",
+    "clientes":"Clientes",
+    "numero_contenedor":"Número de contenedor",
+    "numero_pallets":"Número de pallets",
+    "fecha_inicio_proceso":"Fecha inicio proceso",
+    "fecha_estimada_cargue": "Fecha estimada de cargue",
+    "desverdizado":"Desverdizado",
+    "calidad":{
+        "title":"Calidad",
+        "1":"1",
+        "1.5":"1.5",
+        "2":"2",
+        "zumo":"Zumex",
+        "combinado":"Combinado"
+
+    },
+    "tipoCaja":{
+        "title":"Tipo de Caja"
+    },
+    "tipoFruta":{
+        "title":"Tipo de fruta",
+        "naranja":"Naranja",
+        "limon":"Limon",
+        "mixto":"Mixto"
+    },
+    "tipoEmpaque":{
+        "title":"Tipo de empaque",
+        "caja":"Caja",
+        "saco":"Saco"
+    },
+    "observaciones":"Observaciones",
+    "guardar":"Guardar",
+    "sombra": "Sombra",
+    "defecto":"Defecto",
+    "mancha":"Mancha",
+    "verdeMzn": "Verde manzana",
+    "calibres": "Calibres",
+    "cajas":"Cajas total",
+    "totalFruta":"Total fruta",
+    "rtoEsrimado":"RTO Estimado"
+}

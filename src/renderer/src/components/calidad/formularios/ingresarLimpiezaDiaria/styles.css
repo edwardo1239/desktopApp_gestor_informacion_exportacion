@@ -1,0 +1,49 @@
+.ingresarformularioscalidad-container{
+    background-color: rgb(205, 205, 222);
+    margin: 12px 8px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    color: #000;
+}
+
+.ingresarformularioscalidad-container hr{
+    color: #000;
+    border: solid 1px rgb(71, 71, 71);
+    margin: 0px 15px;
+}
+
+.ingresoformulariocalidad-selectformulario-container{
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.ingresoformulariocalidad-cumple-button{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.ingresoformulariocalidad-cumple-button p{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.ingresoformulariocalidad-cumple-button label span{
+    background-color: white;
+}
+
+.ingresoformulariocalidad-obsercaciones p{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.ingresoformularioscalidad-button-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

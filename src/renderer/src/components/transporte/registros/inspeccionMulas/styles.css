@@ -1,0 +1,14 @@
+
+.transporte-registros-inspeccionmula-info-action-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 12px;
+}
+
+.transporte-registros-inspeccionmula-info-action-container button {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 8px;
+}

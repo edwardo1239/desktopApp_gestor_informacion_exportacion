@@ -1,0 +1,242 @@
+
+.proceso-lista-empaque-info-predio-actual{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    height: 150px;
+    margin-left: 15px;
+}
+
+.proceso-lista-empaque-info-predio-actual div{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+} 
+
+.proceso-lista-empaque-info-predio-actual h3{
+    font-size: 12px;
+}
+.proceso-lista-empaque-info-predio-actual div h5{
+    font-size: 12px;
+} 
+
+.proceso-lista-empaque-pallets{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+    justify-content: center;
+    color: black;
+}
+
+.proceso-lista-empaque-tajeta-pallet{
+    background-color: rgb(255, 255, 255);
+    margin: 6px;
+    position: relative;
+    padding: 6px;
+    border-radius: 15px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.proceso-lista-empaque-tajeta-pallet-liberado{
+    position: absolute;
+    right: 10px;
+    bottom: 50px;
+    font-size: 40px;
+}
+
+.proceso-lista-empaque-tajeta-pallet-div1{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 32px;
+    font-weight: bolder;
+}
+
+.proceso-lista-empaque-tajeta-pallet-div2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 18px;
+    font-weight: bolder;
+    gap: 5px;
+}
+
+.proceso-lista-empaque-tajeta-pallet-div2 button {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.proceso-lista-empaque-tajeta-pallet-div2 button {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.proceso-lista-empaque-tajeta-pallet-div2 button:hover {
+    transform: scale(1.33); /* Aumenta el tamaño en un 33% (de 18px a 24px) */
+}
+
+.proceso-listaempaque-info-pallet{
+    margin-top: 10px;
+    padding: 2px;
+}
+
+.proceso-listaempaque-info-pallet-item-select{
+    border: 2px solid rgb(255, 0, 0);
+    padding: 8px;
+    border-radius: 15px;
+    margin-top: 4px;
+}
+
+.proceso-listaempaque-info-pallet-item{
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 15px;
+    margin-top: 4px;
+}
+
+.proceso-listaempaque-info-pallet-item-nombre{
+    font-weight: bold;
+}
+
+.proceso-listaempaque-edit-button{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.proceso-listaempaque-add-pallet-container {
+    width: 100%;
+    height: 150px;
+    margin: 6px;
+    padding: 6px;
+    border-radius: 15px;
+
+}
+
+.proceso-listaempaque-add-pallet-container:hover {
+    cursor: pointer;
+}
+
+
+.proceso-listaempaque-add-pallet-div{
+    border: 2px solid var(--color-texto);
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 75px;
+    color: var(--color-texto);
+}
+
+.proceso-listaempaque-add-pallet-div:hover{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+}
+
+.proceso-listaempaque-add-pallet-div:active {
+    scale: 0.8;
+}
+
+.dialog-modal-seccion-liberar{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dialog-modal-seccion-liberar label{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.dialog-modal-seccion-liberar label input{
+    width: 18px;
+    height: 18px;
+}
+
+.proces-listaempaque-opciones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+
+}
+
+.proces-listaempaque-opciones button{
+    margin-top: 25px;
+}
+
+.proceso-listaempaque-resumen-container {
+    padding: 15px;
+    border: 1px solid var(--color-texto);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.proceso-listaempaque-resumen-container section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: .55rem;
+    margin-top: .55rem;
+    padding: 8px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.proceso-listaempaque-resumen-container .resumen-container-buttons-div{
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* Para alinear el contenido del primer section */
+.proceso-listaempaque-resumen-filtro-button-hoy {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+.proceso-listaempaque-resumen-container section h3{
+    font-weight: 800;
+}
+
+.proceso-listaempaque-resumen-container section div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.proceso-listaempaque-resumen-container section div h4{
+    font-weight: 700;
+}
+
+.proceso-listaempaque-resumen-container section div p span{
+    font-weight: 600;
+}
+
+.proces-listaempaque-opciones-botones{
+    display: flex;
+    height: 80px;
+    gap: 25px;
+}
+
+.proceso-lista-empaque-pallets-sin-contenedor{
+    padding-left: 5%;
+}

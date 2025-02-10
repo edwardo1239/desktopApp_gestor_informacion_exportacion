@@ -1,0 +1,101 @@
+.inventario-fruta-sin-procesar-botones-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Distribución uniforme */
+    justify-content: space-between;
+    padding: 10px 15px;
+    gap: 12px; /* Espaciado entre elementos */
+    align-items: center;
+    border: 1px solid #ddd; /* Borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.inventario-fruta-sin-procesar-botones-container h3 {
+    padding: 8px 10px;
+    background-color: #ffffff; /* Fondo blanco para contraste */
+    border: 1px solid #e0e0e0; /* Borde ligero */
+    border-radius: 6px;
+    text-align: center; /* Centrado del contenido */
+    font-size: 14px; /* Tamaño de fuente moderado */
+    font-family: 'Arial', sans-serif; /* Fuente sobria */
+    color: #333; /* Texto oscuro para legibilidad */
+    transition: transform 0.2s, box-shadow 0.2s; /* Transiciones suaves */
+}
+
+.inventario-fruta-sin-procesar-botones-container .no-desverdizar {
+    display: none;
+}
+
+.inventario-fruta-sin-procesar-botones-container .desverdizar {
+    background-color: rgb(255, 208, 0);
+    padding: 8px 18px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.inventario-fruta-sin-procesar-botones-container .vaciar {
+    background-color: var(--color-Celifrut);
+    padding: 8px 18px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    color: white;
+    width: 200px;
+    font-weight: bold;
+
+}
+
+.inventario-fruta-sin-procesar-botones-container .vaciar:hover {
+    background-color: var(--color-Celifrut-dark);
+}
+
+.inventario-fruta-sin-procesar-botones-container .directo-nacional {
+    background-color: red;
+    padding: 8px 18px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 200px;
+    font-weight: bold;
+}
+
+.inventario-fruta-sin-procesar-botones-container .directo-nacional:hover {
+    background-color: rgb(167, 1, 1);
+}
+
+.inventario-fruta-sin-procesar-boton-camion {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inventario-fruta-sin-procesar-boton-camion:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.change-state-camino-container-options{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 12px;
+}
+
+.change-state-camino-container-options button{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 15px;
+    padding: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dad8d8;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+.change-state-camino-container-options button:active{
+    transform: scale(0.95);
+
+}
+
+.change-state-camino-container-options button:hover{
+    background-color: #9b9b9b;
+}

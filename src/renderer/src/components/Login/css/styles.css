@@ -1,0 +1,82 @@
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.formLogin {
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 0.375rem;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1rem;
+    width: 50%;
+    transition: all 0.5s;
+    height: auto;
+    opacity: 1;
+}
+
+.formLogin .loginInput {
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+    position: relative;
+}
+
+
+.formLogin .loginInput .errorContainer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
+
+.formLogin .loginInput .errorText {
+    color: red;
+    position: absolute;
+}
+
+.formLogin .loginInput label {
+    font-weight: bold;
+}
+
+.formLogin .loginbuttonsDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.formLogin .loginbuttonsDiv button {
+    background-color: var(--color-Celifrut);
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: white;
+    width: 180px;
+}
+
+.formLogin .loginbuttonsDiv button:hover {
+    background-color: var(--color-Celifrut-dark);
+}
+
+.formLogin .loginbuttonsDiv button:active {
+    background-color: var(--color-Celifrut-brigth);
+}
+
+.formLogin .loginImgDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 6rem;
+}
+
+.formLogin .loginImgDiv img {
+    width: 90px;
+    height: 80px;
+}
+
+.window {
+    transition: all 0.5s ease-out;
+    opacity: 1;
+}

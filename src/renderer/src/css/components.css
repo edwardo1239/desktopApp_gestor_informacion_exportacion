@@ -1,0 +1,155 @@
+
+
+.navBar {
+    height: 4rem;
+    width: 100%;
+    background-color: var(--color-Celifrut);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.navBar select {
+    width: 35%;
+    height: 35px;
+    color: black;
+    border-radius: 8px;
+}
+
+.navBar input {
+    width: 350px;
+    height: 35px;
+    color: black;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.navBar-menuButton {
+    padding: 8px;
+    font-size: 24px;
+    border-radius: 50%;
+    color: white;
+}
+
+.navBar-menuButton:hover {
+    background-color: rgba(0, 0, 0, 0.219);
+}
+
+.navBar-menuButton:active {
+    background-color: rgba(0, 0, 0, 0.445);
+}
+
+.navBar-menu-div {
+    width: 150px;
+    height: 100px;
+    background-color: var(--color-fondo);
+    margin-right: 80%;
+    margin-top: 150px;
+    position: fixed;
+    border-radius: 9px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: space-around;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navBar-menu-div button {
+    width: 100%;
+    height: 100%;
+
+}
+
+.navBar-menu-div button:hover {
+    background-color: var(--color-ListaEmpaqueFondo)
+}
+
+.button-page-div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 22px;
+    gap: 20px;
+}
+
+.button-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+    background-color: var(--color-Celifrut);
+    border-radius: 12px;
+    width: 35px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: transform 0.3s ease;
+}
+
+.button-page:hover {
+    background-color: var(--color-Celifrut-dark);
+}
+
+.button-page:active {
+    background-color: var(--color-Celifrut);
+    transform: scale(0.95);
+}
+
+
+.botones-pasar-pagina {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    padding: .5rem 0;
+}
+
+/* Botones de paginación */
+.botones-pasar-pagina button {
+    /* Ajustes para un botón más compacto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    /* antes 2.5rem */
+    height: 2.25rem;
+    /* antes 2.5rem */
+    font-size: 1.125rem;
+    /* antes 1.25rem */
+
+    /* Colores y fondo */
+    color: #fff;
+    background-color: var(--color-Celifrut);
+    border: none;
+    border-radius: 0.4rem;
+    /* un pelín menos redondeado */
+    cursor: pointer;
+
+    /* Sombras y transiciones para un look moderno */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto hover */
+.botones-pasar-pagina button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Efecto al hacer clic */
+.botones-pasar-pagina button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Enfoque accesible */
+.botones-pasar-pagina button:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}

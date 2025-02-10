@@ -1,0 +1,35 @@
+.info-formulario-calidad-limpieza-diaria-container{
+    background-color: beige;
+    margin: 8px 15px;
+    padding: 18px 10px;
+    border-radius: 15px;
+    color: black;
+    overflow: hidden;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.info-formulario-calidad-limpieza-diaria-container hr{
+    color: black;
+    border: 1px solid black;
+}
+.info-formulario-calidad-limpieza-diaria-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 8px;
+}
+
+.info-formulario-calidad-limpieza-diaria-header img{
+    width: 150px;
+}
+
+.info-formulario-calidad-limpieza-diaria-header p{
+    font-size: 12px;
+}
+
+.info-formulario-calidad-limpieza-diaria-fecha-id{
+    display:  flex;
+    justify-content: space-between;
+    padding: 8px 18px;
+}

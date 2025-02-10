@@ -1,0 +1,116 @@
+.usuarios-tabla-permisos-container{
+    display: flex;
+    flex-direction: column;
+    cursor:default;
+    text-decoration: none;
+
+
+}
+
+
+.usuarios-tabla-permisos-areas{
+    background-color: rgb(194, 248, 214);
+    width: 100%;
+    cursor:default;
+    text-decoration: none;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 8px;
+
+}
+
+.usuarios-tabla-permisos-areas:hover{
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+.usuarios-tabla-permisos-secciones{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.usuarios-tabla-permisos-secciones .elemento{
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 8px;
+    width: 100%;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+.usuarios-tabla-permisos-secciones .elemento .item{
+    display: flex;
+    font-weight: 400;
+    flex-direction: row;
+    width: auto;
+}
+
+.agregar-usuario-div-boton{
+    padding-left: 55px;
+    position: relative;
+    top: 35px;
+    z-index: 1;
+    font-weight: bold;
+}
+.agregar-usuario-boton {
+    background-color: rgb(205, 205, 222);
+    padding: 10px 18px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+.agregar-usuario-boton-dark {
+    background-color: rgb(148, 148, 161);
+    padding: 10px 18px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+.arbol-permisos-container{
+    background-color: rgb(205, 205, 222);
+    margin: 25px;
+    padding: 15px;
+    border-radius: 18px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    color: black;
+    position: relative;
+    z-index: 20;
+    
+}
+
+.arbol-permisos-dep-head{
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.arbol-permisos-dep-head2{
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    font-weight: 600;
+    padding-left: 20px;
+}
+
+.arbol-permisos-dep-head3{
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    padding-left: 40px;
+}
+
+.agregar-usuario-guardar-boton-div{
+
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 15px;
+}

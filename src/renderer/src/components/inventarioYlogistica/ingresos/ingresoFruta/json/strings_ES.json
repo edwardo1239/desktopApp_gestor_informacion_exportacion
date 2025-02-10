@@ -1,0 +1,16 @@
+{
+    "title": "Ingreso de fruta",
+    "input_predios":"Predios",
+    "numeroCanastillas":"Número de canastillas",
+    "kilos":"Kilos",
+    "placa":"Placa",
+    "tipoFruta":{
+        "title": "Tipo de fruta",
+        "limon":"Limon",
+        "naranja":"Naranja"
+    },
+    "fecha_estimada_llegada": "Fecha de llegada",
+    "observaciones": "Observaciones",
+    "botonGuardar": "Guardar"
+
+}

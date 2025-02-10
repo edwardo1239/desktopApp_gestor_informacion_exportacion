@@ -1,0 +1,89 @@
+.calidad-interna-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.calidad-interna-div1{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    
+}
+
+.calidad-interna-calidad-div{
+    background-color: var(--color-predioCard-ordenVaciado);
+    margin: 15px;
+    border-radius: 15px;
+    padding: 10px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.calidad-interna-calidad-div div{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.calidad-interna-calidad-div div label input{
+    margin-left: 15px;
+    margin-right: 10px;
+}
+
+.calidad-interna-zumo-div{
+    background-color: var(--color-predioCard-ordenVaciado);
+    margin: 15px;
+    border-radius: 15px;
+    padding: 10px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    gap: 10px;
+}
+
+.calidad-interna-zumo-div label{
+    margin-left: 15px;
+    margin-right: 10px;
+    font-size: 18px;
+
+}
+
+.calidad-interna-zumo-div p{
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.calidad-interna-zumo-div div label input{
+    margin-left: 15px;
+    margin-right: 10px;
+
+}
+
+.calidad-interna-pruebas-div{
+    background-color: var(--color-predioCard-ordenVaciado);
+    margin: 15px;
+    border-radius: 15px;
+    padding: 18px;
+    width: 88%;
+    display: flex;
+    flex-direction: row;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    gap: 10px;
+    align-items: center;
+}
+
+.calidad-interna-pruebas-div div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+}

@@ -1,0 +1,72 @@
+.ui-nav-bar {
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--color-fondo);
+    border-bottom: 1px solid var(--border-Color);
+
+    box-shadow: 0 2px 4px var(--sombra--boton-menu);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ui-nav-bar-logo {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    display: inline-block;
+    color: var(--color-texto);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: "Roboto", sans-serif;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.3s ease;
+}
+
+.ui-nav-bar-logo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--sombra--boton-menu);
+    background-color: var(--color-Celifrut-brigth);
+}
+
+.ui-nav-bar-elementos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ui-nav-bar-esconder-side-bar {
+    font-size: 1.5rem;
+    margin-right: 8px;
+    font-weight: 700;
+    color: var(--color-texto);
+    transition: transform 0.3s ease, filter 0.3s ease;
+    font-family: "Roboto", sans-serif;
+}
+
+.ui-nav-bar-esconder-side-bar:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 5px var(--color-shadow));
+}
+
+.ui-nav-bar-esconder-side-bar:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px var(--color-shadow);
+}
+
+/* ------------------------------------------------------------------ */
+/* Opcional: Ajusta el enfoque de accesibilidad en botones / enlaces  */
+/* ------------------------------------------------------------------ */
+.ui-nav-bar-logo:focus,
+.ui-nav-bar-esconder-side-bar:focus {
+    outline: 2px solid var(--color-Celifrut-dark);
+    outline-offset: 2px;
+}

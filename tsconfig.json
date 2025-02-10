@@ -1,0 +1,29 @@
+{
+  "files": [
+    "src/main/env.d.ts"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.web.json"
+    }
+  ],
+  "include": [
+    "src/main/env.d.ts",
+    "src",
+    "setupTests.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compilerOptions": {
+    "types": ["vitest", "@testing-library/jest-dom", "node"],
+    "moduleResolution": "node",
+    "target": "esnext",
+    "lib": ["dom", "esnext"],
+    "strict": true
+  }
+}

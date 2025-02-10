@@ -1,0 +1,34 @@
+.lista-orden-vaceo-container{
+    margin: 10px;
+    padding: 15px;
+    width: 50%;
+    border-radius: 8px;
+    background-color: rgb(205, 205, 222);
+    -webkit-box-shadow: 0px 9px 10px 1px rgba(186, 186, 186, 1);
+    -moz-box-shadow: 0px 9px 10px 1px rgba(186, 186, 186, 1);
+    box-shadow: 0px 9px 10px 1px var(--color-shadow);
+    font-weight: 500;
+    color: black;
+    height: 100%;
+}
+
+
+.lista-orden-vaceo-container hr{
+    border-style: solid;
+    border-color: black;
+}
+
+.lista-orden-vaceo-div{
+    width: 100%;
+    background-color: white;
+    height: 90%;
+    border-radius: 8px;
+    margin-top: 8px;
+}
+
+.lista-orden-vaceo-div-button{
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px;
+    gap: 25px;
+}

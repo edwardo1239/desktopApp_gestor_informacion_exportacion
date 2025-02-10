@@ -1,0 +1,39 @@
+.informe-calida-lote-div-calidad-interna {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.informe-calida-lote-div-calidad-interna div {
+    display: flex;
+    gap: 4px;
+    border-width: 1px;
+    border-color: black;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 5px;
+    background-color: white;
+}
+
+.informe-calida-lote-div-calidad-interna div h4 {
+    font-weight: bold;
+}
+
+.informe-calida-lote-div-observaciones {
+    padding: 0.75rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 18px;
+    
+}
+
+.informe-calida-lote-div-observaciones p {
+    border-bottom: 1px solid black;
+    padding-bottom: 2px;
+}
