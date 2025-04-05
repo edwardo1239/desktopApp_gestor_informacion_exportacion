@@ -41,7 +41,7 @@ export default function HistorialListaEmpaque(): JSX.Element {
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: "obtener_contenedores_historial_listas_empaque",
+                action: "get_inventarios_historiales_listasDeEmpaque",
                 page: page
             }
             const response = await window.api.server2(request)
@@ -56,7 +56,7 @@ export default function HistorialListaEmpaque(): JSX.Element {
     }
     const obtener_numero_elementos = async (): Promise<void> => {
         try {
-            const request = { action: "obtener_cantidad_contenedores" }
+            const request = { action: "get_inventarios_historiales_listasDeEmpaque_numeroRegistros" }
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`)

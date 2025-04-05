@@ -19,7 +19,8 @@ export type lotesType = {
     descarteEncerado?: descarteEnceradoType;
     deshidratacion: number;
     desverdizado?: desverdizadoType;
-    directoNacional?: number;
+    dias_inicio_fin?: number;
+    directoNacional: number;
     enf: string;
     exportacionDetallada: exportacionDetalladaSchema;
     fecha_creacion: string,
@@ -29,6 +30,7 @@ export type lotesType = {
     fecha_ingreso_inventario: string,
     fecha_estimada_llegada: string
     fechaProceso: string;
+    fecha_finalizado_proceso: string;
     flag_is_favorita: boolean;
     flag_balin_free: boolean;
     frutaNacional?: number;
@@ -52,6 +54,7 @@ export type lotesType = {
     tipoFruta: string;
     urlBascula?: string;
     urlInformeCalidad?: string;
+    
 
 };
 

@@ -44,7 +44,7 @@ export default function TransporteProgramacionMula(): JSX.Element {
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: "get_transporte_mula_contenedores"
+                action: "get_transporte_programaciones_mulaContenedores"
             }
             const response = await window.api.server2(request);
             if (response.status !== 200)
@@ -74,7 +74,7 @@ export default function TransporteProgramacionMula(): JSX.Element {
         e.preventDefault()
         try{
             const request = {
-                action:"post_transporte_programacion_mula",
+                action:"put_transporte_programaciones_mulaContenedor",
                 _id: contSeleccionado,
                 data: formState
             }

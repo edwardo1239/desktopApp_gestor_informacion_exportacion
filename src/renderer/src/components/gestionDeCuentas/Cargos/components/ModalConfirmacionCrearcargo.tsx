@@ -13,18 +13,18 @@ type propsType = {
 
 }
 export default function ModalConfirmacionCrearcargo(props: propsType): JSX.Element {
-    const { messageModal } = useAppContext();
+    const { messageModal, setLoading } = useAppContext();
     const handleGuardar = async (): Promise<void> => {
         try {
+            setLoading(true)
             const request = {
-                action: "add_cargo",
+                action: "post_gestionCuentas_cargo",
                 data: {
                     ...props.newCargo,
                     Cargo: props.cargo
                 }
             }
             const response = await window.api.server2(request);
-            console.log(response)
             if (response.status !== 200) throw new Error(`Code ${response.status}: ${response.message}`);
             messageModal("success", "Cargo creado con exito");
             props.reiniciarCargo()
@@ -35,6 +35,8 @@ export default function ModalConfirmacionCrearcargo(props: propsType): JSX.Eleme
             if (err instanceof Error) {
                 messageModal("error", err.message);
             }
+        } finally {
+            setLoading(false)
         }
     }
     return (

@@ -31,18 +31,15 @@ let loginWindow
 let downloadWindow
 let mainWindow
 let accessToken = '';
+let cacheFrutas
 
 const mode = import.meta.env.MODE
-// const mode = ""
+
 const uri = mode === "development" ?
   import.meta.env.MAIN_VITE_URL_DESARROLLO :
   import.meta.env.MAIN_VITE_URL_PRODUCCION;
-const ip_server = mode === "development" ?
-  import.meta.env.MAIN_VITE_SOCKET_DESARROLLO :
-  import.meta.env.MAIN_VITE_SOCKET_PRODUCCION;
 
-// const ip_server = import.meta.env.MAIN_VITE_SOCKET_PRODUCCION;
-// const uri  = import.meta.env.MAIN_VITE_URL_PRODUCCION;
+
 
 updater.autoUpdater.setFeedURL({ url: `${uri}`, provider: 'generic' })
 updater.autoUpdater.forceDevUpdateConfig = false
@@ -401,8 +398,8 @@ updater.autoUpdater.on('update-downloaded', async (info) => {
 ipcMain.handle('user2', async (event, datos) => {
   try {
     event.defaultPrevented
-    // const responseJSON = await net.fetch(mode === 'development' ? `${uri}login2` : `${uri}login2`, {
-    const responseJSON = await net.fetch(mode === 'development' ? `${uri}:3010/login2` : `${uri}login2`, {
+    const responseJSON = await net.fetch(mode === 'development' ? `${uri}login2` : `${uri}login2`, {
+    // const responseJSON = await net.fetch(mode === 'development' ? `${uri}:3010/login2` : `${uri}login2`, {
 
       method: "POST",
       headers: {
@@ -419,15 +416,13 @@ ipcMain.handle('user2', async (event, datos) => {
 
       accessToken = response.accesToken;
 
-      socket2 = io(`${ip_server}:3011/`, {
+      socket2 = io(`${uri}`, {
         auth: {
           token: response.accesToken
         },
         rejectUnauthorized: false
       });
 
-
-      console.log(uri)
       socket2.on('connect', () => {
         electronApp.setAppUserModelId('com.electron')
         const version = app.getVersion()
@@ -476,6 +471,7 @@ ipcMain.handle('user2', async (event, datos) => {
         mainWindow.close()
         createLoginWindow()
       });
+
       loginWindow.close()
       rol = response.Rol;
       cargo = response.permisos.Cargo;
@@ -483,6 +479,16 @@ ipcMain.handle('user2', async (event, datos) => {
       permisos = response.permisos;
 
       createWindow()
+
+
+      const frutaResponse = await net.fetch(`${uri}dataSys/get_data_tipoFruta`, {
+        method: 'GET',
+        headers: { Authorization: `${accessToken}` }
+      })
+
+      const frutasResponse = await frutaResponse.json();
+      cacheFrutas = frutasResponse.data
+
       return response
     }
     return response
@@ -498,11 +504,11 @@ ipcMain.handle('user2', async (event, datos) => {
 //comunicacion con el servidor
 ipcMain.handle('server2', async (event, data) => {
   try {
+    
     event.preventDefault()
     const request = { data: data, token: accessToken }
     const response: { status: number, data: object, token: string } = await new Promise((resolve) => {
       socket2.emit('Desktop2', request, (serverResponse) => {
-        console.log(serverResponse.status)
         if (serverResponse.status === 404) {
           mainWindow.close()
           createLoginWindow()
@@ -510,7 +516,6 @@ ipcMain.handle('server2', async (event, data) => {
         resolve(serverResponse)
       })
     })
-    accessToken = response.token;
     return response
   } catch (e) {
     return { status: 505, data: e }
@@ -648,5 +653,9 @@ ipcMain.handle("cerrarSesion", async () => {
   socket2.disconnect();
   mainWindow.close();
   createLoginWindow()
+})
+
+ipcMain.handle("obtenerFruta", async () => {
+  return cacheFrutas
 })
 

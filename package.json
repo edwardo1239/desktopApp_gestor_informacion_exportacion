@@ -1,6 +1,6 @@
 {
   "name": "celifrutdesktopapp",
-  "version": "1.2.28",
+  "version": "1.2.35",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
   "author": "Edwar",
@@ -51,8 +51,8 @@
     "github-markdown-css": "^5.8.1",
     "heroicons": "^2.0.18",
     "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.2",
-    "jspdf-autotable": "^3.8.4",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
     "mammoth": "^1.8.0",
     "markdown-to-jsx": "^7.7.2",
     "pizzip": "^3.1.7",
@@ -72,11 +72,11 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-react": "^4.0.3",
-    "@vitest/ui": "^3.0.2",
+    "@vitest/ui": "^3.1.1",
     "autoprefixer": "^10.4.16",
     "electron": "^32.2.1",
     "electron-builder": "^24.13.3",
-    "electron-vite": "^2.3.0",
+    "electron-vite": "^3.1.0",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
@@ -87,7 +87,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.1.6",
-    "vite": "^4.4.2",
-    "vitest": "^3.0.2"
+    "vite": "^6.2.5",
+    "vitest": "^3.1.1"
   }
 }

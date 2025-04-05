@@ -1,16 +1,16 @@
 /* eslint-disable prettier/prettier */
 export const requestLotes = {
-  action: 'getInventario_orden_vaceo'
+  action: 'get_inventarios_ordenVaceo_inventario'
 }
 
 export const requestOrdenVaceo = {
-  action: 'getOrdenVaceo'
+  action: 'get_inventarios_ordenVaceo_ordenVaceo'
 }
 
 export const requestAddItemOrdenVaceo = (data): object => {
   return {
     data: data,
-    action: 'put_inventario_inventarios_orden_vaceo_modificar'
+    action: 'put_inventarios_ordenVaceo_modificar'
   }
 }
 
@@ -19,7 +19,7 @@ export const requestVaciar = (lote): object => {
     inventario: Number(lote.inventario),
     kilosVaciados: lote.inventario * lote.promedio,
     _id: lote._id,
-    action: 'vaciarLote',
+    action: 'put_inventarios_ordenVaceo_vacear',
     __v:lote.__v,
   }
 }

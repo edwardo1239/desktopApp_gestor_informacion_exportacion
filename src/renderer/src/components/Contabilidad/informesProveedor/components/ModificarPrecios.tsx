@@ -5,7 +5,6 @@ import { useState } from "react";
 
 type propsType = {
     loteSeleccionado: lotesType
-    modificarPrecios: (e) => void
 }
 
 export default function ModificarPrecios(props: propsType): JSX.Element {
@@ -35,7 +34,6 @@ export default function ModificarPrecios(props: propsType): JSX.Element {
             data[tipoFruta]['zumex'] = zumex === undefined ? 0 : zumex
         }
 
-        props.modificarPrecios(data);
 
         closeModal()
     }

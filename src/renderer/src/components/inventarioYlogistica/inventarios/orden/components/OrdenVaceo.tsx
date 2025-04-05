@@ -30,7 +30,6 @@ export default function OrdenVaceo(): JSX.Element {
         throw new Error(responseOrden.message)
       }
       setOrdenVaceo(responseOrden.data)
-      console.log(responseLotes)
 
       const nuevosLotes = responseLotes.data.filter((lote) => !responseOrden.data.includes(lote._id))
       setLotes(nuevosLotes)
@@ -49,15 +48,6 @@ export default function OrdenVaceo(): JSX.Element {
     obtenerData()
   }, [])
 
-  // useEffect(() => {
-
-  //   window.api.orden_vaceo_update("orden_vaceo_update", () => {
-  //     obtenerData();
-  //   });
-  //   return () => {
-  //     window.api.removeOrden_vaceo_update('orden_vaceo_update', () => console.log("removido"))
-  //   }
-  // }, [])
 
   useEffect(() => {
     if (

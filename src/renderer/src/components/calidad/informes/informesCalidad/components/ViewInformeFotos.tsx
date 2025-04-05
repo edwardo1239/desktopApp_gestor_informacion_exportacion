@@ -32,7 +32,7 @@ export default function ViewInformeFotos(props: propsType): JSX.Element {
             const keys = Object.keys(urlsObj)
             for (let i = 0; i < keys.length; i++) {
                 const response = await window.api.server2({
-                    action: "obtener_imagen_lote_calidad", data: urlsObj[keys[i]]
+                    action: "get_calidad_informes_imagenDefecto", data: urlsObj[keys[i]]
                 })
                 if (response.status !== 200) {
                     throw new Error("Error cargando la imagen")

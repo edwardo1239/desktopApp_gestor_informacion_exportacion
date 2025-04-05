@@ -1,4 +1,4 @@
 /* eslint-disable prettier/prettier */
 export const requestlotes = {
-  action: 'get_lotes_clasificacion_descarte',
+  action: 'get_calidad_ingresos_clasificacionDescarte',
 }

@@ -26,7 +26,7 @@ export default function RelogProceso(props: propsType): JSX.Element {
     }, [])
     const obtenerDataProceso = async (): Promise<void> => {
         try {
-            const request = { action: "get_data_proceso" };
+            const request = { action: "get_sistema_proceso_dataProceso" };
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`);

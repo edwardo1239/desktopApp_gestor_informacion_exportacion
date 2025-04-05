@@ -16,6 +16,7 @@ import Precios from "./components/Precios";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import InformeCalidad from "./components/InformeCalidad";
+import { obtener_proveedores } from "@renderer/functions/SystemRequest";
 
 export type formType = {
     enf?: string
@@ -71,13 +72,11 @@ export default function SistemaFormulariosCrearInformeProveedor(): JSX.Element {
     const [numeroFormato, setNumeroFormato] = useState<number>(1)
     const obtenerProveedores = async (): Promise<void> => {
         try {
-            const request = {
-                action: "getProveedores"
+            const response = await obtener_proveedores()
+            if (response instanceof Error) {
+                throw response
             }
-            const response = await window.api.server2(request)
-            if (response.status !== 200)
-                throw new Error(`Code ${response.status}: ${response.message}`)
-            setProveedores(response.data)
+            setProveedores(response)
         } catch (err) {
             if (err instanceof Error) {
                 messageModal("error", err.message)

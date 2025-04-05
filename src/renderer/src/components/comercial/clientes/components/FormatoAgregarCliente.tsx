@@ -14,7 +14,7 @@ type propsType = {
 }
 
 export default function FormatoAgregarCliente(props: propsType): JSX.Element {
-    const { messageModal } = useAppContext()
+    const { messageModal, setLoading } = useAppContext()
     const [pais, setPais] = useState<string>()
     const [formState, setFormState] = useState<clienteType>(clienteDefault);
     useEffect(() => {
@@ -56,7 +56,7 @@ export default function FormatoAgregarCliente(props: propsType): JSX.Element {
 
         try {
             const request = {
-                action: 'add_cliente',
+                action: 'post_comercial_clientes',
                 data: formState
             }
             const response = await window.api.server2(request)
@@ -73,8 +73,9 @@ export default function FormatoAgregarCliente(props: propsType): JSX.Element {
     const handleModificar = async (e): Promise<void> => {
         e.preventDefault()
         try {
+            setLoading(true)
             const request = {
-                action: 'modificar_info_cliente',
+                action: 'put_comercial_clientes',
                 data: formState,
                 _id: props.cliente?._id
             }
@@ -87,6 +88,8 @@ export default function FormatoAgregarCliente(props: propsType): JSX.Element {
         } catch (e) {
             if (e instanceof Error)
                 messageModal("error", e.message)
+        } finally {
+            setLoading(false)
         }
     }
     const eliminarPais = (e: string): void => {

@@ -27,11 +27,10 @@ export default function DescarteEnceradoSistema(): JSX.Element {
 
     const obtenerLote = async (): Promise<void> => {
         try {
-            const response = await window.api.server2({ action: "get_predio_Proceso_Descarte" })
+            const response = await window.api.server2({ action: "get_proceso_aplicaciones_descarteLavado" })
             if (response.status !== 200) {
                 throw new Error(`Code ${response.status}: ${response.message}`)
             }
-            console.log(response)
             setDatosPredio({
                 _id: response.data._id,
                 enf: response.data.enf,
@@ -57,7 +56,7 @@ export default function DescarteEnceradoSistema(): JSX.Element {
         try {
             const data = sumarDatos(formState, datosPredio);
             const request = {
-                action: "ingresar_descarte_encerado",
+                action: "put_proceso_aplicaciones_descarteEncerado",
                 _id: datosPredio._id,
                 data: data,
             };

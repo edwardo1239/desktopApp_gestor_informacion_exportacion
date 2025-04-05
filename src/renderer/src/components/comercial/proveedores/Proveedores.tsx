@@ -29,7 +29,7 @@ export type filtroType = {
 
 
 export default function Proveedores(): JSX.Element {
-    const { messageModal, user } = useAppContext()
+    const { messageModal, user, setLoading } = useAppContext()
     const [data, setData] = useState<proveedoresType[]>([])
     const [page, setPage] = useState<number>(1);
     const [numRows, setNumRows] = useState<number>(0);
@@ -38,9 +38,22 @@ export default function Proveedores(): JSX.Element {
 
 
     useEffect(() => {
-        obtenerRegistros(filtro)
-        numeroRegistros(filtro)
+        const fetachData = async (): Promise<void> => {
+            try {
+                setLoading(true)
+                await obtenerRegistros(filtro)
+                await numeroRegistros(filtro)
+                await obtenerRegistros(filtro)
+            } catch (err) {
+                if (err instanceof Error) {
+                    messageModal("error", err.message)
+                }
+            } finally {
+                setLoading(false)
+            }
+        }
 
+        fetachData()
     }, [page])
     const handleObtenerData = async (): Promise<void> => {
         try {
@@ -53,39 +66,27 @@ export default function Proveedores(): JSX.Element {
         }
     }
     const obtenerRegistros = async (filtro = {}): Promise<void> => {
-        try {
-            const request = {
-                action: "get_comercial_proveedores_elementos",
-                page: page,
-                filtro: filtro
-            }
-            const response = await window.api.server2(request);
-            if (response.status !== 200) {
-                throw new Error(`Code ${response.status}: ${response.message}`)
-            }
-            setData(response.data)
-        } catch (err) {
-            if (err instanceof Error) {
-                messageModal("error", err.message)
-            }
+        const request = {
+            action: "get_comercial_proveedores_elementos",
+            page: page,
+            filtro: filtro
         }
+        const response = await window.api.server2(request);
+        if (response.status !== 200) {
+            throw new Error(`Code ${response.status}: ${response.message}`)
+        }
+        setData(response.data)
     }
     const numeroRegistros = async (filtro = {}): Promise<void> => {
-        try {
-            const request = {
-                action: "get_comercial_proveedores_numero_elementos",
-                filtro: filtro
-            }
-            const response = await window.api.server2(request);
-            if (response.status !== 200) {
-                throw new Error(`Code ${response.status}: ${response.message}`);
-            }
-            setNumRows(response.data);
-        } catch (error) {
-            if (error instanceof Error) {
-                messageModal("error", error.message);
-            }
+        const request = {
+            action: "get_comercial_proveedores_numero_elementos",
+            filtro: filtro
         }
+        const response = await window.api.server2(request);
+        if (response.status !== 200) {
+            throw new Error(`Code ${response.status}: ${response.message}`);
+        }
+        setNumRows(response.data);
     };
     const handleVerInfoProveedor = (_id): void => {
         const dialogINfo = document.getElementById("ingresar_proveedor_modal") as HTMLDialogElement;
@@ -136,9 +137,9 @@ export default function Proveedores(): JSX.Element {
                                     <td>{item.activo ? "Activo" : "Inactivo"}</td>
                                 }
                                 <td>
-                                    <button 
+                                    <button
                                         data-testid={`comercial-proveedores-button-ver-info-${index}`}
-                                        className="table-row-button" 
+                                        className="table-row-button"
                                         onClick={(): void => handleVerInfoProveedor(item._id)}>
                                         <FaSearch color="blue" />
                                     </button>
@@ -148,9 +149,9 @@ export default function Proveedores(): JSX.Element {
                     </tbody>
                 </table>
             </div>
-            <ModalProveedores 
-                handleObtenerData={handleObtenerData} 
-                setProveedor={setProveedor} 
+            <ModalProveedores
+                handleObtenerData={handleObtenerData}
+                setProveedor={setProveedor}
                 proveedor={proveedor} />
             <BotonesPasarPaginas
                 division={25}

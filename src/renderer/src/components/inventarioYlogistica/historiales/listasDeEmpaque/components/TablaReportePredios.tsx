@@ -57,7 +57,7 @@ export default function TablaReportePredios(props: propsType): JSX.Element {
                     {Object.entries(info).map(([key, value], index) => (
                         <tr className={`${index % 2 === 0 ? 'fondo-par' : 'fondo-impar'}`} key={key}>
                             <td>{value.predio}</td>
-                            <td>{value.ICA}</td>
+                            <td>{value.SISPAP ? value.ICA : "SIN SIPAP"}</td>
                             <td>{value.cajas}</td>
                             <td>{value.peso} Kg</td>
                             <td>{value.peso + (0.85 * value.cajas)} Kg</td>

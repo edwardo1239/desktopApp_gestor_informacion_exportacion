@@ -23,7 +23,7 @@ export default function ControlPlagas(): JSX.Element {
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: "get_view_formularios_control_plagas",
+                action: "get_calidad_formulario_controlPlagas",
                 page: page
             }
             const response = await window.api.server2(request)
@@ -38,7 +38,7 @@ export default function ControlPlagas(): JSX.Element {
     }
     const obtener_cantidad_elementos = async (): Promise<void> => {
         try {
-            const request = { action: "get_calidad_formularios_controlPlagas_numeroElementos" }
+            const request = { action: "get_calidad_formulario_controlPlagas_numeroElementos" }
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`)

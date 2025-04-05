@@ -5,9 +5,7 @@ import { formatearFecha } from "@renderer/functions/fechas";
 import useAppContext from "@renderer/hooks/useAppContext";
 import { contenedoresType } from "@renderer/types/contenedoresType";
 import { useEffect, useState } from "react";
-import { IoSaveSharp } from "react-icons/io5";
-import { GiCancel } from "react-icons/gi";
-import { PiNotePencilDuotone } from "react-icons/pi";
+import BotonesSeleccionarItemTabla from "@renderer/components/UI/BotonesSeleccionarItemTabla";
 
 type formStateType = {
     transportadora?: string
@@ -48,7 +46,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
     const { messageModal } = useAppContext();
 
     const [data, setData] = useState<contenedoresType[]>()
-    const [itemSeleccionado, setItemSeleccionado] = useState<contenedoresType>()
+    const [itemSeleccionado, setItemSeleccionado] = useState<string>()
     const [formState, setFormState] = useState<formStateType>()
     //page navigator
     const [page, setPage] = useState<number>(1);
@@ -72,7 +70,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: "get_transporte_registro_programacion_mula",
+                action: "get_transporte_registros_programacionMula",
                 page: page
             }
             const response = await window.api.server2(request);
@@ -92,6 +90,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
     useEffect(() => {
         obtenerData()
     }, [page])
+
     const handleModificar = (id): void => {
         setItemSeleccionado(id)
         setModificando(!modificando)
@@ -115,8 +114,8 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                 })
             }
             const request = {
-                action: "post_transporte_programacion_mula_modificar",
-                _id: itemSeleccionado?._id,
+                action: "put_transporte_registros_programacionMula",
+                _id: itemSeleccionado,
                 data: query
             }
             const response = await window.api.server2(request);
@@ -126,11 +125,16 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
             setFormState(undefined)
             obtenerData()
             setModificando(false)
+            setItemSeleccionado(undefined)
         } catch (err) {
             if (err instanceof Error) {
                 messageModal("error", err.message)
             }
         }
+    }
+    const handleCancelar = ():void => {
+        setItemSeleccionado(undefined)
+        setModificando(false)
     }
 
     if (!data) {
@@ -164,7 +168,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 cont.infoContenedor.clienteInfo.CLIENTE
                             }</td>
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
                                 <td>
                                     <input
                                         name="conductor"
@@ -176,7 +180,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 <td>{cont.infoTractoMula?.conductor || 'N/A'}</td>
                             }
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
                                 <td>
                                     <input
                                         name="cedula"
@@ -188,7 +192,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 <td>{cont.infoTractoMula?.cedula || 'N/A'}</td>
                             }
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
                                 <td>
                                     <input
                                         name="celular"
@@ -200,7 +204,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 <td>{cont.infoTractoMula?.celular || 'N/A'}</td>
                             }
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ? (
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ? (
                                 <td>
                                     <input
                                         name="flete"
@@ -222,7 +226,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 </td>
                             )}
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
                                 <td>
                                     <input
                                         name="marca"
@@ -234,7 +238,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 <td>{cont.infoTractoMula?.marca || 'N/A'}</td>
                             }
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
                                 <td>
                                     <input
                                         name="datalogger_id"
@@ -249,7 +253,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                             <td>{cont.infoTractoMula?.fecha && formatearFecha(cont.infoTractoMula?.fecha)}</td>
 
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
                                 <td>
                                     <input
                                         name="placa"
@@ -261,7 +265,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 <td>{cont.infoTractoMula?.placa || 'N/A'}</td>
                             }
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
                                 <td>
                                     <input
                                         name="precinto"
@@ -273,7 +277,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 <td>{cont.infoTractoMula?.precinto || 'N/A'}</td>
                             }
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
                                 <td>
                                     <input
                                         name="temperatura"
@@ -285,7 +289,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 <td>{cont.infoTractoMula?.temperatura || 'N/A'}</td>
                             }
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
                                 <td>
                                     <input
                                         name="trailer"
@@ -297,7 +301,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 <td>{cont.infoTractoMula?.trailer || 'N/A'}</td>
                             }
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
                                 <td>
                                     <input
                                         name="transportadora"
@@ -309,7 +313,7 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 <td>{cont.infoTractoMula?.transportadora || 'N/A'}</td>
                             }
 
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
+                            {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
                                 <td>
                                     <input
                                         name="nit"
@@ -321,28 +325,13 @@ export default function TransporteProgramacionMulaRegistros(): JSX.Element {
                                 <td>{cont.infoTractoMula?.nit || 'N/A'}</td>
                             }
 
-                            <td>
-                                {((itemSeleccionado ? itemSeleccionado._id : '') !== cont._id) &&
-                                    <button
-                                        style={{ color: "blue" }}
-                                        onClick={(): void => handleModificar(cont)}
-                                    >
-                                        <PiNotePencilDuotone />
-                                    </button>}
-
-                                {((itemSeleccionado ? itemSeleccionado._id : '') === cont._id) && modificando &&
-                                    <button style={{ color: 'green' }} onClick={modificarData} >
-                                        <IoSaveSharp />
-                                    </button>}
-                                {((itemSeleccionado ? itemSeleccionado._id : '') === cont._id) && modificando &&
-                                    <button style={{ color: 'red' }} onClick={(): void => {
-                                        setItemSeleccionado(undefined)
-                                        setModificando(false)
-
-                                    }}>
-                                        <GiCancel />
-                                    </button>}
-                            </td>
+                            <BotonesSeleccionarItemTabla 
+                                itemSeleccionadoID={itemSeleccionado}
+                                itemId={cont._id}
+                                handleModificar={():void => handleModificar(cont._id)}
+                                handleAceptar={modificarData}
+                                handleCancelar={handleCancelar}
+                            />
                         </tr>
                     ))}
                 </tbody>

@@ -5,11 +5,9 @@ import { IoArrowUndoSharp } from "react-icons/io5";
 import { formularios } from "../constantes";
 import { FcCancel } from "react-icons/fc";
 import { FcOk } from "react-icons/fc";
-import { IoSaveSharp } from "react-icons/io5";
-import { GiCancel } from "react-icons/gi";
-import { PiNotePencilDuotone } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import useAppContext from "@renderer/hooks/useAppContext";
+import BotonesSeleccionarItemTabla from "@renderer/components/UI/BotonesSeleccionarItemTabla";
 
 type propsType = {
     data: contenedoresType | undefined
@@ -54,20 +52,20 @@ export default function InfoInspeccionMula(props: propsType): JSX.Element {
             }
         });
     };
-    const modificarData = async (item): Promise<void> => {
+    const modificarData = async (): Promise<void> => {
         try {
             const query = {}
             if (formState) {
                 Object.entries(formState).forEach(([key, value]) => {
                     if (key === 'cumple') {
-                        query[`inspeccion_mula.${item}.${key}`] = value === 'true' ? true : false
+                        query[`inspeccion_mula.${itemSeleccionado}.${key}`] = value === 'true' ? true : false
                     } else {
-                        query[`inspeccion_mula.${item}.${key}`] = value
+                        query[`inspeccion_mula.${itemSeleccionado}.${key}`] = value
                     }
                 })
             }
             const request = {
-                action: "post_transporte_registros_inspeccionMula_modificar",
+                action: "put_transporte_registros_inspeccionMula",
                 _id: props.data?._id,
                 data: query
             }
@@ -84,8 +82,8 @@ export default function InfoInspeccionMula(props: propsType): JSX.Element {
                     ...prev,
                     inspeccion_mula: {
                         ...prev.inspeccion_mula,
-                        [item]: {
-                            ...prev.inspeccion_mula[item],
+                        [itemSeleccionado]: {
+                            ...prev.inspeccion_mula[itemSeleccionado],
                             ...formState,
                         },
                     },
@@ -100,6 +98,11 @@ export default function InfoInspeccionMula(props: propsType): JSX.Element {
                 messageModal("error", err.message)
             }
         }
+    }
+
+    const handleCancelar = (): void => {
+        setItemSeleccionado('')
+        setModificando(false)
     }
 
     if (!props.data) {
@@ -119,7 +122,8 @@ export default function InfoInspeccionMula(props: propsType): JSX.Element {
                 <button onClick={props.show_table} className="defaulButtonAgree">Regresar <IoArrowUndoSharp /></button>
 
             </div>
-            <table className="table-main">
+            <div className="table-container">
+                <table className="table-main">
                 <thead>
                     <tr>
                         {headers.map(item => (
@@ -134,7 +138,6 @@ export default function InfoInspeccionMula(props: propsType): JSX.Element {
                             return <tr key={key} className={`${index % 2 === 0 ? 'fondo-par' : 'fondo-impar'}`}>
 
                                 <td>{formularios[key]}</td>
-
 
                                 {itemSeleccionado && (itemSeleccionado === key) && modificando ?
                                     <td>
@@ -160,39 +163,20 @@ export default function InfoInspeccionMula(props: propsType): JSX.Element {
                                         <input
                                             name="observaciones"
                                             type="text"
-                                            value={(formState && formState.observaciones) ?
-                                                formState?.observaciones : value.observaciones}
+                                            value={(formState && formState.observaciones) ?? value.observaciones}
                                             onChange={handleChange} />
                                     </td>
                                     :
                                     <td>{value.observaciones}</td>
                                 }
 
-
-
-                                {/* boton para modificar los datoss */}
-                                <td>
-                                    {itemSeleccionado !== key &&
-                                        <button
-                                            style={{ color: "blue" }}
-                                            onClick={(): void => handleModificar(key)}
-                                        >
-                                            <PiNotePencilDuotone />
-                                        </button>}
-
-                                    {((itemSeleccionado) === key) && modificando &&
-                                        <button style={{ color: 'green' }} onClick={(): Promise<void> => modificarData(key)} >
-                                            <IoSaveSharp />
-                                        </button>}
-                                    {((itemSeleccionado) === key) && modificando &&
-                                        <button style={{ color: 'red' }} onClick={(): void => {
-                                            setItemSeleccionado('')
-                                            setModificando(false)
-
-                                        }}>
-                                            <GiCancel />
-                                        </button>}
-                                </td>
+                                <BotonesSeleccionarItemTabla 
+                                    itemId={key}
+                                    itemSeleccionadoID={itemSeleccionado}
+                                    handleModificar={():void => handleModificar(key)}
+                                    handleCancelar={handleCancelar}
+                                    handleAceptar={modificarData}
+                                />
                             </tr>
                         } else {
                             return null
@@ -201,6 +185,7 @@ export default function InfoInspeccionMula(props: propsType): JSX.Element {
                 </tbody>
 
             </table>
+            </div>
         </div>
     )
 }

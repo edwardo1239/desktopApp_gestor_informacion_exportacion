@@ -83,7 +83,7 @@ export const crearObjetoContenedor = (formState: FormStateType):object => {
 
     const request = {
       data: new_contenedor,
-      action: 'crearContenedor',
+      action: 'post_comercial_contenedor',
     }
     return request;
 }
@@ -111,7 +111,7 @@ export const formInit:FormStateType  = {
 }
 
 export const requestClientes = {
-  action: 'getClientes',
+  action: 'get_data_clientes',
 }
 
 

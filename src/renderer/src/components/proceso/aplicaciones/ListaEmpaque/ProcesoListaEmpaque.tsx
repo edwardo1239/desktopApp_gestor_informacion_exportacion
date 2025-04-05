@@ -4,24 +4,25 @@ import GeneralInfo from "./components/GeneralInfo";
 import { contenedoresType } from "@renderer/types/contenedoresType";
 import useAppContext from "@renderer/hooks/useAppContext";
 import './css/styles.css'
-import { predioType } from "./types";
-import Pallets from "./components/Pallets";
+    ;
 import Resumen from "./components/Resumen";
 import ConfirmacionModal from "@renderer/messages/ConfirmacionModal";
 import ListaEmpaquePredios from "./components/ListaEmpaquePredios";
+import { obtenerDataContenedores, obtenerPredioProcesando } from "./services/request";
+import { historialLotesType } from "@renderer/types/lotesType";
+import Pallets from "./components/Pallets";
 
 
 export const contenedoresContext = createContext<contenedoresType[] | undefined>(undefined)
 export const contenedorSeleccionadoContext = createContext<string | undefined>(undefined)
-export const palletSeleccionadoContext = createContext<number>(-1)
-export const loteProcesandoContext = createContext<predioType | undefined>(undefined)
+export const loteselectedContext = createContext<historialLotesType | undefined>(undefined)
 
 export default function ProcesoListaEmpaque(): JSX.Element {
-    const { messageModal } = useAppContext();
+    const { messageModal, eventoServidor, triggerServer } = useAppContext();
     const [contenedores, setContenedores] = useState<contenedoresType[]>();
-    const [loteProcesando, setLoteProcesando] = useState<predioType>();
+    const [lotes, setLotes] = useState<historialLotesType[]>();
+    const [loteSeleccionado, setLoteSeleccionado] = useState<historialLotesType>()
     const [contenedorSeleccionado, setContenedorSeleccionado] = useState<string>();
-    const [palletSeleccionado, setPalletSeleccionado] = useState<number>(0);
     const [showResumen, setShowResumen] = useState<boolean>(false)
     const [showPredios, setShowPredios] = useState<boolean>(false)
     const [showConfirmacion, setShowConfirmacion] = useState<boolean>(false)
@@ -29,15 +30,27 @@ export default function ProcesoListaEmpaque(): JSX.Element {
     const [message, setMessage] = useState<string>('')
 
     useEffect(() => {
-        obtenerDataContenedores()
-        obtenerPredioProcesando()
-        window.api.reload(() => {
-            obtenerDataContenedores()
-            obtenerPredioProcesando()
-        });
-        return () => {
-            window.api.removeReload()
+        if (
+            eventoServidor === 'lista_empaque_update'
+        ) {
+            obtenerDataContenedores(setContenedores)
         }
+    }, [triggerServer])
+
+    useEffect(() => {
+        const fetchData = async (): Promise<void> => {
+            try {
+                await obtenerDataContenedores(setContenedores)
+                await obtenerPredioProcesando(setLotes)
+
+            } catch (err) {
+                if (err instanceof Error) {
+                    messageModal("error", err.message)
+                }
+            }
+        }
+        fetchData()
+
     }, []);
 
     useEffect(() => {
@@ -58,32 +71,6 @@ export default function ProcesoListaEmpaque(): JSX.Element {
             setConfirm(false)
         }
     }, [confirm]);
-    const obtenerDataContenedores = async (): Promise<void> => {
-        try {
-            const request = { action: 'obtener_contenedores_listaDeEmpaque' }
-            const response = await window.api.server2(request)
-            if (response.status !== 200)
-                throw new Error(`Code ${response.status}: ${response.message}`)
-            setContenedores(response.data)
-        } catch (err) {
-            if (err instanceof Error) {
-                messageModal("error", err.message)
-            }
-        }
-    }
-    const obtenerPredioProcesando = async (): Promise<void> => {
-        try {
-            const request = { action: 'obtener_predio_listaDeEmpaque' }
-            const response = await window.api.server2(request)
-            if (response.status !== 200)
-                throw new Error(`Code ${response.status}: ${response.message}`)
-            setLoteProcesando(response.data)
-        } catch (err) {
-            if (err instanceof Error) {
-                messageModal("error", err.message)
-            }
-        }
-    }
 
     const handleShowResumen = (): void => {
         setShowResumen(!showResumen)
@@ -124,34 +111,30 @@ export default function ProcesoListaEmpaque(): JSX.Element {
             <hr />
             <contenedoresContext.Provider value={contenedores}>
                 <contenedorSeleccionadoContext.Provider value={contenedorSeleccionado}>
-                    <palletSeleccionadoContext.Provider value={palletSeleccionado}>
-                        <loteProcesandoContext.Provider value={loteProcesando}>
-                            <GeneralInfo
-                                showPredios={showPredios}
-                                handleShowPredios={handleShowPredios}
-                                contenedorSeleccionado={contenedorSeleccionado}
-                                handleCerrarContenedor={handleCerrarContenedor}
-                                showResumen={showResumen}
-                                handleShowResumen={handleShowResumen}
-                                setPalletSeleccionado={setPalletSeleccionado}
-                                setContenedorSeleccionado={setContenedorSeleccionado}
-                                loteProcesando={loteProcesando}
-                                contenedores={contenedores}
-                            />
-                            {showResumen && <Resumen />}
-                            {showPredios && <ListaEmpaquePredios />}
+                    <loteselectedContext.Provider value={loteSeleccionado}>
+                        <GeneralInfo
+                            lotes={lotes}
+                            setLoteSeleccionado={setLoteSeleccionado}
+                            showPredios={showPredios}
+                            handleShowPredios={handleShowPredios}
+                            contenedorSeleccionado={contenedorSeleccionado}
+                            handleCerrarContenedor={handleCerrarContenedor}
+                            showResumen={showResumen}
+                            handleShowResumen={handleShowResumen}
+                            setContenedorSeleccionado={setContenedorSeleccionado}
+                            contenedores={contenedores}
+                        />
+                        {showResumen && <Resumen />}
+                        {showPredios && <ListaEmpaquePredios />}
 
-                            {!showResumen && !showPredios && <Pallets
-                                obtenerDataContenedores={obtenerDataContenedores}
-                                setPalletSeleccionado={setPalletSeleccionado} />
-                            }
-                            {showConfirmacion &&
-                                <ConfirmacionModal
-                                    message={message}
-                                    setConfirmation={setConfirm}
-                                    setShowConfirmationModal={setShowConfirmacion} />}
-                        </loteProcesandoContext.Provider>
-                    </palletSeleccionadoContext.Provider>
+                        {!showResumen && !showPredios && <Pallets />
+                        }
+                        {showConfirmacion &&
+                            <ConfirmacionModal
+                                message={message}
+                                setConfirmation={setConfirm}
+                                setShowConfirmationModal={setShowConfirmacion} />}
+                    </loteselectedContext.Provider>
                 </contenedorSeleccionadoContext.Provider>
             </contenedoresContext.Provider>
         </div>

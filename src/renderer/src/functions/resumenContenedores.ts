@@ -2,14 +2,22 @@
 
 import { contenedoresType } from "@renderer/types/contenedoresType"
 
-type PredioDatosType = {
+export type PredioDatosType = {
     [key: string]: {
         enf: string;
         predio: string;
         cont: contType,
         tipoFruta: string,
+        calibres: calibreType
     }
 };
+
+type calibreType = {
+    [key:string]:{
+        cajas: number,
+        kilos:number
+    }
+}
 
 type contType = {
     [key: string]: {
@@ -38,6 +46,7 @@ export const obtenerResumenPredios = (cont: contenedoresType[], soloHoy: boolean
                                     tipoFruta: item.tipoFruta
                                 }
                                 predios[item.lote._id].cont = {}
+                                predios[item.lote._id].calibres = {}
                             }
                             if (!Object.prototype.hasOwnProperty.call(predios[item.lote._id].cont, contenedor._id as string)) {
                                 predios[item.lote._id].cont[contenedor._id] = {
@@ -46,11 +55,21 @@ export const obtenerResumenPredios = (cont: contenedoresType[], soloHoy: boolean
                                     cajas: 0
                                 }
                             }
+                            if(!Object.prototype.hasOwnProperty.call(predios[item.lote._id].calibres, item.calibre as string)) {
+                                predios[item.lote._id].calibres[item.calibre] = {
+                                    kilos: 0,
+                                    cajas: 0
+                                }
+                            }
                             if (item.tipoCaja !== null || item.cajas !== null) {
                                 predios[item.lote._id].cont[contenedor._id].cajas += item.cajas
+                                predios[item.lote._id].calibres[item.calibre].cajas += item.cajas
+
                                 const mult = item.tipoCaja.split('-')[1].replace(",", ".")
                                 const kilos = item.cajas * Number(mult)
+
                                 predios[item.lote._id].cont[contenedor._id].kilos += kilos
+                                predios[item.lote._id].calibres[item.calibre].kilos += kilos
                             }
 
                         }
@@ -63,6 +82,8 @@ export const obtenerResumenPredios = (cont: contenedoresType[], soloHoy: boolean
                                 tipoFruta: item.tipoFruta
                             }
                             predios[item.lote._id].cont = {}
+                            predios[item.lote._id].calibres = {}
+
                         }
                         if (!Object.prototype.hasOwnProperty.call(predios[item.lote._id].cont, contenedor._id as string)) {
                             predios[item.lote._id].cont[contenedor._id] = {
@@ -71,11 +92,21 @@ export const obtenerResumenPredios = (cont: contenedoresType[], soloHoy: boolean
                                 cajas: 0
                             }
                         }
+                        if(!Object.prototype.hasOwnProperty.call(predios[item.lote._id].calibres, item.calibre as string)) {
+                            predios[item.lote._id].calibres[item.calibre] = {
+                                kilos: 0,
+                                cajas: 0
+                            }
+                        }
                         if (item.tipoCaja !== null) {
                             predios[item.lote._id].cont[contenedor._id].cajas += item.cajas
+                            predios[item.lote._id].calibres[item.calibre].cajas += item.cajas
+
                             const mult = item.tipoCaja.split('-')[1].replace(",", ".")
                             const kilos = item.cajas * Number(mult)
                             predios[item.lote._id].cont[contenedor._id].kilos += kilos
+                            predios[item.lote._id].calibres[item.calibre].kilos += kilos
+
                         }
                     }
 
@@ -83,6 +114,7 @@ export const obtenerResumenPredios = (cont: contenedoresType[], soloHoy: boolean
             })
         })
     })
+    console.log(predios)
     return predios
 }
 
@@ -168,7 +200,7 @@ export const obtenerResumen = (cont: contenedoresType[], soloHoy = '')
                 if (kilosToMult) {
 
                     if (soloHoy) {
-                        console.log(soloHoy);
+                        // console.log(soloHoy);
 
                         const [year, month, day] = soloHoy.split('-');
                         const diaItem = new Date(item.fecha).getDate();
@@ -259,6 +291,6 @@ export const obtenerResumen = (cont: contenedoresType[], soloHoy = '')
         })
     })
 
-    console.log(resumen)
+    // console.log(resumen)
     return resumen
 }

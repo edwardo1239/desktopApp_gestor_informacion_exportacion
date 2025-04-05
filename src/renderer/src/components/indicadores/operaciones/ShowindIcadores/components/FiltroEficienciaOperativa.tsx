@@ -11,6 +11,8 @@ type propsType = {
     obtenerRegistros: () => void
     setAgrupado: (e) => void
     agrupado: string
+    setIndicador: (e) => void
+    indicador: string
 }
 
 export default function FiltroEficienciaOperativa(props: propsType): JSX.Element {
@@ -52,7 +54,6 @@ export default function FiltroEficienciaOperativa(props: propsType): JSX.Element
         } else {
             if (props.filtro[e.target.name].includes(e.target.value)) {
                 const newFilter = props.filtro[e.target.name].filter(item => item !== e.target.value)
-                console.log(newFilter)
                 props.setFiltro({ ...props.filtro, [e.target.name]: newFilter })
             } else {
                 props.setFiltro({ ...props.filtro, [e.target.name]: [...props.filtro[e.target.name], e.target.value] })
@@ -65,19 +66,36 @@ export default function FiltroEficienciaOperativa(props: propsType): JSX.Element
     return (
         <div className="filtro_proveedores-div">
             <div>
-            <label className="tool-select-label" >
-                Agrupar por:
-            </label>
-            <select
-                onChange={(e):void => props.setAgrupado(e.target.value)}
-                value={props.agrupado}
-                name="agrupado"
-                data-testid="indicadores_operaciones_eficiencia_operativa_agrupado"
-                className="tool-select">
-                <option value="dia">Día</option>
-                <option value="semana">Semana</option>
-                <option value="mes">Mes</option>
-            </select>
+                <label className="tool-select-label" >
+                    Indicador:
+                </label>
+                <select
+                    value={props.indicador}
+                    onChange={(e):void => props.setIndicador(e.target.value)}
+                    name="indicador"
+                    data-testid="indicadores_operaciones_eficiencia_operativa_indicador"
+                    className="tool-select">
+                    <option value=""></option>
+                    <option value="EficienciaOperativa">Eficiencia operativa</option>
+                    <option value="EficienciaFruta">Eficiencia fruta</option>
+                    <option value="tiempoCicloPredios">Tiempo ciclo de predios</option>
+                    <option value="NoCalidad">No Calidad</option>
+                </select>
+            </div>
+            <div>
+                <label className="tool-select-label" >
+                    Agrupar por:
+                </label>
+                <select
+                    onChange={(e): void => props.setAgrupado(e.target.value)}
+                    value={props.agrupado}
+                    name="agrupado"
+                    data-testid="indicadores_operaciones_eficiencia_operativa_agrupado"
+                    className="tool-select">
+                    <option value="dia">Día</option>
+                    <option value="semana">Semana</option>
+                    <option value="mes">Mes</option>
+                </select>
             </div>
 
             <div>
@@ -128,7 +146,7 @@ export default function FiltroEficienciaOperativa(props: propsType): JSX.Element
                 data-testid="indicadores_operaciones_eficiencia_operativa_tipo_fruta"
                 className="tool-select"
                 value={props.filtro?.tipoFruta ?? []}
-                >
+            >
                 <option value=""></option>
                 {tipoFrutas && tipoFrutas.map(item => <option key={item} value={item}>{item}</option>)}
             </select>

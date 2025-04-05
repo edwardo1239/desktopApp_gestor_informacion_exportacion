@@ -19,7 +19,7 @@ export default function TotalesProceso(props: propsType): JSX.Element {
                         if (!props.columnVisibility[item]) {
                             return null
                         }
-                        if (['deshidratacion', 'placa', 'observaciones', 'rendimiento', 'contenedores', 'promedio'].includes(item)) {
+                        if (['deshidratacion', 'calibreExportacion', 'placa', 'observaciones', 'rendimiento', 'contenedores', 'promedio'].includes(item)) {
                             return null
                         }
                         if (['descarteLavado', 'descarteEncerado'].includes(item)) {

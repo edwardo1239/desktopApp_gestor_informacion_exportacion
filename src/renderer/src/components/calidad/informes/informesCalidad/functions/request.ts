@@ -2,6 +2,6 @@
 export const requestObject = (page): object => {
   return {
     page:page,
-    action: 'get_lotes_informe_calidad'
+    action: 'get_calidad_informes_lotesInformesProveedor'
   }
 }

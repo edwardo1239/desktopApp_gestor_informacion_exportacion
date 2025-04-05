@@ -7,19 +7,12 @@ const nextDay = new Date(startOfDay);
 nextDay.setDate(startOfDay.getDate() + 1);
 
 export const requestLotesVaciados = {
-  action: 'obtenerHistorialLotes',
+  action: 'get_sistema_proceso_lotesProcesados',
 }
 
 export const requestHabilitarDescarte = (loteDescarte): object => {
   return {
     data: loteDescarte?.documento,
-    action: 'modificar_predio_proceso_descarte',
-  }
-}
-export const requestHabilitarListaEmpaque = (loteListaEmpaque): object => {
-  return {
-    data: loteListaEmpaque?.documento,
-    action: 'modificar_predio_proceso_listaEmpaque',
-
+    action: 'put_sistema_proceso_habilitarPrediosDescarte',
   }
 }

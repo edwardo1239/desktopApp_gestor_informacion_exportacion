@@ -53,7 +53,7 @@ export default function ModalFrutaSinProcesarDerogacion(props: propsType): JSX.E
         e.preventDefault()
         try {
             const request = {
-                action: 'lotes_derogar_lote',
+                action: 'put_inventarios_frutaSinProcesar_derogar',
                 _id: props.loteSeleccionado?._id,
                 observaciones: props.loteSeleccionado?.observaciones + " | " +
                     formState?.observaciones ? formState?.observaciones : '',
@@ -75,7 +75,7 @@ export default function ModalFrutaSinProcesarDerogacion(props: propsType): JSX.E
     const devolver_predio = async (): Promise<void> => {
         try {
             const request = {
-                action: "lotes_devolver_lote",
+                action: "put_inventarios_frutaSinProcesar_devolver",
                 _id: props.loteSeleccionado?._id,
                 canastillas: props.loteSeleccionado?.inventario,
                 observaciones: props.loteSeleccionado?.observaciones

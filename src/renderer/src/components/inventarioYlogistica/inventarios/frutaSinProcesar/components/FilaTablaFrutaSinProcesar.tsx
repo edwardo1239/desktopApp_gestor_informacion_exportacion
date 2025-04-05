@@ -46,7 +46,7 @@ export default function FilaTablaFrutaSinProcesar(props: propsType): JSX.Element
     const modificar_inventario_fruta_sin_procesar = async (): Promise<void> => {
         try {
             const request = {
-                action: "put_inventarioLogistica_frutaSinProcesar_modificar_canastillas",
+                action: "put_inventarios_frutaSinProcesar_modificarCanastillas",
                 _id: props.lote._id,
                 canastillas: canastillas
             }

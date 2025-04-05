@@ -1,0 +1,157 @@
+
+.comercial-precios-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 5px;
+    margin-top: 8px;
+
+}
+
+.comercial-precios-contenedor-proveedores{
+    width: 100%;
+    border: 2px solid #5c5f5c; 
+    border-radius: 10px; 
+    padding: 10px; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.comercial-precios-proveedores-filtros{
+    background-color: green;
+    width: 100%;
+    height: 80px;
+}
+
+.comercial-precios-proveedores-lista{
+    padding: 15px 8px;
+}
+
+/* contenedor principal del componente */
+.comercial-precios-proveedores-componente-proveedor {
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7; /* fondo gris muy claro */
+    border-radius: 8px;        /* esquinas redondeadas */
+    padding: 10px 15px;        /* espacio interno */
+    margin: 8px 0;             /* separación vertical */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* sombra sutil */
+    transition: background-color 0.2s ease;
+  }
+  
+  /* efecto hover */
+  .comercial-precios-proveedores-componente-proveedor:hover {
+    background-color: #eaeaea; /* cambia el color de fondo ligeramente */
+  }
+  
+  /* el checkbox con un pequeño margen a la derecha */
+  .comercial-precios-proveedores-componente-proveedor input[type="checkbox"] {
+    margin-right: 12px;
+    cursor: pointer;
+  }
+  
+  /* el nombre del predio en <p> */
+  .comercial-precios-proveedores-componente-proveedor p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    flex: 1;             /* hace que ocupe el espacio disponible */
+    margin-right: 10px;
+  }
+  
+  /* la lista de frutas en <span> */
+  .comercial-precios-proveedores-componente-proveedor span {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  .precio-fijo{
+    background-color: #a9db2b;
+  }
+  
+
+.comercial-precios-contenedor-precios{
+    width: 100%;
+    border: 2px solid #5c5f5c; 
+    border-radius: 10px; 
+    padding: 10px; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.comercial-precios-ingreso {
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem auto; /* Centra el contenedor en la página */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+/* Cada fila de input */
+.comercial-precios-ingreso .fila {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+/* Etiquetas */
+.comercial-precios-ingreso .fila label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Campos de texto */
+.comercial-precios-ingreso .fila input[type="text"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  color: black;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+  outline: none;
+}
+
+.comercial-precios-ingreso .fila input[type="week"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  color: black;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+  outline: none;
+}
+
+.comercial-precios-ingreso .fila textarea {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  color: black;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+  outline: none;
+}
+
+/* Efecto focus */
+.comercial-precios-ingreso .fila input[type="text"]:focus {
+  border-color: #3a7ef8;
+  box-shadow: 0 0 0 2px rgba(58,126,248,0.2);
+}
+
+.btn-guardar {
+  background-color: var(--color-Celifrut);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 1rem;
+}
+
+.btn-guardar:hover {
+  background-color: var(--color-Celifrut-dark);
+}

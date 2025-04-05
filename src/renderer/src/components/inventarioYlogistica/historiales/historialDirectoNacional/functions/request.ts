@@ -3,7 +3,6 @@ import { historialLotesType } from "@renderer/types/lotesType";
 
 export const requestModificarHistorial = (canastillas: number, propsModal: historialLotesType): object => {
   const promedio = propsModal.documento.promedio !== undefined ? propsModal.documento.promedio : 0;
-  console.log(propsModal)
   const request = {
     _id: propsModal.documento._id,
     directoNacional: -(canastillas * promedio),
@@ -14,14 +13,13 @@ export const requestModificarHistorial = (canastillas: number, propsModal: histo
       __vHistorial:propsModal.__v,
     },
     __v:propsModal.documento.__v,
-    action: 'modificarHistorial_directoNacional',
+    action: 'put_inventarios_historialDirectoNacional_modificarHistorial',
 
   }
   return request;
 
 }
 export const compararCanastillas = (canastillas: number, propsModal: historialLotesType): boolean => {
-  console.log(propsModal)
 
     const propsCanastillasInt = propsModal.documento.directoNacional && propsModal.documento.promedio? 
     propsModal.documento.directoNacional / propsModal.documento.promedio : 0
@@ -31,6 +29,6 @@ export const requestData = (fechaInicio, fechaFin): object => {
   return {
     fechaInicio: fechaInicio,
     fechaFin: fechaFin,
-    action: 'obtenerHistorialLotesDirectoNacional',
+    action: 'get_inventarios_historialDirectoNacional_registros',
   }
 };

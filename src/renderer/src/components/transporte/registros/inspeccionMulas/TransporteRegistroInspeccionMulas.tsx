@@ -38,7 +38,7 @@ export default function TransporteRegistroInspeccionMulas(): JSX.Element {
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: "get_transporte_registro_formularios_inspeccion",
+                action: "get_transporte_registros_formulariosInspeccion",
                 page: page
             }
             const response = await window.api.server2(request);

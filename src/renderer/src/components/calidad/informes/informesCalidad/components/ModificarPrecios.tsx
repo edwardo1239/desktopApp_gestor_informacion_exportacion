@@ -5,7 +5,6 @@ import { useState } from "react";
 
 type propsType = {
     loteSeleccionado: lotesType
-    modificarPrecios: (e) => void
 }
 
 export default function ModificarPrecios(props: propsType): JSX.Element {
@@ -14,8 +13,6 @@ export default function ModificarPrecios(props: propsType): JSX.Element {
     const [exportacion2, setExportacion2] = useState<string>();
     const [frutaNacional, setFrutaNacional] = useState<string>();
     const [descarte, setDescarte] = useState<string>();
-    const [combinado, setCombinado] = useState<string>();
-    const [zumex, setSumex] = useState<string>();
     const closeModal = (): void => {
         const dialogSetting = document.getElementById("modificarPreciosInformeCalidad") as HTMLDialogElement;
         if (dialogSetting) {
@@ -31,13 +28,6 @@ export default function ModificarPrecios(props: propsType): JSX.Element {
         data[tipoFruta]["2"] = exportacion2 === undefined ? 0 : exportacion2
         data[tipoFruta]["frutaNacional"] = frutaNacional === undefined ? 0 : frutaNacional
         data[tipoFruta]["descarte"] = descarte === undefined ? 0 : descarte
-        if (tipoFruta === 'Limon') {
-            data[tipoFruta]["combinado"] = combinado === undefined ? 0 : combinado
-        } else if (tipoFruta === 'Naranja') {
-            data[tipoFruta]['zumex'] = zumex === undefined ? 0 : zumex
-        }
-
-        props.modificarPrecios(data);
 
         closeModal()
     }
@@ -87,25 +77,7 @@ export default function ModificarPrecios(props: propsType): JSX.Element {
                             onChange={(e): void => setDescarte(e.target.value)}
                             className="defaultSelect" />
                     </label>
-                    {props.loteSeleccionado.tipoFruta === 'Limon' ?
-                        <label>
-                            Combinado:
-                            <input
-                                type="text"
-                                value={combinado}
-                                onChange={(e): void => setCombinado(e.target.value)}
-                                className="defaultSelect" />
-                        </label>
-                        :
-                        <label>
-                            Zumex:
-                            <input
-                                type="text"
-                                value={zumex}
-                                onChange={(e): void => setSumex(e.target.value)}
-                                className="defaultSelect" />
-                        </label>
-                    }
+
                 </div>
 
 

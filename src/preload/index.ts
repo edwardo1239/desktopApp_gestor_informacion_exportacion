@@ -40,6 +40,10 @@ const api = {
   Descargar: (callback) => {
     ipcRenderer.on("Descargar", (_event, value) => { callback(value) })
   },
+  obtenerFruta: async (): Promise<unknown> => {
+    const response = await ipcRenderer.invoke('obtenerFruta')
+    return response
+  },
 
   //#region request al servidor
   user2: async (datos): Promise<unknown> => {

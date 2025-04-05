@@ -1,16 +1,39 @@
 /* eslint-disable prettier/prettier */
-import { useState } from "react";
-import { dataDefectos } from "../functions/data";
+import { useEffect, useState } from "react";
+// import { dataDefectos } from "../functions/data";
 import { elementoDefectoType } from "../types/clasificacionTypes";
+import useAppContext from "@renderer/hooks/useAppContext";
 
 type propsType = {
     setDataArray: React.Dispatch<React.SetStateAction<elementoDefectoType[]>>
 }
 
 export default function IngresoDatos(props: propsType): JSX.Element {
+    const { messageModal } = useAppContext();
     const [defecto, setDefecto] = useState<string>('');
     const [lavado, setLavado] = useState<string>('');
     const [encerado, setEncerado] = useState<string>('');
+    const [dataDefectos, setDataDefectos] = useState<object>({})
+    useEffect(()=>{
+        obtenerDefectos()
+    },[])
+    const obtenerDefectos = async ():Promise<void> => {
+        try{
+            const request = {
+                action:"get_constantes_sistema_clasificacion_descarte"
+            }
+            const response = await window.api.server2(request)
+            if(response.status !== 200){
+                throw new Error(`Code ${response.status}: ${response.message}`)
+            }
+            console.log(response.data)
+            setDataDefectos(response.data)
+        } catch (err){
+            if(err instanceof Error){
+                messageModal("error", err.message)
+            }
+        }
+    }
     const handleAgregar = (): void => {
         const newElement = {
             defecto: defecto,

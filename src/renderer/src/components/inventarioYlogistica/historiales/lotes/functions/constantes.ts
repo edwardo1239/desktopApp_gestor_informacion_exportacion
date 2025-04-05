@@ -18,10 +18,11 @@ export const KEYS_FILTROS_COL = {
     kilosGGN: "Kilos GGN (Kg)",
     contenedores: "Contenedores",
     exportacionCalidad: "Exportacion calidad (%)",
+    calibreExportacion: "Calibres por Exportacion",
     fecha_creacion: "Fecha creación",
     fecha_estimada_llegada: "Fecha estimada de llegada",
     fecha_ingreso_inventario: "Fecha ingreso",
-    fechaProceso: "Fecha de proceso"
+    fechaProceso: "Fecha de proceso",
 }
 
 export const KEY_FILTRO_COL_CALIDAD = {

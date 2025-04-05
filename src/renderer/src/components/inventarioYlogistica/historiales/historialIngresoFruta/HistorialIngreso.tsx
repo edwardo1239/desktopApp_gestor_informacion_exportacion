@@ -11,15 +11,15 @@ import BotonesPasarPaginas from "@renderer/components/UI/BotonesPasarPaginas";
 
 
 export default function HistorialIngresoFruta(): JSX.Element {
-  const { messageModal, eventoServidor, triggerServer } = useAppContext();
+  const { messageModal, eventoServidor, triggerServer, setLoading } = useAppContext();
   const [data, setData] = useState<recordLotesType[]>()
   const [page, setPage] = useState<number>(1);
   const [numeroElementos, setNumeroElementos] = useState<number>()
-  const [showModal, setShowModal] = useState<boolean>(false)
   const [loteSeleccionado, setLoteSeleccionado] = useState<recordLotesType>()
   //vuelve a pedir los datos al servidor
   const obtenerData = async (): Promise<void> => {
     try {
+      setLoading(true)
       const request = requestLotes(page)
       const response = await window.api.server2(request)
       if (response.status !== 200)
@@ -28,18 +28,19 @@ export default function HistorialIngresoFruta(): JSX.Element {
     } catch (e) {
       if (e instanceof Error)
         messageModal("error", e.message)
+    } finally{
+      setLoading(false)
     }
   }
   const obtenerCantidadElementos = async (): Promise<void> => {
     try {
       const request = {
-        action: "get_inventario_historiales_ingresoFruta_numeroElementos"
+        action: "get_inventarios_historiales_ingresoFruta_numeroElementos"
       }
       const response = await window.api.server2(request);
       if (response.status !== 200)
         throw new Error(`Code ${response.status}: ${response.message}`)
       setNumeroElementos(response.data)
-      console.log("numero de datos ", response)
     } catch (err) {
       if (err instanceof Error) {
         messageModal("error", err.message)
@@ -64,7 +65,10 @@ export default function HistorialIngresoFruta(): JSX.Element {
   }, [])
 
   const handleModificar = (): void => {
-    setShowModal(!showModal)
+    const dialogINfo = document.getElementById("inventarios_ingresoFruta_modificar_historial_dialog") as HTMLDialogElement;
+    if (dialogINfo) {
+        dialogINfo.showModal();
+    }
   }
   return (
     <div>
@@ -80,12 +84,11 @@ export default function HistorialIngresoFruta(): JSX.Element {
         setPage={setPage}
         division={50} />
 
-      {showModal &&
+
         <ModalModificarLote
           obtenerData={obtenerData}
-          showModal={showModal}
           loteSeleccionado={loteSeleccionado}
-          handleModificar={handleModificar} />}
+          handleModificar={handleModificar} />
     </div>
   );
 };

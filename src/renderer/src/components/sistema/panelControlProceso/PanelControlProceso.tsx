@@ -27,7 +27,7 @@ export default function PanelControlProceso(): JSX.Element {
     }, [statusProceso]);
     const obtenerHoraInicio = async (): Promise<void> => {
         try {
-            const request = { action: 'obtener_fecha_inicio_proceso' }
+            const request = { action: 'get_sistema_proceso_inicioHoraProceso' }
             const response = await window.api.server2(request);
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`)
@@ -62,7 +62,7 @@ export default function PanelControlProceso(): JSX.Element {
     }
     const iniciarProceso = async (): Promise<void> => {
         try {
-            const request = { action: "set_hora_inicio_proceso" };
+            const request = { action: "put_sistema_proceso_inicioHoraProceso" };
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`);
@@ -78,7 +78,7 @@ export default function PanelControlProceso(): JSX.Element {
     }
     const finalizarProceso = async (): Promise<void> => {
         try {
-            const request = { action: "set_hora_fin_proceso" };
+            const request = { action: "put_sistema_proceso_finalizarProceso" };
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`);
@@ -92,7 +92,7 @@ export default function PanelControlProceso(): JSX.Element {
     }
     const pausarProceso = async (): Promise<void> => {
         try {
-            const request = { action: "set_hora_pausa_proceso" };
+            const request = { action: "put_sistema_proceso_pausaProceso" };
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`);
@@ -105,7 +105,7 @@ export default function PanelControlProceso(): JSX.Element {
     }
     const reanudarProceso = async (): Promise<void> => {
         try {
-            const request = { action: "set_hora_reanudar_proceso" };
+            const request = { action: "put_sistema_proceso_reanudarProceso" };
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`);

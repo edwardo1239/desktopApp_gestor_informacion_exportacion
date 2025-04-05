@@ -51,7 +51,7 @@ export default function ModalCrearRegistroFrutaDescompuesta(props: propsType): J
         }
       }
       const request = {
-        action: 'post_inventarios_registros_fruta_descompuesta',
+        action: 'post_inventarios_frutaDescarte_frutaDescompuesta',
         data: {
           ...formState,
           tipo_fruta: props.filtro,

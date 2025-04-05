@@ -35,14 +35,13 @@ export default function HigienePersonal(): JSX.Element {
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: 'obtener_formularios_higiene_personal',
+                action: 'get_calidad_formulario_higienePersonal',
                 fechaInicio: fechaInicio,
                 fechaFin: fechaFin,
             }
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(response.message)
-            console.log(response)
             setData(response.data)
             setDataOriginal(response.data)
         } catch (e) {

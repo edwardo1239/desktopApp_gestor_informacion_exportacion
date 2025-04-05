@@ -52,7 +52,7 @@ export default function Directo(props: vaciadoType): JSX.Element {
             directoNacional: Number(canastillas) * props.loteSeleccionado.promedio,
             inventario: Number(canastillas),
             __v: props.loteSeleccionado.__v,
-            action: 'directoNacional',
+            action: 'put_inventarios_frutaSinProcesar_directoNacional',
           }
           const response = await window.api.server2(request)
           if (response.status === 200) {

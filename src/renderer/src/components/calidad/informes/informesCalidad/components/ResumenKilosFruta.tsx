@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 
+import { descarte_nopago, descarte_pagos } from "@renderer/functions/informesLotes"
 import { contenedoresType } from "@renderer/types/contenedoresType"
 import { lotesType } from "@renderer/types/lotesType"
 import React from "react"
-import { descarte_nopago, descarte_pagos } from "../functions/data"
 
 type propsType = {
     lote: lotesType

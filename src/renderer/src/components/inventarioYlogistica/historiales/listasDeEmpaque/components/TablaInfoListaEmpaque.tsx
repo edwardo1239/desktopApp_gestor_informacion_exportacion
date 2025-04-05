@@ -49,18 +49,6 @@ export default function TablaInfoListaEmpaque(props: propsType): JSX.Element {
         return (peso + "Kg");
     }
 
-    // const ICAalterno = useCallback((id: string): string => {
-    //     const prov = props.proveedores.find(pro => pro._id === id)
-
-    //     if ((prov) && (prov.alt !== null)) {
-    //         if (typeof prov.alt === 'object')
-    //             return String(prov?.alt.ICA)
-    //         return ''
-    //     } else {
-    //         return ''
-    //     }
-
-    // }, [])
     return (
         <table className="table-main-informe-proveedor">
             <thead>
@@ -96,7 +84,7 @@ export default function TablaInfoListaEmpaque(props: propsType): JSX.Element {
                             <td>{item.calibre}</td>
                             <td>{item.cajas}</td>
                             <td>{
-                                item.lote?.SISPAP ? item.lote.ICA && item.lote.ICA.code  : 'Sin SISPAP'
+                                item.SISPAP ? item.lote && item.lote.ICA && item.lote.ICA.code  : 'Sin SISPAP'
                             }</td>
                             <td>{aplicar_ggn_code(item, props.contenedor)}</td>
                             <td>

@@ -24,6 +24,8 @@ export type formStateType = {
     correo_informes?: string
     contacto_finca?: string
     telefono_predio?: string
+    departamento?: string,
+    municipio?: string,
 }
 
 
@@ -35,7 +37,7 @@ type propsType = {
 }
 
 export default function ModalProveedores(props: propsType): JSX.Element {
-    const { messageModal, user } = useAppContext();
+    const { messageModal, user, setLoading } = useAppContext();
     const [tipoFrutas, setTipoFrutas] = useState<string[]>()
     const [paisesExp, setPaisesExp] = useState<string[]>()
 
@@ -46,8 +48,21 @@ export default function ModalProveedores(props: propsType): JSX.Element {
     const [formState, setFormState] = useState<formStateType>()
 
     useEffect(() => {
-        obtenerTipoFruta()
-        obtenerPaisesExpGGN()
+        const fecthData = async (): Promise<void> => {
+            try {
+                setLoading(true)
+                await obtenerTipoFruta()
+                await obtenerPaisesExpGGN()
+            } catch (err) {
+                if (err instanceof Error) {
+                    messageModal("error", err.message)
+                }
+            } finally {
+                setLoading(false)
+            }
+        }
+        fecthData()
+
     }, [])
 
     //carga los datos del proveedor si se esta modificando
@@ -69,7 +84,10 @@ export default function ModalProveedores(props: propsType): JSX.Element {
             newForm.telefono_predio = props.proveedor.telefono_predio ?? '';
             newForm.activo = props.proveedor.activo ?? false;
             newForm.SISPAP = props.proveedor.SISPAP ?? false;
-            if (props.proveedor.GGN.code) {
+            newForm.departamento = props.proveedor.departamento ?? '';
+            newForm.municipio = props.proveedor.municipio ?? '';
+            
+            if (props.proveedor.GGN && props.proveedor.GGN.code) {
                 newForm["GGN.code"] = props.proveedor.GGN.code;
                 newForm["GGN.fechaVencimiento"] = props.proveedor.GGN.fechaVencimiento ?? '';
                 newForm["GGN.tipo_fruta"] = props.proveedor.GGN.tipo_fruta ?? '';
@@ -82,36 +100,24 @@ export default function ModalProveedores(props: propsType): JSX.Element {
     }, [props.proveedor])
 
     const obtenerTipoFruta = async (): Promise<void> => {
-        try {
-            const request = {
-                action: "get_constantes_sistema_tipo_frutas"
-            }
-            const response = await window.api.server2(request);
-            if (response.status !== 200) {
-                throw new Error(`Code ${response.status}: ${response.message}`)
-            }
-            setTipoFrutas(response.data)
-        } catch (err) {
-            if (err instanceof Error) {
-                messageModal("error", err.message)
-            }
+        const request = {
+            action: "get_constantes_sistema_tipo_frutas"
         }
+        const response = await window.api.server2(request);
+        if (response.status !== 200) {
+            throw new Error(`Code ${response.status}: ${response.message}`)
+        }
+        setTipoFrutas(response.data)
     }
     const obtenerPaisesExpGGN = async (): Promise<void> => {
-        try {
-            const request = {
-                action: "get_constantes_sistema_paises_GGN"
-            }
-            const response = await window.api.server2(request);
-            if (response.status !== 200) {
-                throw new Error(`Code ${response.status}: ${response.message}`)
-            }
-            setPaisesExp(response.data)
-        } catch (err) {
-            if (err instanceof Error) {
-                messageModal("error", err.message)
-            }
+        const request = {
+            action: "get_constantes_sistema_paises_GGN"
         }
+        const response = await window.api.server2(request);
+        if (response.status !== 200) {
+            throw new Error(`Code ${response.status}: ${response.message}`)
+        }
+        setPaisesExp(response.data)
     }
 
 
@@ -134,7 +140,6 @@ export default function ModalProveedores(props: propsType): JSX.Element {
         setArbolesState('')
     }
     const handleTipoFruta = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-        console.log(e.target.value)
         if (!formState?.[e.target.name]) {
             handleChange(e.target.name, [e.target.value])
         } else {
@@ -180,6 +185,7 @@ export default function ModalProveedores(props: propsType): JSX.Element {
 
     const handleGuardar = async (): Promise<void> => {
         try {
+            setLoading(true)
             const data = {
                 ...formState,
                 tipo_fruta: fruta,
@@ -212,6 +218,7 @@ export default function ModalProveedores(props: propsType): JSX.Element {
                 messageModal("error", err.message)
             }
         } finally {
+            setLoading(false)
             closeModal()
         }
     }
@@ -444,6 +451,31 @@ export default function ModalProveedores(props: propsType): JSX.Element {
                                 value={formState?.telefono_predio ?? ''}
                                 type="text"
                                 placeholder="Ingresa el telefono del predio"
+                                onChange={(e): void => handleChange(e.target.name, e.target.value)}
+                                disabled={user?.rol > 2}
+                            />
+                        </div>
+                        <div className="form-field">
+                            <label >Municipio</label>
+                            <input
+                                data-testid="comercial-proveedores-predio-telefono-input"
+                                name="municipio"
+                                value={formState?.municipio ?? ''}
+                                type="text"
+                                placeholder="Ingresa el municipio"
+                                onChange={(e): void => handleChange(e.target.name, e.target.value)}
+                                disabled={user?.rol > 2}
+                            />
+                        </div>
+
+                        <div className="form-field">
+                            <label >Departamento</label>
+                            <input
+                                data-testid="comercial-proveedores-predio-telefono-input"
+                                name="departamento"
+                                value={formState?.departamento ?? ''}
+                                type="text"
+                                placeholder="Ingresa el departamento"
                                 onChange={(e): void => handleChange(e.target.name, e.target.value)}
                                 disabled={user?.rol > 2}
                             />

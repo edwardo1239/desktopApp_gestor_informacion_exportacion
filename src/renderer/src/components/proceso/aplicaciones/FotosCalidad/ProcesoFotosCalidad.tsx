@@ -19,7 +19,7 @@ export default function ProcesoFotosCalidad(): JSX.Element {
 
     const obtenerPredios = async (): Promise<void> => {
         try {
-            const request = { action: 'obtener_lotes_fotos_calidad' }
+            const request = { action: 'get_proceso_aplicaciones_fotoCalidad' }
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`)
@@ -50,7 +50,7 @@ export default function ProcesoFotosCalidad(): JSX.Element {
                 const base64Image = await fileToBase64(images[i]);
                 const name = predioSeleccionado?._id + "_" + images[i].name.split('.')[0]
                 const request = {
-                    action: "ingresar_foto_calidad",
+                    action: "post_proceso_aplicaciones_fotoCalidad",
                     _id: predioSeleccionado?._id,
                     foto: base64Image, // Enviar el archivo como base64
                     fotoName: name, // Agregar el nombre del archivo

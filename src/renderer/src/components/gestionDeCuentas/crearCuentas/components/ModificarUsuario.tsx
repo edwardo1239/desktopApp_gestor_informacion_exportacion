@@ -9,6 +9,7 @@ type propsType = {
     cargos: cargoType[] | undefined
     setOpciones: (e:string) => void
     usuario: userType | undefined
+    obtenerData: () => void
 }
 
 export default function ModificarUsuario(props: propsType): JSX.Element {
@@ -50,7 +51,7 @@ export default function ModificarUsuario(props: propsType): JSX.Element {
                 throw new Error("Necesita llenar los datos requeridos")
             }
             const request = {
-                action: 'modificar_usuario',
+                action: 'put_gestionCuentas_usuario',
                 data: formState,
                 _id: props.usuario?._id,
                 __v: props.usuario?.__v
@@ -61,6 +62,7 @@ export default function ModificarUsuario(props: propsType): JSX.Element {
                 throw new Error(response.message)
             messageModal("success", "Usuario modificado con exito")
             props.setOpciones("inicio")
+            props.obtenerData()
 
         } catch (e) {
             if (e instanceof Error)

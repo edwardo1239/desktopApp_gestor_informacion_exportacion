@@ -20,7 +20,7 @@ export default function TransporteExportacionIngresoData(): JSX.Element {
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: "get_transporte_exportacion_contenedores"
+                action: "get_transporte_programaciones_exportacion_contenedores"
             }
             const response = await window.api.server2(request);
             if (response.status !== 200)
@@ -53,7 +53,7 @@ export default function TransporteExportacionIngresoData(): JSX.Element {
         e.preventDefault()
         try{
             const request = {
-                action:"post_transporte_programacion_exportacion",
+                action:"put_transporte_programaciones_exportacion",
                 _id: contSeleccionado,
                 data: formState
             }

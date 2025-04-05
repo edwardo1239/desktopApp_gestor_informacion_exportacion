@@ -28,7 +28,6 @@ export default function TablaRegistorsInspeccionMulaContenedores(props: propsTyp
     return (
         <>
             <div className="table-container">
-
                 <table className="table-main">
                     <thead>
                         <tr>

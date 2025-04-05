@@ -1,77 +1,113 @@
+/* Contenedor principal */
 .filtroContainer {
-    margin: 10px;
+    margin: 16px;
+    padding: 20px;
     display: flex;
-    flex-direction: row;
-    padding: 15px;
-    flex-wrap: wrap;
-    gap: 5px;
-
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--color-fondo);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--color-shadow);
 }
 
 .filtroContainer div {
     display: flex;
-    gap: 10px;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 24px;
+    align-items: center;
 }
 
 .filtroContainer h3 {
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-texto);
+    margin-bottom: 8px;
 }
 
 .filtroContainer hr {
-    margin:8px 0 12px 0;
+    border: none;
+    border-top: 1px solid var(--border-Color);
+    margin: 10px 0;
 }
 
-.div-filter-actions{
+/* Acciones filtro */
+.div-filter-actions {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
-.filtroContainer select {
-    color: black;
-    width: 150px;
-    height: 3rem;
-    border: 1px;
-    border-style: solid;
-    border-color: #999;
+/* Estilos de selects e inputs */
+.filtroContainer textarea{
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    width: 280px;
+    height: 3.8rem;
+    border: 1px solid var(--border-Color);
     border-radius: 8px;
-    margin-right: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+
+}
+.filtroContainer select,
+.filtroContainer input  {
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    width: 180px;
+    height: 2.8rem;
+    border: 1px solid var(--border-Color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    transition: border-color 0.2s;
 }
 
-.filtroContainer input {
-    color: black;
-    width: 150px;
-    height: 3rem;
-    border: 1px;
-    border-style: solid;
-    border-color: #999;
-    border-radius: 8px;
-    margin-right: 8px;
-    padding: 8px;
+.filtroContainer select:focus,
+.filtroContainer input:focus {
+    outline: none;
+    border-color: var(--color-Celifrut-brigth);
+    box-shadow: 0 0 0 2px rgba(126, 186, 39, 0.3);
 }
 
+/* Botones */
 .filtroContainer button {
     background-color: var(--color-Celifrut);
-    color: white;
+    color: #ffffff;
+    border: none;
     border-radius: 8px;
-    padding: 0px 8px;
-    font-weight: bold;
+    padding: 10px 16px;
+    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 2px 5px var(--color-shadow);
 }
 
 .filtroContainer button:hover {
     background-color: var(--color-Celifrut-dark);
+    transform: translateY(-2px);
 }
 
 .filtroContainer button:active {
-    background-color: var(--color-Celifrut);
+    transform: translateY(0);
+    box-shadow: 0 1px 3px var(--color-shadow);
 }
 
+/* Input específico para imágenes o archivos */
 .filtroContainer .input-imagenes {
     width: auto;
+    height: auto;
+    padding: 6px;
 }
+
+/* Mejoras visuales para modo oscuro */
+.dark-theme .filtroContainer select,
+.dark-theme .filtroContainer input {
+    background-color: var(--color-fondo-hover);
+}
+

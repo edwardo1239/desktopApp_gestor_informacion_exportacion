@@ -13,11 +13,11 @@ type PredioDatosType = {
     [key: string]: {
         enf: string;
         predio: string;
-        cont: contType
-        tipoFruta: string
+        cont: contType,
+        tipoFruta: string,
+        calibres: calibreType
     }
 };
-
 type contType = {
     [key: string]: {
         numero: number,
@@ -25,6 +25,13 @@ type contType = {
         kilos: number
     }
 }
+type calibreType = {
+    [key: string]: {
+        cajas: number,
+        kilos: number
+    }
+}
+
 export default function DataHistorialContenedores(props: propsType): JSX.Element {
     const [fecha, setFecha] = useState<string>('');
     const [showCalibeCalidad, setShowCalibreCalidad] = useState<boolean>(false)
@@ -116,6 +123,13 @@ export default function DataHistorialContenedores(props: propsType): JSX.Element
                                 />
                             </div>
                         </section>
+                        <section className="proceso-listaempaque-resumen-filtro-button-hoy">
+                            <p>Cajas/Calibres</p>
+                            <label className="switch">
+                                <input type="checkbox" checked={showCalibeCalidad} onChange={(e): void => setShowCalibreCalidad(e.target.checked)} />
+                                <span className="slider round"></span>
+                            </label>
+                        </section>
                     </div>
                 </div>
                 :
@@ -124,7 +138,7 @@ export default function DataHistorialContenedores(props: propsType): JSX.Element
                         <section className="proceso-listaempaque-resumen-filtro-button-fecha">
                             <p>Fecha</p>
                             <label>
-                                <input type="date" onChange={(e):void => setFecha(e.target.value)} />
+                                <input type="date" onChange={(e): void => setFecha(e.target.value)} />
                             </label>
                         </section>
                         <section className="proceso-listaempaque-resumen-filtro-button-hoy">
@@ -203,28 +217,54 @@ export default function DataHistorialContenedores(props: propsType): JSX.Element
                                     <th>Contenedores</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {predios && Object.values(predios).map((lote, index) => {
-                                    if (
-                                        lote.predio.toLowerCase().startsWith(filtro.toLowerCase()) ||
-                                        lote.enf.toLocaleLowerCase().startsWith(filtro.toLocaleLowerCase())
-                                    ) {
-                                        return (
-                                            <tr key={lote.enf} className={`${index % 2 === 0 ? 'fondo-par' : 'fondo-impar'}`}>
+                            {predios && !showCalibeCalidad ?
+                                <tbody>
+                                    {predios && Object.values(predios).map((lote, index) => {
+                                        if (
+                                            lote.predio.toLowerCase().startsWith(filtro.toLowerCase()) ||
+                                            lote.enf.toLocaleLowerCase().startsWith(filtro.toLocaleLowerCase())
+                                        ) {
+                                            return (
+                                                <tr key={lote.enf} className={`${index % 2 === 0 ? 'fondo-par' : 'fondo-impar'}`}>
+                                                    <td>{lote.enf} - {lote.predio}</td>
+                                                    <td>{Object.entries(lote.cont).map(([key, value]) => (
+                                                        <div key={key}>
+                                                            <div>{value.numero}: {value.cajas} Cajas - {value.kilos}Kg</div>
+                                                            <div>{lote.tipoFruta}</div>
+                                                        </div>
+                                                    ))}</td>
+                                                </tr>
+                                            )
+                                        } else {
+                                            return
+                                        }
+                                    })}
+                                </tbody>
+                                :
+                                <tbody>
+                                    {predios && Object.values(predios).map((lote, index) => {
+                                        if (
+                                            lote.predio.toLowerCase().startsWith(filtro.toLowerCase()) ||
+                                            lote.enf.toLocaleLowerCase().startsWith(filtro.toLocaleLowerCase())
+                                        ) {
+                                            return(<tr key={lote.enf} className={`${index % 2 === 0 ? 'fondo-par' : 'fondo-impar'}`}>
                                                 <td>{lote.enf} - {lote.predio}</td>
-                                                <td>{Object.entries(lote.cont).map(([key, value]) => (
+                                                <td>{Object.entries(lote.calibres).map(([key, value]) => (
                                                     <div key={key}>
-                                                        <div>{value.numero}: {value.cajas} Cajas - {value.kilos}Kg</div>
+                                                        <div>{key}: {value.cajas} Cajas - {value.kilos}Kg</div>
                                                         <div>{lote.tipoFruta}</div>
                                                     </div>
                                                 ))}</td>
-                                            </tr>
-                                        )
-                                    } else {
-                                        return
-                                    }
-                                })}
-                            </tbody>
+                                            </tr>)
+                                        }
+                                        else {
+                                            return null
+                                        }
+                                    })}
+
+                                </tbody>
+                            }
+
                         </table>
                     </div>
                 </section>

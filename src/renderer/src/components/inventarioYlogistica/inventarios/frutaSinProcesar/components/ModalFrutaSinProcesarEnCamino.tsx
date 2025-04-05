@@ -20,7 +20,7 @@ export default function ModalFrutaSinProcesarEnCamino(props:propsType): JSX.Elem
     const toRecepcionPendiente = async (): Promise<void> => {
         try{
             const request = {
-                action:"lote_recepcion_pendiente",
+                action:"put_inventarios_frutaSinProcesar_recepcionPendiente",
                 _id:props.loteSeleccionado?._id
             }
             const response = await window.api.server2(request)

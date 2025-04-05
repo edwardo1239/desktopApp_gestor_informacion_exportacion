@@ -23,7 +23,7 @@ export default function LimpiezaDiaria(): JSX.Element {
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: "get_view_formularios_limpieza_diaria",
+                action: "get_calidad_formulario_limpiezaDiaria",
                 page: page
             }
             const response = await window.api.server2(request)
@@ -39,7 +39,7 @@ export default function LimpiezaDiaria(): JSX.Element {
     }
     const obtener_cantidad_elementos = async (): Promise<void> => {
         try {
-            const request = { action: "get_calidad_formularios_higienePersonal_numeroElementos" }
+            const request = { action: "get_calidad_formulario_limpiezaDiaria_numeroElementos" }
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`)

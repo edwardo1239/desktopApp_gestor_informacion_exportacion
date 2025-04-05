@@ -42,7 +42,7 @@ export default function Informes(): JSX.Element {
   const obtenerCantidadDeDatos = async (): Promise<void> => {
     try {
       const request = {
-        action: 'get_calidad_informes_calidad_informe_proveedor_numero_datos'
+        action: 'get_calidad_informes_informeProveedor_numeroElementos'
       }
       const response = await window.api.server2(request);
       if (response.status !== 200) {
@@ -88,43 +88,11 @@ export default function Informes(): JSX.Element {
     setShowTable(true)
   }
 
-  const modificarPrecios = (newPrecios): void => {
-    const lote = JSON.parse(JSON.stringify(loteSeleccionado));
-    lote.predio.precio = newPrecios
-    obtenerDatosDelServidor();
-    setLoteSeleccionado(lote);
-
-
-  }
-  const casoFavorita = async (newLote: lotesType, send: boolean): Promise<void> => {
-    setLoteSeleccionado(newLote);
-    if (send) {
-      try {
-        const query = {
-          action: "lote_caso_favorita",
-          _id: newLote._id,
-          query: {
-            "observaciones": newLote.observaciones,
-            "flag_is_favorita": true
-          }
-        }
-        const response = await window.api.server2(query)
-        if (response.status !== 200)
-          throw new Error(`Code ${response.status} : ${response.message}`)
-        obtenerDatosDelServidor();
-        messageModal("success", "Datos guardados con exito")
-      } catch (err) {
-        if (err instanceof Error) {
-          messageModal("error", "Error creando caso Favorita")
-        }
-      }
-    }
-  }
   const no_pagar_balin = async (newLote: lotesType): Promise<void> => {
     setLoteSeleccionado(newLote);
     try {
       const query = {
-        action: "lote_no_pagar_balin",
+        action: "put_calidad_informe_noPagarBalinLote",
         _id: newLote._id,
       }
       const response = await window.api.server2(query)
@@ -225,8 +193,8 @@ export default function Informes(): JSX.Element {
         <ViewInformeData
           no_pagar_balin={no_pagar_balin}
           obtenerDatosDelServidor={obtenerDatosDelServidor}
-          casoFavorita={casoFavorita}
-          modificarPrecios={modificarPrecios}
+          // casoFavorita={casoFavorita}
+          // modificarPrecios={modificarPrecios}
           captureComponent={captureComponent}
           handleVolverTabla={handleVolverTabla}
           loteSeleccionado={loteSeleccionado}

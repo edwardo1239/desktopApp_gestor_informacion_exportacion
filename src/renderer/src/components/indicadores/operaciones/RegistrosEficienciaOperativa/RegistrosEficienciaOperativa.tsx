@@ -39,7 +39,7 @@ export default function RegistrosEficienciaOperativa(): JSX.Element {
     const obtenerRegistros = async (): Promise<void> => {
         try {
             const request = {
-                action: "get_indicadores_eficiencia_operativa_elementos",
+                action: "get_indicadores_operaciones_eficienciaOperativa",
                 page: page
             }
             const response = await window.api.server2(request);
@@ -101,7 +101,7 @@ export default function RegistrosEficienciaOperativa(): JSX.Element {
                 }
             }
             const query = {
-                action: "put_indicadores_eficiencia_operativa_modificar",
+                action: "put_indicadores_operaciones_eficienciaOperativa",
                 data: formState,
                 _id: itemSeleccionado?._id
             }

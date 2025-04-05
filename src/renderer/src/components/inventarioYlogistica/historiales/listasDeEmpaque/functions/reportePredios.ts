@@ -9,7 +9,8 @@ export type resumenPredioType = {
         ICA: string,
         cajas: number;
         peso: number;
-        pesoBruto: number
+        pesoBruto: number;
+        SISPAP: boolean;
     }
 }
 
@@ -32,11 +33,13 @@ export const resumenPredios =
                             cajas: 0,
                             peso: 0,
                             pesoBruto: 0,
-                            ICA: ICA
+                            ICA: ICA,
+                            SISPAP: false
                         };
                     }
                     out[id].cajas += item.cajas
                     out[id].peso += item.cajas * peso
+                    out[id].SISPAP = item.SISPAP || false
 
                 }
                 totalCajas += item.cajas

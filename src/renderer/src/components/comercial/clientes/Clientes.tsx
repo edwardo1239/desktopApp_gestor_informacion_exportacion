@@ -7,22 +7,14 @@ import FormatoAgregarCliente from "./components/FormatoAgregarCliente";
 
 
 export default function Clientes(): JSX.Element {
-    const { messageModal } = useAppContext()
+    const { messageModal, setLoading } = useAppContext()
     const [data, setData] = useState<clienteType[]>([])
     const [filtro, setFiltro] = useState<string>('')
     const [dataOriginal, setDataOriginal] = useState<clienteType[]>([])
     const [opciones, setOpciones] = useState<string>('inicio')
     const [modificar, setModificar] = useState<boolean>(false)
     const [cliente, setCliente] = useState<clienteType>()
-    useEffect(() => {
-        obtenerClientes()
-        window.api.reload(() => {
-            obtenerClientes()
-        });
-        return () => {
-            window.api.removeReload()
-        }
-    }, [])
+
     useEffect(() => {
         if (filtro !== '') {
             const dataFilter = dataOriginal.filter(
@@ -32,22 +24,32 @@ export default function Clientes(): JSX.Element {
             setData(dataOriginal)
         }
     }, [filtro])
-    const obtenerClientes = async (): Promise<void> => {
-        try {
-            const request = {
-                action: 'get_clientes',
-            };
-            const response = await window.api.server2(request);
-            if (response.status !== 200)
-                throw new Error(response.message)
-            setData(response.data)
-            setDataOriginal(response.data)
-        } catch (e) {
-            if (e instanceof Error)
-                messageModal("error", e.message)
+    useEffect(() => {
+        const fetchData = async (): Promise<void> => {
+            try {
+                setLoading(true)
+                await obtenerClientes()
+            } catch (err) {
+                if (err instanceof Error) {
+                    messageModal("error", err.message)
+                }
+            } finally {
+                setLoading(false)
+            }
         }
+        fetchData()
+    }, [])
+    const obtenerClientes = async (): Promise<void> => {
+        const request = {
+            action: 'get_comercial_clientes',
+        };
+        const response = await window.api.server2(request);
+        if (response.status !== 200)
+            throw new Error(response.message)
+        setData(response.data)
+        setDataOriginal(response.data)
     }
- 
+
     const handleChange = (): void => {
         if (opciones === "inicio") {
             setOpciones("agregar")

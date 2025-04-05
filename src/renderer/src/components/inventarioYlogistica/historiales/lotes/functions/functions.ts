@@ -4,7 +4,12 @@ import { format } from 'date-fns'
 import { graficaDataType, graficaDataTypeCalidad, graficaDonaDataType } from '../type/types'
 import { lotesType } from '@renderer/types/lotesType'
 import { KEYS_FILTROS_COL } from './constantes'
-
+type calibreType = {
+  [key:string]:{
+      cajas: number,
+      kilos:number
+  }
+}
 export const filtrosColumnasObj = {
   canastillas: false,
   kilos: false,
@@ -24,6 +29,7 @@ export const filtrosColumnasObj = {
   deshidratacion: false,
   deshidratacionKilos: false,
   exportacionCalidad: false,
+  calibreExportacion: false,
   fecha_creacion:false,
   fecha_estimada_llegada: false,
   fecha_ingreso_inventario: false,
@@ -328,4 +334,11 @@ export const total_porcentaje_exportacion_calidad = (lotes: lotesType[]): string
   const calidad15 = (totalCalidad15 * 100) / total
   const calidad2 = (totalCalidad2 * 100) / total
   return `1: ${calidad1.toFixed(2)}% - 1.5: ${calidad15.toFixed(2)}%  - 2: ${calidad2.toFixed(2)}%`
+}
+export const total_porcentaje_calibre = (calibres:calibreType, calibre:string): number => {
+  const total_kilos = Object.values(calibres).reduce((acu, item) => acu += item.kilos ,0);
+  if(total_kilos === 0) return 0
+
+  const porcentage = (calibres[calibre].kilos * 100) / total_kilos
+  return porcentage
 }

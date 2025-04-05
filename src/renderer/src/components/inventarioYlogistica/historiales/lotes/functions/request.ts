@@ -10,18 +10,11 @@ export const requestProveedor = {
 export const requestLotes = (filtro: filtrotype | filtroCalidadType): object => {
   return {
     ...filtro,
-    action: 'view_lotes',
+    action: 'get_inventarios_lotes_infoLotes',
   };
 }
 
 
 export type numeroContenedorType = {
   [key: string]: string
-}
-
-export const requestContenedores = (ids): object => {
-  return {
-    data: ids ,
-    action: 'getContenedores',
-  }
 }

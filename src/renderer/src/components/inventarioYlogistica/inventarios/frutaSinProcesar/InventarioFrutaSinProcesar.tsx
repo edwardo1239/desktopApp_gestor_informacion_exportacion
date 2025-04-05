@@ -92,7 +92,7 @@ export default function InventarioFrutaSinProcesar(): JSX.Element {
 
   const obtenerFruta = async (): Promise<void> => {
     try {
-      const request = { action: 'getInventario' };
+      const request = { action: 'get_inventarios_frutaSinProcesar_frutaEnInventario' };
       const response = await window.api.server2(request)
       if (response.status !== 200)
         throw new Error(`Code ${response.status}: ${response.message}`)
@@ -162,23 +162,26 @@ export default function InventarioFrutaSinProcesar(): JSX.Element {
 
 
       <div className='filtroContainer'>
-        <label>
-          <p>Fecha Incio</p>
-          <input type="date" onChange={(e): void => SetFechaInicio(e.target.value)} />
-        </label>
-        <label>
-          <p>Fecha Fin</p>
-          <input type="date" onChange={(e): void => SetFechaFin(e.target.value)} />
-        </label>
-        <label>
-          <p>Estado</p>
-          <select name="estado" onChange={(e): void => setTipoDato(e.target.value)}>
-            <option value=""></option>
-            <option value="enCamino">En camino</option>
-            <option value="enPatio">Recepción pendiente</option>
-            <option value="enInventario">En inventario</option>
-          </select>
-        </label>
+        <div className='div-filter-actions'>
+
+          <label>
+            <p>Fecha Incio</p>
+            <input type="date" onChange={(e): void => SetFechaInicio(e.target.value)} />
+          </label>
+          <label>
+            <p>Fecha Fin</p>
+            <input type="date" onChange={(e): void => SetFechaFin(e.target.value)} />
+          </label>
+          <label>
+            <p>Estado</p>
+            <select name="estado" onChange={(e): void => setTipoDato(e.target.value)}>
+              <option value=""></option>
+              <option value="enCamino">En camino</option>
+              <option value="enPatio">Recepción pendiente</option>
+              <option value="enInventario">En inventario</option>
+            </select>
+          </label>
+        </div>
       </div>
 
       <BotonesAccionFrutaSinProcesar

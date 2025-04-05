@@ -74,7 +74,11 @@ const ICAalterno = (id, proveedores) => {
 
 }
 function aplicar_ggn_code(item, contenendor) {
-   if (item.lote?.GGN && item.lote.GGN.code) {
+   if (
+      item.lote?.GGN &&
+      item.lote.GGN.code &&
+      item.lote.GGN.tipo_fruta.includes(item.tipoFruta)
+   ) {
       if (typeof contenendor.infoContenedor.clienteInfo === 'object') {
          const cont = contenendor.infoContenedor.clienteInfo.PAIS_DESTINO;
          const lote = item.lote.GGN.paises
@@ -86,7 +90,11 @@ function aplicar_ggn_code(item, contenendor) {
    return ""
 }
 function aplicar_ggn_fecha(item, contenendor) {
-   if (item.lote?.GGN && item.lote.GGN.code) {
+   if (
+      item.lote?.GGN &&
+      item.lote.GGN.code &&
+      item.lote.GGN.tipo_fruta.includes(item.tipoFruta)
+   ) {
       if (typeof contenendor.infoContenedor.clienteInfo === 'object') {
          const cont = contenendor.infoContenedor.clienteInfo.PAIS_DESTINO;
          const lote = item.lote.GGN.paises
@@ -267,7 +275,7 @@ Fecha: 17 Oct 2020`
    Object.values(predios).forEach((value, index) => {
       worksheet.insertRow(5 + index, [
          value.predio,
-         value.ICA,
+         value.SISPAP ? value.ICA : 'Sin SISPAP',
          value.cajas,
          value.peso,
          value.peso + (0.85 * value.cajas)
@@ -441,7 +449,7 @@ async function crear_lista_empaque(data, pathDocument) {
 
    worksheet.getRow(1).height = 80
    for (let i = 1; i <= 12; i++) {
-      worksheet.getColumn(i).width = 20
+      worksheet.getColumn(i).width = 20.33
       worksheet.getColumn(i).height = alto_celda
    }
 
@@ -469,10 +477,15 @@ async function crear_lista_empaque(data, pathDocument) {
       extension: 'png'
    })
 
+
    worksheet.addImage(imageId, {
       tl: { col: 0, row: 0 },
       ext: { width: 100, height: 100 }
-   })
+   });
+
+   const cellImage = worksheet.getCell("A1")
+   cellImage.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true }
+
 
    //? titulo
    row1Cells.forEach(item => {
@@ -582,7 +595,7 @@ async function crear_lista_empaque(data, pathDocument) {
             ])
 
             newRow.height = alto_celda;
-            newRow.width = 20;
+            newRow.width = 20.33;
          }
 
          if (!coc_flag && aplicar_ggn_code(item, cont) !== "") {
@@ -851,6 +864,7 @@ async function crear_reporte_datalogger(data, pathDocument) {
       'assets',
       'CELIFRUT-d862746b.png'
    )
+
    const imageId = workbook.addImage({
       filename: imagePath,
       extension: 'png'

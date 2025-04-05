@@ -1,18 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { serverResponse } from '@renderer/types/login'
-import { proveedoresType } from '@renderer/types/proveedoresType'
 
-export const handleServerResponse = (
-  response,
-  messageModal
-): serverResponse<proveedoresType[] | { enf: string }> | never => {
-  if (response.status === 200) {
-    return response.data
-  } else {
-    messageModal('error', `Error ${response.status}: ${response.message}`)
-    throw new Error(`Error ${response.status}: ${response.message}`)
-  }
-}
 interface Descarte {
   balin: number
   pareja: number
@@ -31,7 +18,7 @@ interface FormState {
   // kilos_estimados: string
   promedio: number
   numeroPrecintos: string
-  canastillas: string
+  canastillas: number
   kilos: string
   placa: string
   tipoFruta: string
@@ -41,18 +28,19 @@ interface FormState {
   descarteEncerado: Descarte
   ef?: string
 
-  
 }
 
 export const crear_request_guardar = (formState): FormState => {
+  const canastillas = (Number(formState.canastillasPrestadas) ?? 0) + 
+                    (Number(formState.canastillasPropias) ?? 0) 
   return {
     ef: formState.ef,
     predio: formState.nombrePredio,
     // canastillas_estimadas: formState.canastillas,
     // kilos_estimados: formState.kilos,
-    promedio: Number(formState.kilos) / Number(formState.canastillas),
+    promedio: Number(formState.kilos) / Number(canastillas),
     numeroPrecintos: formState.numeroPrecintos,
-    canastillas: formState.canastillas,
+    canastillas: canastillas,
     kilos: formState.kilos,
     placa: formState.placa,
     tipoFruta: formState.tipoFruta,
@@ -70,17 +58,15 @@ export const crear_request_guardar = (formState): FormState => {
   }
 }
 
-export const request_predios = {
-  action: 'get_sys_proveedores',
-  data: "activos"
-}
-
 
 export type formType = {
   ef?: string
   nombrePredio?: string,
   tipoFruta?: string,
-  canastillas?: number
+  canastillasPropias?: number
+  canastillasPrestadas?: number
+  canastillasVaciasPropias?: number
+  canastillasVaciasPrestadas?: number
   kilos?: number
   placa?: string,
   observaciones?: string,

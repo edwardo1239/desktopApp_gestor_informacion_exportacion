@@ -27,7 +27,7 @@ export default function DescarteLavadoSistema(): JSX.Element {
 
     const obtenerLote = async (): Promise<void> => {
         try {
-            const response = await window.api.server2({ action: "get_predio_Proceso_Descarte" })
+            const response = await window.api.server2({ action: "get_proceso_aplicaciones_descarteLavado" })
             if (response.status !== 200) {
                 throw new Error(`Code ${response.status}: ${response.message}`)
             }
@@ -56,7 +56,7 @@ export default function DescarteLavadoSistema(): JSX.Element {
         try {
             const data = sumarDatos(formState, datosPredio);
             const request = {
-                action: "ingresar_descarte_lavado",
+                action: "put_proceso_aplicaciones_descarteLavado",
                 _id: datosPredio._id,
                 data: data,
             };

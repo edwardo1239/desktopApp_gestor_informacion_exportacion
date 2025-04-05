@@ -2,9 +2,8 @@
 
 import { dataDefectos } from "@renderer/constants/calidadDefectos"
 import { lotesType } from "@renderer/types/lotesType"
-import { obtenerPorcentage, totalDescarte } from "../functions/data";
 import MostrarPrecios from "./MostrarPrecios";
-import { total_precio_descarte } from "../functions/totalPrecios";
+import { obtenerPorcentage, total_precio_descarte, totalDescarte } from "@renderer/functions/informesLotes";
 
 type propsType = {
     loteSeleccionado: lotesType

@@ -9,6 +9,7 @@ import { userType } from './types/login'
 import MessagesComponent from './messages/MessagesComponent'
 import Ventana from './components/UI/Ventana'
 import Pestañas from './components/UI/Pestañas'
+import LoaderOverlay from './components/UI/LoaderOverlay'
 
 
 type OpenModalFunction = (messageType: string, message: string) => void;
@@ -17,6 +18,7 @@ type MyContextDataType = {
   dataComponentes: string
   setDataComponentes: React.Dispatch<React.SetStateAction<string>>;
 };
+
 
 type confirmationDataType = {
   confirmation: boolean
@@ -27,6 +29,7 @@ type seleccionWindowType = (data: string, name: string) => void
 
 
 export const dataContext = createContext<MyContextDataType | undefined>(undefined)
+export const loadingContext = createContext<React.Dispatch<React.SetStateAction<boolean>> | undefined>(undefined)
 export const messageContext = createContext<OpenModalFunction | undefined>(undefined);
 export const confirmacionContext = createContext<confirmationDataType | undefined>(undefined);
 export const seleccionWindowContext = createContext<seleccionWindowType | undefined>(undefined);
@@ -57,6 +60,7 @@ function App(): JSX.Element {
   const [message, setMessage] = useState<string>('')
   const [widthBar, setWidthBar] = useState<number>(100)
   const [isProcesoStart, setIsprocesoStart] = useState<string>('off')
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [eventoServidor, setEventoservidor] = useState<string>('')
   const [trigger, setTrigger] = useState(false);
@@ -172,13 +176,14 @@ function App(): JSX.Element {
   return (
 
     <dataContext.Provider value={{ dataComponentes, setDataComponentes, }}>
-      <statusProcesoContext.Provider value={isProcesoStart} >
-        <userContext.Provider value={user}>
-          <messageContext.Provider value={openMessage}>
-            <seleccionWindowContext.Provider value={seleccionWindow}>
-              <eventoServidorContext.Provider value={eventoServidor}>
-                <triggerEventContext.Provider value={trigger}>
-                  <main>
+      <loadingContext.Provider value={ setLoading } >
+        <statusProcesoContext.Provider value={isProcesoStart} >
+          <userContext.Provider value={user}>
+            <messageContext.Provider value={openMessage}>
+              <seleccionWindowContext.Provider value={seleccionWindow}>
+                <eventoServidorContext.Provider value={eventoServidor}>
+                  <triggerEventContext.Provider value={trigger}>
+                    <main>
 
 
                       <div className={`UI-container-navBar`}>
@@ -198,19 +203,22 @@ function App(): JSX.Element {
                             section={section}
                             selccionPestaña={selccionPestaña}
                           />
+                          <LoaderOverlay isLoading={loading} />
+
                           <Ventana version={versionState} section={section} pestañaActiva={pestañaActiva} widthBar={widthBar} />
                         </div>
                       </div>
                       {/* )} */}
-                    {message !== '' && <MessagesComponent messageType={messageType} message={message} />}
-                  </main>
+                      {message !== '' && <MessagesComponent messageType={messageType} message={message} />}
+                    </main>
 
-                </triggerEventContext.Provider>
-              </eventoServidorContext.Provider>
-            </seleccionWindowContext.Provider>
-          </messageContext.Provider>
-        </userContext.Provider>
-      </statusProcesoContext.Provider>
+                  </triggerEventContext.Provider>
+                </eventoServidorContext.Provider>
+              </seleccionWindowContext.Provider>
+            </messageContext.Provider>
+          </userContext.Provider>
+        </statusProcesoContext.Provider>
+      </loadingContext.Provider>
     </dataContext.Provider>
   )
 }

@@ -2,38 +2,35 @@
 import { useEffect, useState } from 'react'
 import { proveedoresType } from '@renderer/types/proveedoresType';
 import * as strings from './json/strings_ES.json';
-import { crear_request_guardar, formType, handleServerResponse, request_predios } from './functions/functions';
+import { crear_request_guardar, formType } from './functions/functions';
 import useAppContext from '@renderer/hooks/useAppContext';
 import "@renderer/css/components.css"
 import "@renderer/css/form.css"
-import { obtener_tipo_fruta } from '@renderer/functions/SystemRequest';
+import { obtener_proveedores } from '@renderer/functions/SystemRequest';
 
 
 //recordar despues cambiar para que inventario quede en un item aparte, pues canastilla en inventario va a caqmbiar a un solo json
 export default function IngresoFruta(): JSX.Element {
-  const { messageModal } = useAppContext();
+  const { messageModal, setLoading } = useAppContext();
   const [prediosDatos, setPrediosData] = useState<proveedoresType[]>([])
   const [formState, setFormState] = useState<formType>();
-  
+
   const [enf, setEnf] = useState<string>()
   const [enf8, setEnf8] = useState<string>()
   const [tiposFrutas, setTiposFrutas] = useState<string[]>()
 
   const obtenerPredios = async (): Promise<void> => {
     try {
-      const response = await window.api.server2(request_predios)
-      if (response.status !== 200) throw new Error(`Cose ${response.status}: ${response.message}`)
-      const data1 = handleServerResponse(response, messageModal)
-
-      if (Array.isArray(data1) && data1.length > 0 && '_id' in data1[0]) {
-        const arr = response.data;
-        arr.sort((a: proveedoresType, b: proveedoresType) => a.PREDIO.localeCompare(b.PREDIO));
-        setPrediosData(arr);
+      const response = await obtener_proveedores("activos")
+      if (response instanceof Error) {
+        throw response
       }
+      const data = response.sort((a: proveedoresType, b: proveedoresType) => a.PREDIO.localeCompare(b.PREDIO));
+
+      setPrediosData(data)
     } catch (err) {
       if (err instanceof Error) {
-        messageModal("error", `${err.message}`)
-
+        messageModal("error", err.message)
       }
     }
   }
@@ -63,25 +60,34 @@ export default function IngresoFruta(): JSX.Element {
       }
     }
   }
-  const obtenerTipoFruta = async () :Promise<void> => {
+  const obtenerTipoFruta = async (): Promise<void> => {
     try {
-      const response = await obtener_tipo_fruta()
-      if(response instanceof Error){
-        throw response
-      }
-      setTiposFrutas(response)
+        const response = await window.api.obtenerFruta()
+        setTiposFrutas(response)
     } catch (err) {
-      if (err instanceof Error) {
-        messageModal("error", err.message)
-      }
+        if (err instanceof Error)
+            messageModal("error", `Error obteniendo fruta ${err.message}`)
     }
-  }
+}
   useEffect(() => {
-    obtenerPredios();
-    obtener_ef1();
-    obtener_ef8();
-    obtenerTipoFruta();
-  }, [])
+    const fetchData = async (): Promise<void> => {
+      try {
+        setLoading(true);
+        await obtenerPredios();
+        await obtener_ef1();
+        await obtener_ef8();
+        await obtenerTipoFruta();
+      } catch (err) {
+        messageModal("error", 'Recepcion' + err)
+
+      } finally {
+        setLoading(false);
+
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleChange = (event): void => {
     const { name, value } = event.target;
@@ -98,12 +104,15 @@ export default function IngresoFruta(): JSX.Element {
   };
   const guardarLote: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault()
-
     try {
+      setLoading(true)
+      const canastilla = 
+        Number(formState?.canastillasPropias ?? 0) + 
+        Number(formState?.canastillasVaciasPropias ?? 0) + 
+        Number(formState?.canastillasPrestadas ?? 0) + 
+        Number(formState?.canastillasVaciasPrestadas ?? 0)
 
-      if (!formState?.kilos || !formState?.canastillas) throw new Error("Faltan datos")
-      const promedio = formState?.kilos / formState?.canastillas;
-      if (promedio < 17 && promedio > 21) throw new Error("Numero de canastillas no corresponde a los kilos")
+      if (!formState?.kilos || canastilla === 0) throw new Error("Faltan datos")
 
       const datos = crear_request_guardar(formState);
       if (!datos.tipoFruta) {
@@ -112,21 +121,28 @@ export default function IngresoFruta(): JSX.Element {
       }
       const data = { ...datos }
       const request = {
-        data: data,
+        dataLote: data,
+        dataCanastillas: {
+          canastillasPropias: Number(formState.canastillasPropias ?? 0) + Number(formState.canastillasVaciasPropias ?? 0),
+          canastillasPrestadas: Number(formState.canastillasPrestadas ?? 0) + Number(formState.canastillasVaciasPrestadas ?? 0),
+        },
         action: 'post_inventarios_ingreso_lote',
       };
       const response = await window.api.server2(request)
-      if (response.status === 200) {
-        messageModal("success", "¡lote guardado con exito!")
-      } else {
-        messageModal("error", `Error ${response.status}: ${response.message}`)
-      }
+      if (response.status !== 200)
+        throw new Error(`Error ${response.status}: ${response.message}`)
+
       reiniciarCampos();
       obtener_ef1();
       obtener_ef8();
+      messageModal("success", "¡lote guardado con exito!")
 
-    } catch (e) {
-      messageModal("error", 'Recepcion' + e)
+    } catch (err) {
+      if (err instanceof Error) {
+        messageModal("error", err.message)
+      }
+    } finally {
+      setLoading(false)
     }
   }
   const reiniciarCampos = (): void => {
@@ -144,8 +160,8 @@ export default function IngresoFruta(): JSX.Element {
 
       </div>
       <form className="form-container" onSubmit={guardarLote}>
-      <div>
-          
+        <div>
+
           <label> EF- </label>
           <select
             className='ef'
@@ -188,12 +204,36 @@ export default function IngresoFruta(): JSX.Element {
           </select>
         </div>
         <div >
-          <label>{strings.numeroCanastillas}</label>
+          <label>{strings.numeroCanastillasPropias}</label>
           <input
             type="text"
             onChange={handleChange}
-            name="canastillas"
-            value={formState?.canastillas ? formState.canastillas : ''} required />
+            name="canastillasPropias"
+            value={formState?.canastillasPropias ? formState.canastillasPropias : ''}  />
+        </div>
+        <div >
+          <label>{strings.numeroCanastillasPrestadas}</label>
+          <input
+            type="text"
+            onChange={handleChange}
+            name="canastillasPrestadas"
+            value={formState?.canastillasPrestadas ? formState.canastillasPrestadas : ''}  />
+        </div>
+        <div >
+          <label>{strings.numeroCanastillasVaciasPropias}</label>
+          <input
+            type="text"
+            onChange={handleChange}
+            name="canastillasVaciasPropias"
+            value={formState?.canastillasVaciasPropias ? formState.canastillasVaciasPropias : ''}  />
+        </div>
+        <div >
+          <label>{strings.numeroCanastillasVaciasPrestadas}</label>
+          <input
+            type="text"
+            onChange={handleChange}
+            name="canastillasVaciasPrestadas"
+            value={formState?.canastillasVaciasPrestadas ? formState.canastillasVaciasPrestadas : ''}  />
         </div>
         <div >
           <label>{strings.kilos}</label>

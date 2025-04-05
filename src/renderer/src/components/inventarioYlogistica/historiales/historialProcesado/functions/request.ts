@@ -13,7 +13,7 @@ export const requestModificarHistorial = (canastillas: number, propsModal: histo
       __vHistorial: propsModal.__v,
     },
     __v: propsModal.documento.__v,
-    action: 'modificarHistorialFrutaProcesada',
+    action: 'put_inventarios_historialProcesado_modificarHistorial',
 
   }
   return request;
@@ -28,6 +28,6 @@ export const requestData = (fechaInicio, fechaFin): object => {
   return {
     fechaInicio: fechaInicio,
     fechaFin: fechaFin,
-    action: 'obtenerHistorialLotes',
+    action: 'get_inventarios_historialProcesado_frutaProcesada',
   }
 };

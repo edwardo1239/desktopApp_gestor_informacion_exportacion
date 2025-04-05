@@ -17,6 +17,7 @@ import useAppContext from "@renderer/hooks/useAppContext"
 import { numeroContenedorType, requestLotes, requestProveedor } from "../functions/request"
 import TotalesProceso from "../utils/TotalesProceso"
 import { predioType } from "@renderer/components/inventarioYlogistica/inventarios/reproceso descarte/types/types"
+import { obtenerResumenPredios, PredioDatosType } from "@renderer/functions/resumenContenedores"
 
 export default function ProcesoData(): JSX.Element {
     const { messageModal } = useAppContext();
@@ -31,6 +32,7 @@ export default function ProcesoData(): JSX.Element {
     const [tipoGraficas, setTipoGraficas] = useState<string>('')
     const [data, setData] = useState<lotesType[]>([])
     const [numeroContenedor, setNumeroContenedor] = useState<numeroContenedorType>()
+    const [prediosInfo, setPrediosInfo] = useState<PredioDatosType>()
     //vuelve a pedir los datos al servidor
     const [reload, setReload] = useState<boolean>(false);
 
@@ -87,6 +89,7 @@ export default function ProcesoData(): JSX.Element {
         try {
             const request = requestLotes(filtro)
             const datosLotes = await window.api.server2(request);
+            console.log(datosLotes)
             if (datosLotes.status !== 200)
                 throw new Error(datosLotes.message)
             //se vana obtener los datos para traer los contenedores
@@ -94,10 +97,13 @@ export default function ProcesoData(): JSX.Element {
             datosLotes.data.lotes.forEach(element => {
                 element.contenedores.forEach(contenedor => contenedores.push(contenedor))
             })
+
             const objCont = {}
             datosLotes.data.contenedores.map(element => {
                 objCont[element._id] = element.numeroContenedor
             });
+            const prediosInfoCont = obtenerResumenPredios(datosLotes.data.contenedores, false)
+            setPrediosInfo(prediosInfoCont)
             setNumeroContenedor(objCont)
             setData(datosLotes.data.lotes)
         } catch (e: unknown) {
@@ -177,7 +183,11 @@ export default function ProcesoData(): JSX.Element {
             </div>
 
             <div>
-                <TableInfoLotes data={data} numeroContenedor={numeroContenedor} columnVisibility={columnVisibility} />
+                <TableInfoLotes 
+                    data={data} 
+                    prediosInfo={prediosInfo}
+                    numeroContenedor={numeroContenedor} 
+                    columnVisibility={columnVisibility} />
             </div>
         </div>
     )

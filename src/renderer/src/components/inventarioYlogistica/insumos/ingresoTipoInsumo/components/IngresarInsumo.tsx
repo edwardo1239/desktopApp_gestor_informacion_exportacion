@@ -9,7 +9,7 @@ type propsType = {
     obtenerData: () => void
 }
 
-export default function IngresarInsumo(props:propsType): JSX.Element {
+export default function IngresarInsumo(props: propsType): JSX.Element {
     const { messageModal } = useAppContext();
     const [formState, setFormState] = useState<{ [key: string]: string }>({})
 
@@ -21,25 +21,25 @@ export default function IngresarInsumo(props:propsType): JSX.Element {
     }
     const handleGuardar = async (e): Promise<void> => {
         e.preventDefault()
-        try{
+        try {
             const request = {
-                action:"add_tipo_insumo",
-                data: {...formState, fecha: new Date()}
+                action: "post_inventarios_insumos_tipoInsumo",
+                data: { ...formState, fecha: new Date() }
             }
             const response = await window.api.server2(request)
-            if(response.status !== 200)
+            if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`)
             messageModal("success", "Guardado con exito")
             setFormState({})
-        } catch(err){
-            if(err instanceof Error){
+        } catch (err) {
+            if (err instanceof Error) {
                 messageModal("error", err.message)
             }
         } finally {
             props.buttonHandle();
             props.obtenerData();
         }
-     }
+    }
     return (
         <div className="componentContainer">
             <form className="form-container" >

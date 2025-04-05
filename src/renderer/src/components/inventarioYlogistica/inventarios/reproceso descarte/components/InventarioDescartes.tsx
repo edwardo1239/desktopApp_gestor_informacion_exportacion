@@ -64,7 +64,7 @@ export default function InventarioDescartes(props: propsType): JSX.Element {
 
   const obtenerFruta = async (): Promise<void> => {
     try {
-      const request = { action: 'obtener_inventario_descartes' };
+      const request = { action: 'get_inventarios_frutaDescarte_fruta' };
       const frutaActual = await window.api.server2(request)
       if (frutaActual.status !== 200) throw new Error(`Code ${frutaActual.status}: ${frutaActual.message}`)
       setDatosOriginales(frutaActual.data)
@@ -166,7 +166,7 @@ export default function InventarioDescartes(props: propsType): JSX.Element {
         _id: _id,
         query: objRequestDescarte,
         inventario: objRequest,
-        action: 'reprocesar_predio'
+        action: 'put_inventarios_frutaDescarte_reprocesarFruta'
       }
       const response = await window.api.server2(request)
       if (response.status !== 200) {
@@ -228,7 +228,7 @@ export default function InventarioDescartes(props: propsType): JSX.Element {
         lote: datos,
         lotes: array,
         inventario: objectInventario,
-        action: 'reprocesar_celifrut',
+        action: 'put_inventarios_frutaDescarte_reprocesarCelifrut',
       };
 
       const responseReprocesoCelifrut = await window.api.server2(request);

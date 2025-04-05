@@ -3,6 +3,7 @@
 import {
   dataContext,
   eventoServidorContext,
+  loadingContext,
   messageContext,
   seleccionWindowContext,
   statusProcesoContext,
@@ -28,6 +29,7 @@ type AppContextType = {
   statusProceso: string
   eventoServidor: string
   triggerServer: boolean
+  setLoading: (e:boolean) => void
 };
 
 
@@ -37,6 +39,7 @@ export default function useAppContext(): AppContextType {
   const statusProceso = useContext(statusProcesoContext)
   const messageModal = useContext(messageContext)
   const seleccionWindow = useContext(seleccionWindowContext)
+  const setLoading = useContext(loadingContext)
 
   //eventos
   const eventoServidor = useContext(eventoServidorContext)
@@ -52,6 +55,9 @@ export default function useAppContext(): AppContextType {
   if (!seleccionWindow) {
     throw new Error("Error informes context data seleccionWindow")
   }
+  if (!setLoading) {
+    throw new Error("Error informes context data seleccionWindow")
+  }
 
   return {
     user,
@@ -59,6 +65,7 @@ export default function useAppContext(): AppContextType {
     seleccionWindow,
     statusProceso,
     eventoServidor,
-    triggerServer
+    triggerServer,
+    setLoading
   };
 }

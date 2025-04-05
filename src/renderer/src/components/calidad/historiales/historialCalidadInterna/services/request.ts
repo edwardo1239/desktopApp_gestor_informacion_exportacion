@@ -2,14 +2,14 @@
 
 export const requestData = (page): object => {
     return {
-        action: 'get_historial_calidad_interna',
+        action: 'get_calidad_historial_calidadInterna',
         page: page
     }
 }
 
 export const request_guardar_cambios = (lote, formData): object => {
     return {
-        action: 'modificar_calidad_interna_lote',
+        action: 'put_calidad_historial_calidadInterna',
         _id: lote._id,
         __v: lote.__v,
         data:{

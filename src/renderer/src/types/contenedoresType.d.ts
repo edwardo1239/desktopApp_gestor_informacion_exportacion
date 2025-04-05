@@ -10,6 +10,7 @@ export type contenedoresType = {
   infoExportacion?: InfoExportacionType
   insumosData: InsumosSchemaType
   inspeccion_mula: inspeccionMulasCriterios
+  reclamacionCalidad: reclamacionCalidadType
   __v?: number
 }
 
@@ -111,7 +112,8 @@ export type EF1Type = {
     GGN?: {
       code: string,
       fechaVencimiento: string,
-      paises: string[]
+      paises: string[],
+      tipo_fruta: string[]
     }
     VENCIMIENTO?: string
     predioID?: string
@@ -123,6 +125,7 @@ export type EF1Type = {
   calidad: string
   fecha: string
   tipoFruta: string
+  SISPAP?: boolean
 }
 
 
@@ -133,4 +136,29 @@ type InfoExportacionType = {
   agencia: string,
   expt: string,
   fecha: string,
+}
+
+export type reclamacionCalidadType = {
+  responsable: string,
+  Cargo: string,
+  telefono: string,
+  cliente: string,
+  fechaArribo: string,
+  contenedor: string,
+  correo: string,
+  kilos: number,
+  cajas: number,
+  fechaDeteccion: string,
+  moho_encontrado: string,
+  moho_permitido: string,
+  golpes_encontrado: string,
+  golpes_permitido: string,
+  frio_encontrado: string,
+  frio_permitido: string,
+  maduracion_encontrado: string,
+  maduracion_permitido: string,
+  otroDefecto: string,
+  observaciones: string,
+  archivosSubidos: string[],
+  fecha: string
 }

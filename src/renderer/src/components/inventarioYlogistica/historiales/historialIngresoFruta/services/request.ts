@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 export const requestLotes = (page): object => {
     return {
-        action: 'get_ingresos_lotes',
+        action: 'get_inventarios_historiales_ingresoFruta_registros',
         page: page
     }
 }
@@ -32,7 +32,7 @@ export const request_guardar_cambios = (lote, formData): object => {
         }
     })
     return {
-        action: 'modificar_ingreso_lote',
+        action: 'put_inventarios_historiales_ingresoFruta_modificar',
         _idLote: lote.documento._id,
         _idRecord: lote._id,
         __v: lote.__v,

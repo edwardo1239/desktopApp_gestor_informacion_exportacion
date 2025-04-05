@@ -25,7 +25,7 @@ export default function HistorialDespachoDescartes(): JSX.Element {
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: "get_historial_descarte",
+                action: "get_inventarios_historiales_despachoDescarte",
                 page: countPage
             }
             const response = await window.api.server2(request);

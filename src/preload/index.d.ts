@@ -16,6 +16,7 @@ export interface Api {
   Descargar: (callback) => any
   cerrarSesion: () => Promise<any>
   updateProgress: (data, callback) => any
+  obtenerFruta: () => Promise<any>
 
   //request al servidor
   user2: (datos) => Promise<serverResponse>

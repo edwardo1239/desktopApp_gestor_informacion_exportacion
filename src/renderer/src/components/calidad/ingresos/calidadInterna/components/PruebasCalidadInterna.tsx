@@ -35,7 +35,7 @@ export default function PruebasCalidadInterna(props: propsType): JSX.Element {
     try {
       const lote = new_lote(formulario);
       const requestLotes = {
-        action: 'ingresoCalidadInterna',
+        action: 'put_calidad_ingresos_calidadInterna',
         data: {...lote, clasificacionCalidad: calidad},
         _id:props.lote._id
       }
@@ -44,12 +44,12 @@ export default function PruebasCalidadInterna(props: propsType): JSX.Element {
         throw new Error(`${response.message}`)
       }
       messageModal("success", "Datos guardados con exito")
+      dispatch({ type: 'restablecer', data: '' })
     } catch (e: unknown) {
       if (e instanceof Error) {
         messageModal("error", `Error: ${e.message}`);
       }
     } finally {
-      dispatch({ type: 'restablecer', data: '' })
       props.interval()
     }
   }

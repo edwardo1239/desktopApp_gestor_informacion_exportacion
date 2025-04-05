@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 export const formInit = {
+    enf:'',
     predio:'',
     canastillas:'',
     kilos:'',

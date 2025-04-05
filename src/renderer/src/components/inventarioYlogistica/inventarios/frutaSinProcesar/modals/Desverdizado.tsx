@@ -45,7 +45,7 @@ export default function Desverdizado(props: vaciadoType): JSX.Element {
               cuartoDesverdizado: cuartoDesverdizado
             },
             __v:props.loteSeleccionado.__v,
-            action: 'desverdizado',
+            action: 'put_inventarios_frutaSinProcesar_desverdizado',
           }
           const response = await window.api.server2(request)
           if (response.status === 200) {

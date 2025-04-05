@@ -14,8 +14,6 @@ import IngresoVolanteCalidad from "../calidad/ingresos/ingresoVolanteCalidad/Ing
 import InspeccionIngresoFruta from "../calidad/ingresos/inspeccionIngresoFruta/InspeccionIngresoFruta"
 import Clientes from "../comercial/clientes/Clientes"
 import CrearContenedor from "../comercial/ingresos/crearContenedor/CrearContenedor"
-import PrecioLimon from "../comercial/precioLimon/PrecioLimon"
-import PrecioNaranja from "../comercial/precioNaranja/PrecioNaranja"
 import Proveedores from "../comercial/proveedores/Proveedores"
 import Cargos from "../gestionDeCuentas/Cargos/Cargos"
 import Cuentas from "../gestionDeCuentas/crearCuentas/Cuentas"
@@ -64,6 +62,13 @@ import RegistroFrutaDescompuesta from "../inventarioYlogistica/historiales/regis
 import InfoActualizacion from "../utils/InfoActualizacion"
 import RegistrosEficienciaOperativa from "../indicadores/operaciones/RegistrosEficienciaOperativa/RegistrosEficienciaOperativa"
 import ShowIndicadores from "../indicadores/operaciones/ShowindIcadores/ShowIndicadores"
+import PreciosProveedores from "../comercial/precios/PreciosProveedores"
+import RegistrosPreciosProveedores from "../comercial/registrosPreciosProveedores/RegistrosPreciosProveedores"
+import PreciosLotes from "../comercial/precioLote/PreciosLotes"
+import PrediccionesExportacion from "../proyeccionesTendencias/predicciones/PrediccionesExportacion"
+import ReclamacionesCalidad from "../comercial/formularios/reclamacionesCalidad/ReclamacionesCalidad"
+import ConfiguracionSeriales from "../sistema/parametrosDelSistema/configuracionSeriales/ConfiguracionSeriales"
+import InventarioCanastillas from "../inventarioYlogistica/inventarios/canastillas/InventarioCanastillas"
 
 
 type propsType = {
@@ -108,6 +113,9 @@ export default function Ventana(props: propsType): JSX.Element {
                     </div>
                     <div className="componentContainer" style={{ display: props.pestañaActiva === "66b66ee777549ed0672a9019" ? 'block' : 'none' }}>
                         {activas.includes("66b66ee777549ed0672a9019") && <ReprocesoDescarte />}
+                    </div>
+                    <div className="componentContainer" style={{ display: props.pestañaActiva === "67ed9fe1c3fdbe833d4599bd" ? 'block' : 'none' }}>
+                        {activas.includes("67ed9fe1c3fdbe833d4599bd") && <InventarioCanastillas />}
                     </div>
                     {/* historiales */}
                     <div className="componentContainer" style={{ display: props.pestañaActiva === "66b66f1077549ed0672a901a" ? 'block' : 'none' }}>
@@ -249,25 +257,35 @@ export default function Ventana(props: propsType): JSX.Element {
                     <div className="componentContainer" style={{ display: props.pestañaActiva === "6750c3f83a6cf23bfef7d1b7" ? 'block' : 'none' }}>
                         {activas.includes('6750c3f83a6cf23bfef7d1b7') && <SistemaFormulariosCrearInformeProveedor />}
                     </div>
+                    <div className="componentContainer" style={{ display: props.pestañaActiva === "67e5a505e969cfac1467f2ac" ? 'block' : 'none' }}>
+                        {activas.includes('67e5a505e969cfac1467f2ac') && <ConfiguracionSeriales />}
+                    </div>
 
                     {/* indicadores */}
                     <div className="componentContainer" style={{ display: props.pestañaActiva === "66b6704777549ed0672a9025" ? 'block' : 'none' }}>
                         {activas.includes('66b6704777549ed0672a9025') && <EficienciaFruta widthBar={props.widthBar} />}
                     </div>
                     <div className="componentContainer" style={{ display: props.pestañaActiva === "678542ef3a942eb3a4e562e4" ? 'block' : 'none' }}>
-                        {activas.includes('678542ef3a942eb3a4e562e4') && <RegistrosEficienciaOperativa  />}
+                        {activas.includes('678542ef3a942eb3a4e562e4') && <RegistrosEficienciaOperativa />}
                     </div>
                     <div className="componentContainer" style={{ display: props.pestañaActiva === "6793dfb319615dcbaf5b7a47" ? 'block' : 'none' }}>
-                        {activas.includes('6793dfb319615dcbaf5b7a47') && <ShowIndicadores  />}
+                        {activas.includes('6793dfb319615dcbaf5b7a47') && <ShowIndicadores />}
                     </div>
 
-                    {/* Comercial */}
+                    {/* !Comercial */}
                     {/* precios */}
-                    <div className="componentContainer" style={{ display: props.pestañaActiva === "66b670a777549ed0672a902d" ? 'block' : 'none' }}>
-                        {activas.includes('66b670a777549ed0672a902d') && <PrecioLimon />}
+                    <div className="componentContainer" style={{ display: props.pestañaActiva === "67af75050344b3872a88c556" ? 'block' : 'none' }}>
+                        {activas.includes('67af75050344b3872a88c556') && <PreciosProveedores />}
                     </div>
-                    <div className="componentContainer" style={{ display: props.pestañaActiva === "66b670b077549ed0672a902e" ? 'block' : 'none' }}>
-                        {activas.includes('66b670b077549ed0672a902e') && <PrecioNaranja />}
+                    <div className="componentContainer" style={{ display: props.pestañaActiva === "67b7a342cefd132054656c63" ? 'block' : 'none' }}>
+                        {activas.includes('67b7a342cefd132054656c63') && <RegistrosPreciosProveedores />}
+                    </div>
+                    <div className="componentContainer" style={{ display: props.pestañaActiva === "67c0981e1706fc67265b4479" ? 'block' : 'none' }}>
+                        {activas.includes('67c0981e1706fc67265b4479') && <PreciosLotes />}
+                    </div>
+                    {/* formulario reclamaciones */}
+                    <div className="componentContainer" style={{ display: props.pestañaActiva === "67e46b1d72fa437c480ad950" ? 'block' : 'none' }}>
+                        {activas.includes('67e46b1d72fa437c480ad950') && <ReclamacionesCalidad />}
                     </div>
                     {/* Contenedores */}
                     <div className="componentContainer" style={{ display: props.pestañaActiva === "66b670d677549ed0672a9031" ? 'block' : 'none' }}>
@@ -302,6 +320,11 @@ export default function Ventana(props: propsType): JSX.Element {
                     {/* contabilidad */}
                     <div className="componentContainer" style={{ display: props.pestañaActiva === "6720ec07f716c8c77cb3446d" ? 'block' : 'none' }}>
                         {activas.includes('6720ec07f716c8c77cb3446d') && <InformesProveedorContabilidad />}
+                    </div>
+
+                    {/* predicciones */}
+                    <div className="componentContainer" style={{ display: props.pestañaActiva === "67cf48657141a5d595bad1b6" ? 'block' : 'none' }}>
+                        {activas.includes('67cf48657141a5d595bad1b6') && <PrediccionesExportacion />}
                     </div>
                 </div>
             }

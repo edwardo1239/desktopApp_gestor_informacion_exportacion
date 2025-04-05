@@ -15,19 +15,11 @@ export default function IngresoTipoInsumo(): JSX.Element {
     useEffect(() => {
         obtenerData()
     }, [])
-    useEffect(() => {
-        window.api.reload(() => {
-            obtenerData()
-        });
-        return () => {
-            window.api.removeReload()
-        }
-    }, [])
     
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: "obtener_tipo_insumos"
+                action: "get_inventarios_insumos"
             }
             const response = await window.api.server2(request);
             if (response.status !== 200)

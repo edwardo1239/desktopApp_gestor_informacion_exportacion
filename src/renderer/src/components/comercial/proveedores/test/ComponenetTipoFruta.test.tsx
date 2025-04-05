@@ -96,21 +96,8 @@ describe("ComponentTipoFruta", () => {
             urlArchivos: [],
             activo: true,
             precio: {
-                Limon: {
-                    "1": 100,
-                    "15": 200,
-                    "2": 300,
-                    frutaNacional: 400,
-                    descarte: 500,
-                    combinado: 600
-                },
-                Naranja: {
-                    "1": 700,
-                    "15": 800,
-                    "2": 900,
-                    descarte: 1100,
-                    zumex: 1200
-                },
+                Limon: "asdasdasd",
+                Naranja: "asdasdas",
                 fecha: "new Date()"
             },
             SISPAP: false,
@@ -121,6 +108,10 @@ describe("ComponentTipoFruta", () => {
             propietario: "Propietario de prueba",
             razon_social: "Empresa ABC",
             nit_facturar: "900123456-7",
+            precioFijo: false,
+            departamento: "Quindio",
+            municipio: "Armenia"
+
 
             // Campos varios para depurar/limpiar
             // ICA_temp: "Temporal",
@@ -193,21 +184,8 @@ describe("ComponentTipoFruta", () => {
             urlArchivos: [],
             activo: true,
             precio: {
-                Limon: {
-                    "1": 100,
-                    "15": 200,
-                    "2": 300,
-                    frutaNacional: 400,
-                    descarte: 500,
-                    combinado: 600
-                },
-                Naranja: {
-                    "1": 700,
-                    "15": 800,
-                    "2": 900,
-                    descarte: 1100,
-                    zumex: 1200
-                },
+                Limon: "fdsasdadasd",
+                Naranja: "asdasdasdasd",
                 fecha: "new Date()"
             },
             SISPAP: false,
@@ -218,6 +196,9 @@ describe("ComponentTipoFruta", () => {
             propietario: "Propietario de prueba",
             razon_social: "Empresa ABC",
             nit_facturar: "900123456-7",
+            precioFijo: false,
+            departamento: "Quindio",
+            municipio: "Armenia"
 
             // Campos varios para depurar/limpiar
             // ICA_temp: "Temporal",

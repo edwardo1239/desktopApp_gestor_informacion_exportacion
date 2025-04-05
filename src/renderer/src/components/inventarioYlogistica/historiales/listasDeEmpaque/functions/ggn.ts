@@ -3,7 +3,11 @@
 import { contenedoresType, EF1Type } from "@renderer/types/contenedoresType";
 
 export function aplicar_ggn_code (item:EF1Type, contenendor:contenedoresType): string {
-    if(item.lote?.GGN && item.lote.GGN.code)  {
+    if(
+        item.lote?.GGN && 
+        item.lote.GGN.code && 
+        item.lote.GGN.tipo_fruta.includes(item.tipoFruta)
+    )  {
         if(typeof contenendor.infoContenedor.clienteInfo === 'object'){
             const cont = contenendor.infoContenedor.clienteInfo.PAIS_DESTINO;
             const lote = item.lote.GGN.paises
@@ -16,7 +20,11 @@ export function aplicar_ggn_code (item:EF1Type, contenendor:contenedoresType): s
 }
 
 export function aplicar_ggn_fecha (item:EF1Type, contenendor:contenedoresType): string {
-    if(item.lote?.GGN && item.lote.GGN.code)  {
+    if(
+        item.lote?.GGN && 
+        item.lote.GGN.code &&
+        item.lote.GGN.tipo_fruta.includes(item.tipoFruta)
+    )  {
         if(typeof contenendor.infoContenedor.clienteInfo === 'object'){
             const cont = contenendor.infoContenedor.clienteInfo.PAIS_DESTINO;
             const lote = item.lote.GGN.paises

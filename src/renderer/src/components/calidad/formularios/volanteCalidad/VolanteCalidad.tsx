@@ -23,7 +23,7 @@ export default function VolanteCalidad(): JSX.Element {
     const obtenerDatos = async (): Promise<void> => {
         try {
             const request = {
-                action: 'obtener_volante_calidad',
+                action: 'get_calidad_formulario_volanteCalidad',
                 tipoFruta: tipoFruta,
                 fechaInicio: fechaInicio,
                 fechaFin: fechaFin

@@ -20,12 +20,11 @@ export default function TableFrutaSinProcesar(props: propsType): JSX.Element {
 
   const obtener_ef1 = async (): Promise<void> => {
     try {
-      const request = { action: "obtenerEF1" }
-      const response = await window.api.server2(request)
-      if (response.status !== 200)
-        throw new Error(`Code ${response.status}: ${response.message}`)
-      setEf1(response.data)
-      console.log(response)
+      // const request = { action: "obtenerEF1" }
+      // const response = await window.api.server2(request)
+      // if (response.status !== 200)
+      //   throw new Error(`Code ${response.status}: ${response.message}`)
+      setEf1("")
     } catch (err) {
       if (err instanceof Error) {
         console.log(err.message)

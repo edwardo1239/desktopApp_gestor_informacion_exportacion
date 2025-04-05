@@ -17,7 +17,7 @@ export default function IngresoVolanteCalidad(): JSX.Element {
 
     const obtenerOperarios = async (): Promise<void> => {
         try {
-            const request = { action: "obtener_operarios_seleccionadoras" }
+            const request = { action: "get_calidad_ingresos_operariosVolanteCalidad" }
             const response = await window.api.server2(request);
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`);
@@ -33,7 +33,7 @@ export default function IngresoVolanteCalidad(): JSX.Element {
 
         try {
             const request = {
-                action: "add_volante_calidad",
+                action: "post_calidad_ingresos_volanteCalidad",
                 data: {
                     tipoFruta: tipoFruta,
                     unidades: Number(unidades),

@@ -1,0 +1,17 @@
+.predicciones-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 5px;
+    margin-top: 8px;
+    flex-direction: column;
+}
+
+.predicciones-contenedor-proveedores{
+    width: 100%;
+    border: 2px solid #5c5f5c; 
+    border-radius: 10px; 
+    padding: 10px; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+}
+

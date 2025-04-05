@@ -56,7 +56,7 @@ export default function InspeccionIngresoFruta(): JSX.Element {
   }
   const obtenerData = async (): Promise<void> => {
     try {
-      const request = { action: 'get_calidad_ingresos_inspeccionFruta_lotes' };
+      const request = { action: 'get_calidad_ingresos_inspeccionFruta' };
       const lotes = await window.api.server2(request)
       if (lotes.status !== 200) {
         throw new Error(`${lotes.message}`);
@@ -90,7 +90,7 @@ export default function InspeccionIngresoFruta(): JSX.Element {
         return acu;
       }, {})
       const request = {
-        action: 'put_lotes_inspeccion_ingreso',
+        action: 'put_calidad_ingresos_inspeccionFruta',
         data: dataObject,
         _id: lote._id,
         __v: lote.__v

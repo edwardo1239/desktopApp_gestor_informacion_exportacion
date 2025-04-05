@@ -20,7 +20,7 @@ export default function PromediosProceso(props: propsType): JSX.Element {
                         if (!props.columnVisibility[item]) {
                             return null
                         }
-                        if (['placa', 'observaciones', 'contenedores', "exportacionCalidad"].includes(item)) {
+                        if (['placa', 'calibreExportacion', 'observaciones', 'contenedores', "exportacionCalidad"].includes(item)) {
                             return null
                         } else if (item === "exportacionCalidad") {
                             return (

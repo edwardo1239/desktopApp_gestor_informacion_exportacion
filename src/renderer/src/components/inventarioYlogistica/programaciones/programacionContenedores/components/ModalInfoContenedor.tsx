@@ -75,7 +75,7 @@ export default function ModalInfoContenedor(props: propsType): JSX.Element {
                 arrCalibres.pop()
             }
             const request = {
-                action: "modificar_programacion_contenedor",
+                action: "put_inventarios_programacion_contenedores",
                 _id: props.contenedor?._id,
                 __v: props.contenedor?.__v,
                 infoContenedor: {
@@ -101,7 +101,7 @@ export default function ModalInfoContenedor(props: propsType): JSX.Element {
     const guardarCambiosObservaciones = async (): Promise<void> => {
         try {
             const request = {
-                action: "modificar_programacion_contenedor",
+                action: "put_inventarios_programacion_contenedores",
                 _id: props.contenedor?._id,
                 __v: props.contenedor?.__v,
                 infoContenedor: {
@@ -123,7 +123,7 @@ export default function ModalInfoContenedor(props: propsType): JSX.Element {
     const guardarCambiosNumeroConedorCliente = async (): Promise<void> => {
         try {
             const request = {
-                action: "modificar_programacion_contenedor",
+                action: "put_inventarios_programacion_contenedores",
                 _id: props.contenedor?._id,
                 __v: props.contenedor?.__v,
                 infoContenedor: {

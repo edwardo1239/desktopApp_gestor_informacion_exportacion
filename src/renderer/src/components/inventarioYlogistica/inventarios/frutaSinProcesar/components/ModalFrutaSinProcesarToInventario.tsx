@@ -40,7 +40,7 @@ export default function ModalFrutaSinProcesarToInventario(props: propsType): JSX
         try {
             const promedio = (Number(formState?.kilos) / Number(formState?.canastillas)).toFixed(4)
             const request = {
-                action: "send_lote_to_inventario",
+                action: "put_inventarios_frutaSinProcesar_loteInventario",
                 _id: props.loteSeleccionado?._id,
                 data: {
                     ...formState,

@@ -48,7 +48,7 @@ export default function ModalConfirmarProcesoDescarte(props: propsType): JSX.Ele
       // se crea el historial descarte
       const requestHistorial = {
         data: data,
-        action: 'despacho_descarte',
+        action: 'put_inventarios_frutaDescarte_despachoDescarte',
       };
       const response = await window.api.server2(requestHistorial)
       if (response.status !== 200)

@@ -23,7 +23,7 @@ export default function LimpiezaMensual(): JSX.Element {
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: "get_view_formularios_limpieza_mensual",
+                action: "get_calidad_formulario_limpiezaMensual",
                 page: page
             }
             const response = await window.api.server2(request)
@@ -38,7 +38,7 @@ export default function LimpiezaMensual(): JSX.Element {
     }
     const obtener_cantidad_elementos = async (): Promise<void> => {
         try {
-            const request = { action: "get_calidad_formularios_limpiezaMensual_numeroElementos" }
+            const request = { action: "get_calidad_formulario_limpiezaMensual_numeroElementos" }
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`)

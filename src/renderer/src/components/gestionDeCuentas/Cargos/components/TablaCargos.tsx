@@ -17,7 +17,7 @@ type propsType = {
 }
 export default function TablaCargos(props: propsType): JSX.Element {
     const headers = ["Cargo", "Fecha creación", "Acciones"];
-    const { messageModal } = useAppContext();
+    const { messageModal, setLoading } = useAppContext();
     const [showConfirmacion, setShowConfirmacion] = useState<boolean>(false)
     const [confirm, setConfirm] = useState<boolean>(false)
     const [message, setMessage] = useState<string>('')
@@ -33,8 +33,9 @@ export default function TablaCargos(props: propsType): JSX.Element {
     }
     const eliminar = async (): Promise<void> => {
         try {
+            setLoading(true)
             const request = {
-                action: "eliminar_cargo",
+                action: "delete_gestionCuentas_cargos",
                 _id: props.cargoSeleccionado?._id
             }
             const response = await window.api.server2(request)
@@ -45,6 +46,8 @@ export default function TablaCargos(props: propsType): JSX.Element {
             if (err instanceof Error) {
                 messageModal("error", err.message)
             }
+        } finally {
+            setLoading(false)
         }
     }
     const handleModificar = (cargo): void => {
@@ -69,8 +72,8 @@ export default function TablaCargos(props: propsType): JSX.Element {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.data.map(cargo => (
-                        <tr key={cargo._id}>
+                    {props.data.map((cargo, indexs) => (
+                        <tr key={cargo._id} className={`${indexs % 2 === 0 ? 'fondo-par' : 'fondo-impar'}`}>
                             <td>{cargo.Cargo}</td>
                             <td>{format(new Date(cargo.createdAt), 'dd/MM/yyyy HH:mm', { locale: es })}</td>
                             <td>

@@ -2,7 +2,7 @@
 
 export const requestData = (page): object => {
   return {
-    action: 'get_historial_clasificacion_descarte',
+    action: 'get_calidad_historial_clasificacionDescarte',
     page: page
   }
 }
@@ -15,7 +15,7 @@ export const request_guardar_cambios = (lote, formData): object => {
     }
   })
   return {
-    action: 'modificar_clasificacion_descarte_lote',
+    action: 'put_calidad_historial_clasficacionDescarte',
     _id: lote._id,
     __v: lote.__v,
     data: dataChange,

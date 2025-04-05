@@ -8,29 +8,26 @@ import { contenedoresType } from '@renderer/types/contenedoresType';
 import ViewInformeDatosGenerales from './ViewInformeDatosGenerales';
 import ViewInformeResultados from './ViewInformeResultados';
 import ViewInformeDescarte from './ViewInformeDescarte';
-import { dataInformeInit, dataInformeType, obtenerPorcentage, totalLote } from '../functions/data';
 import ViewInformeObservaciones from './ViewInformeObservaciones';
 import ViewInformeFotos from './ViewInformeFotos';
-import { totalPrecios } from '../functions/totalPrecios'
 import ModificarPrecios from './ModificarPrecios';
 import ResumenKilosFruta from './ResumenKilosFruta';
+import MostrarPrecios from "./MostrarPrecios";
+import { dataInformeInit, dataInformeType, obtenerPorcentage, totalLote, totalPrecios } from "@renderer/functions/informesLotes";
 type propsType = {
     handleVolverTabla: () => void
     loteSeleccionado: lotesType | undefined
     captureComponent: () => void
-    modificarPrecios: (e) => void
-    casoFavorita: (lote: lotesType, send: boolean) => void
     obtenerDatosDelServidor: () => void
     no_pagar_balin: (lote: lotesType) => void
 }
-const contenedor_favorita = "659dbd9a347a42d899293411"
+
 let isVisible = false
 export default function ViewInformeData(props: propsType): JSX.Element {
     const { messageModal } = useAppContext();
     const [contenedores, setContenedores] = useState<contenedoresType[]>([]);
     const [, setDataInforme] = useState<dataInformeType>(dataInformeInit)
     const [showResumen,] = useState<boolean>(false)
-    // const [isVisible, setIsVisible] = useState<boolean>(false);
 
     const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -42,46 +39,12 @@ export default function ViewInformeData(props: propsType): JSX.Element {
         }
     }, [])
 
-    useEffect(() => {
-        if (props.loteSeleccionado === undefined) return
-        if (!props.loteSeleccionado.exportacionDetallada) return
-        if (props.loteSeleccionado.flag_is_favorita) {
-            const cont = contenedores.filter(
-                item => typeof item.infoContenedor.clienteInfo === 'object' &&
-                    item.infoContenedor.clienteInfo._id === contenedor_favorita
-            );
-            let kilos = 0;
-            cont.forEach(key => {
-                if (props.loteSeleccionado === undefined) return
-
-                const data = props.loteSeleccionado.exportacionDetallada.any[key._id]
-                if(!data) return;
-                Object.keys(data).forEach(item => {
-                    if (item !== "_id") {
-                        if (props.loteSeleccionado !== undefined) {
-                            const kilosContenedor = data[item]
-                            props.loteSeleccionado[`calidad${item}`] -= kilosContenedor;
-                            kilos += kilosContenedor;
-                        }
-                    }
-                })
-            })
-            if (props.loteSeleccionado !== undefined) {
-                props.loteSeleccionado.descarteEncerado ?
-                    props.loteSeleccionado.descarteEncerado.pareja += kilos : 0
-            }
-            props.loteSeleccionado.observaciones += "  - Contenedor la favorita"
-            const lote = JSON.parse(JSON.stringify(props.loteSeleccionado));
-            props.casoFavorita(lote, false)
-
-        }
-    }, [contenedores])
 
     useEffect(() => { }, [isVisible])
 
     const buscarContenedores = async (): Promise<void> => {
         try {
-            const request = { action: "obtener_contenedores_lotes", data: props.loteSeleccionado?.contenedores }
+            const request = { action: "get_calidad_informes_contenedoresLote", data: props.loteSeleccionado?.contenedores }
             const response = await window.api.server2(request)
             if (response.status !== 200) throw new Error(`Code ${response.status}: ${response.message}`);
             setContenedores(response.data)
@@ -91,16 +54,10 @@ export default function ViewInformeData(props: propsType): JSX.Element {
             }
         }
     }
-    const openModificarPrecios = (): void => {
-        const dialogINfo = document.getElementById("modificarPreciosInformeCalidad") as HTMLDialogElement;
-        if (dialogINfo) {
-            dialogINfo.showModal();
-        }
-    }
     const finalizar_informe_proveedor = async (): Promise<void> => {
         try {
             const request = {
-                action: "finalizar_informe_proveedor",
+                action: "put_calidad_informes_loteFinalizarInforme",
                 precio: props.loteSeleccionado?.predio.precio[props.loteSeleccionado.tipoFruta],
                 _id: props.loteSeleccionado?._id,
                 contenedores: props.loteSeleccionado?.contenedores
@@ -117,9 +74,7 @@ export default function ViewInformeData(props: propsType): JSX.Element {
             }
         }
     }
-    // const ver_resumen_kilos = (): void => {
-    //     setShowResumen(!showResumen)
-    // }
+
     const openContextMenu = (e): void => {
         e.preventDefault();
 
@@ -158,41 +113,7 @@ export default function ViewInformeData(props: propsType): JSX.Element {
 
         }
     };
-    const handleCLickCasoFavorita = (): void => {
-        if (props.loteSeleccionado?.aprobacionComercial) {
-            const cont = Object.keys(props.loteSeleccionado.exportacionDetallada.any).filter(
-                item => item === contenedor_favorita
-                // item => item === "6721043deed3dc88c66c3306"
-            );
-            let kilos = 0;
-            cont.forEach(key => {
-                if (props.loteSeleccionado === undefined) return
 
-                const data = props.loteSeleccionado.exportacionDetallada.any[key]
-
-                Object.keys(data).forEach(item => {
-                    if (item !== "_id") {
-                        if (props.loteSeleccionado !== undefined) {
-                            const kilosContenedor = data[item]
-                            props.loteSeleccionado[`calidad${item}`] -= kilosContenedor;
-                            kilos += kilosContenedor;
-                        }
-                    }
-                })
-            })
-            if (props.loteSeleccionado !== undefined) {
-                props.loteSeleccionado.descarteEncerado ?
-                    props.loteSeleccionado.descarteEncerado.pareja += kilos : 0
-            }
-            props.loteSeleccionado.observaciones += "  - Contenedor la favorita"
-            const lote = JSON.parse(JSON.stringify(props.loteSeleccionado));
-            props.casoFavorita(lote, true)
-
-        } else {
-            messageModal("error", "El lote debe estar finalizado")
-        }
-
-    }
     const handleClickNoPagarBalin = (): void => {
         if (!props.loteSeleccionado) return
         props.loteSeleccionado.flag_balin_free = !props.loteSeleccionado.flag_balin_free;
@@ -217,17 +138,13 @@ export default function ViewInformeData(props: propsType): JSX.Element {
                     <button className="defaulButtonAgree" onClick={props.handleVolverTabla}>
                         Regresar
                     </button>
-                    <button className="defaulButtonAgree" onClick={openModificarPrecios}>
+                    {/* <button className="defaulButtonAgree" onClick={openModificarPrecios}>
                         Editar precios
-                    </button>
+                    </button> */}
                     <button className="defaulButtonAgree" onClick={finalizar_informe_proveedor}>
                         Finalizar informe
                     </button>
-                    {/* {props.loteSeleccionado.aprobacionComercial &&
-                        <button className="defaulButtonAgree" onClick={ver_resumen_kilos}>
-                            Ver resumen kilos
-                        </button>
-                    } */}
+
                 </div>
                 <div className='informe-calidad-modificar-div'>
                     <button className="kebab-button" onClick={openContextMenu}>
@@ -241,8 +158,8 @@ export default function ViewInformeData(props: propsType): JSX.Element {
                 ref={menuRef}
                 className="informe-calidad-modificar-menu-context"
             >
-                <button onClick={handleCLickCasoFavorita}>Caso favorita</button>
-                <button onClick={handleClickNoPagarBalin} >No pagar balín</button>
+                {/* <button onClick={handleCLickCasoFavorita}>Caso favorita</button> */}
+                <button onClick={handleClickNoPagarBalin} >Pagar balín</button>
 
             </div>
 
@@ -276,6 +193,16 @@ export default function ViewInformeData(props: propsType): JSX.Element {
                         <tbody>
                             <ViewInformeResultados loteSeleccionado={props.loteSeleccionado} />
                             <ViewInformeDescarte loteSeleccionado={props.loteSeleccionado} />
+                            <tr>
+                                <td>Directo Nacional</td>
+                                <td>{props.loteSeleccionado.directoNacional?.toFixed(2)} Kg</td>
+                                <td>{props.loteSeleccionado.kilos !== 0 ? ((props.loteSeleccionado.directoNacional * 100)
+                                    / props.loteSeleccionado.kilos).toFixed(2) : '0'}%</td>
+                                <MostrarPrecios
+                                    loteSeleccionado={props.loteSeleccionado}
+                                    tipoPrecio="frutaNacional"
+                                    kilosFruta={(props.loteSeleccionado.directoNacional)} />
+                            </tr>
                             <tr className='informe-calidad-total-fila fondo-impar'>
                                 <td>Total</td>
                                 <td>
@@ -318,7 +245,6 @@ export default function ViewInformeData(props: propsType): JSX.Element {
                 <button className='defaulButtonAgree' onClick={props.captureComponent}>Generar informe</button>
             </div>
             <ModificarPrecios
-                modificarPrecios={props.modificarPrecios}
                 loteSeleccionado={props.loteSeleccionado} />
         </div>
     )

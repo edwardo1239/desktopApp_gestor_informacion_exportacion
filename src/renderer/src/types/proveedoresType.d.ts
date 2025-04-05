@@ -1,28 +1,11 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/ban-types */
 
-type limonPrecioType = {
-  "1": number;
-  "15": number;
-  "2": number;
-  frutaNacional: number;
-  combinado: number;
-  descarte: number;
-}
 
-type naranjaPrecioType = {
-  "1": number;
-  "15": number;
-  "2": number;
-  zumex: number;
-  descarte: number;
-}
 
 export type precioType = {
-  Limon:limonPrecioType
-  Naranja:naranjaPrecioType
   fecha: string
-
+  [key:string]: string
 }
 
 export type frutaType = {
@@ -58,6 +41,7 @@ export type proveedoresType = {
   activo:boolean
   precio:precioType
   SISPAP: boolean,
+  precioFijo: boolean,
   
   telefono_predio: string,
   contacto_finca: string,
@@ -66,4 +50,8 @@ export type proveedoresType = {
   propietario: string,
   razon_social: string,
   nit_facturar: string,
+
+  departamento: string,
+  municipio: string,
+  canastillas: number
 } 

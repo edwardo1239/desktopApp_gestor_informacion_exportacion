@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { lotesType } from "@renderer/types/lotesType"
-import { obtenerPorcentage } from "../functions/data"
 import MostrarPrecios from "./MostrarPrecios"
+import { obtenerPorcentage } from "@renderer/functions/informesLotes"
 
 type propsType = {
     loteSeleccionado: lotesType
@@ -18,9 +18,9 @@ export default function ViewInformeResultados(props: propsType): JSX.Element {
             tipo: 15
         },
         calidad2: {
-            label: "Exportación Tipo 2: ",
+            label: "Industrial: ",
             tipo: 2
-        },
+        }
     }
     return (
         <>

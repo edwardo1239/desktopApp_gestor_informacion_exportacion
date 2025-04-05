@@ -52,9 +52,8 @@ export const contenedoresRequest = {
 }
 
 export const send_data = (state, contenedorSelect): object => {
-    console.log(contenedorSelect)
     return {
-        action: 'post_transporte_formulario_inspeccion_mula',
+        action: 'put_transporte_formulario_inspeccionMula',
         _id: contenedorSelect._id,
         __V: contenedorSelect.__v,
         data: state

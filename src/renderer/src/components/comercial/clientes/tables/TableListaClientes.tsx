@@ -13,7 +13,7 @@ type propsType = {
 }
 
 export default function TableListaClientes(props: propsType): JSX.Element {
-    const { messageModal } = useAppContext()
+    const { messageModal, setLoading } = useAppContext()
     const headers = ["Codigo", "Cliente", "Correo", "DIrección", "Pais destino", "Telefono", "ID", "estado", "Acciones"]
     const [showConfirmacion, setShowConfirmacion] = useState<boolean>(false)
     const [confirm, setConfirm] = useState<boolean>(false)
@@ -36,8 +36,9 @@ export default function TableListaClientes(props: propsType): JSX.Element {
     }
     const eliminar = async (): Promise<void> => {
         try {
+            setLoading(true)
             const request = {
-                action: 'modificar_estado_cliente',
+                action: 'put_comercial_clientes_estado',
                 _id: clienteDataSeleccionado?._id
             }
             const response = await window.api.server2(request);
@@ -49,6 +50,8 @@ export default function TableListaClientes(props: propsType): JSX.Element {
         } catch (e) {
             if (e instanceof Error)
                 messageModal("error", e.message)
+        } finally {
+            setLoading(false)
         }
     }
     return (

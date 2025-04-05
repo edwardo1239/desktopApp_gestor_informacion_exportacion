@@ -37,8 +37,6 @@ export default function FiltrosFilas(props: propsType): JSX.Element {
       <label>
         <p>Ordenar por:</p>
         <select name="ordenarPor" onChange={props.handleChangeFiltro} value={props.filtro.ordenarPor}>
-          <option value=""></option>
-          <option value="fechaIngreso">Fecha creación(vieja)</option>
           <option value="fecha_creacion">Fecha creación</option>
           <option value="fecha_estimada_llegada">Fecha estimada de llegada</option>
           <option value="fecha_ingreso_inventario">Fecha ingreso</option>

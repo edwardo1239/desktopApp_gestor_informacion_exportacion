@@ -26,7 +26,7 @@ export default function IngresarCuentas(props: propsType): JSX.Element {
                 throw new Error("Necesita llenar los datos requeridos")
             }
             const request = {
-                action: 'add_user',
+                action: 'post_gestionCuentas_usuario',
                 data: formState
             }
             const response = await window.api.server2(request)

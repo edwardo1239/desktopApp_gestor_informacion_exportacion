@@ -1,7 +1,10 @@
 {
     "title": "Ingreso de fruta",
     "input_predios":"Predios",
-    "numeroCanastillas":"Número de canastillas",
+    "numeroCanastillasPropias":"Número de canastillas Propias",
+    "numeroCanastillasPrestadas":"Número de canastillas Prestadas",
+    "numeroCanastillasVaciasPropias":"Número de canastillas vacias Propias",
+    "numeroCanastillasVaciasPrestadas":"Número de canastillas vacias Prestadas",
     "kilos":"Kilos",
     "placa":"Placa",
     "tipoFruta":{

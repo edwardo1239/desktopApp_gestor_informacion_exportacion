@@ -20,7 +20,7 @@ export default function IngresoHigienePersonal(): JSX.Element {
 
     const obtenerOperarios = async (): Promise<void> => {
         try {
-            const request = { action: "obtener_operarios_higiene" }
+            const request = { action: "get_calidad_ingresos_higienePersonal" }
             const response = await window.api.server2(request);
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`);
@@ -33,20 +33,20 @@ export default function IngresoHigienePersonal(): JSX.Element {
     }
     const handleGuardar = async (e): Promise<void> => {
         e.preventDefault()
-        try{
+        try {
             const request = {
-                action: "add_higiene_personal",
-                data:{
+                action: "post_calidad_ingresos_higienePersonal",
+                data: {
                     ...formState,
                     operario: operario
-                } 
+                }
             }
             const response = await window.api.server2(request)
-            if(response.status !== 200)
+            if (response.status !== 200)
                 throw new Error(`Code: ${response.status}: ${response.message}`)
             messageModal('success', 'Datos guardado con exito!')
-        } catch(err){
-            if(err instanceof Error){
+        } catch (err) {
+            if (err instanceof Error) {
                 messageModal('error', err.message);
             }
         } finally {
@@ -56,12 +56,12 @@ export default function IngresoHigienePersonal(): JSX.Element {
     }
     const handleChange = (event): void => {
         const { name, checked } = event.target;
-        
+
         setFormState({
-          ...formState,
-          [name]: checked,
+            ...formState,
+            [name]: checked,
         });
-      };
+    };
     return (
         <div className="componentContainer">
             <div className="navBar"></div>
@@ -91,11 +91,11 @@ export default function IngresoHigienePersonal(): JSX.Element {
                                 <div key={key} className="formularios-checkbox">
                                     <label>
                                         <p>{value}</p>
-                                        <input 
+                                        <input
                                             checked={formState[key]}
                                             name={key}
-                                            type="checkbox"  
-                                            onChange={handleChange}/>
+                                            type="checkbox"
+                                            onChange={handleChange} />
                                     </label>
                                 </div>
                             )

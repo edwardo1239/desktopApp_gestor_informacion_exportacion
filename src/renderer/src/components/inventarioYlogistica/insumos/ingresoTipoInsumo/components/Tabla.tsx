@@ -37,7 +37,7 @@ export default function Tabla(props: propsType): JSX.Element {
         try {
             const req = {
                 data: modifiedData,
-                action: "modificar_tipo_insumo"
+                action: "put_inventarios_insumos"
             }
             const response = await window.api.server2(req)
             if (response.status !== 200)

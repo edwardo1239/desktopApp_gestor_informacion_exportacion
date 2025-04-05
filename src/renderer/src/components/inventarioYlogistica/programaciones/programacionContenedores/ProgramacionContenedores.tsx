@@ -60,9 +60,8 @@ export default function ProgramacionContenedores(): JSX.Element {
 
     const obtenerData = async (): Promise<void> => {
         try {
-            console.log(fecha)
             const request = {
-                action: "obtener_contenedores_programacion",
+                action: "get_inventarios_programaciones_contenedores",
                 fecha: fecha
             }
             const response = await window.api.server2(request);
@@ -78,7 +77,7 @@ export default function ProgramacionContenedores(): JSX.Element {
     const obtenerClientes = async (): Promise<void> => {
         try {
             const request = {
-                action: 'getClientes',
+                action: 'get_data_clientes',
             }
             const response = await window.api.server2(request);
             if (response.status !== 200)

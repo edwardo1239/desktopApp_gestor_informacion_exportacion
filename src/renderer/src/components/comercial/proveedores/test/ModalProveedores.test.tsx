@@ -43,21 +43,8 @@ const mockData: proveedoresType = {
     DEPARTAMENTO: "Antioquia",
     activo: true,
     precio: {
-        Limon: {
-            "1": 5000,
-            "15": 75000,
-            "2": 10000,
-            frutaNacional: 20000,
-            descarte: 5000,
-            combinado: 10000
-        },
-        Naranja: {
-            "1": 3000,
-            "15": 45000,
-            "2": 7000,
-            descarte: 3000,
-            zumex: 8000
-        },
+        Limon: "adasdasd",
+        Naranja: "asdasd",
         fecha: new Date().toISOString()
     },
     SISPAP: false,
@@ -67,7 +54,11 @@ const mockData: proveedoresType = {
     telefono_propietario: "+57 9876543210",
     propietario: "María López",
     razon_social: "Frutas del Campo S.A.",
-    nit_facturar: "900123456-7"
+    nit_facturar: "900123456-7",
+    precioFijo: false,
+    departamento: "Quindio",
+    municipio: "Armenia"
+
 };
 
 describe("ModalProveedores", () => {
@@ -503,7 +494,7 @@ describe("ModalProveedores", () => {
         const input_predio = await screen.findByTestId("comercial-proveedores-predio-predio-input");
         expect(input_predio).toHaveValue(String(mockData.PREDIO));
 
-        fireEvent.change(input_predio, { target: { value: "Finca El Paraíso modificado"} });
+        fireEvent.change(input_predio, { target: { value: "Finca El Paraíso modificado" } });
         expect(input_predio).toHaveValue("Finca El Paraíso modificado");
 
         const boton_guardar = screen.getByText(/guardar/i)

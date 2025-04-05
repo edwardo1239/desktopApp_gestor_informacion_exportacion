@@ -18,7 +18,7 @@ export default function IngresarLimpiezaDiaria(): JSX.Element {
     const obtener_formularios_existentes = async (): Promise<void> => {
         try {
             const request = {
-                action: "get_formularios_calidad_creados",
+                action: "get_calidad_ingresos_formulariosCalidad",
             }
             const response = await window.api.server2(request)
             if (response.status !== 200)
@@ -112,7 +112,7 @@ export default function IngresarLimpiezaDiaria(): JSX.Element {
             }
 
             const request = {
-                action: "add_item_formulario_calidad",
+                action: "put_calidad_ingresos_formulariosCalidad",
                 tipoFormulario: formularioSeleccionado.formulario,
                 _id: formularioSeleccionado._id,
                 area: areaSeleccionada,

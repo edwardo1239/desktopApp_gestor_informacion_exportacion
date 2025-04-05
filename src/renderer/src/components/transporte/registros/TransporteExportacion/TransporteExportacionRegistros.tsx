@@ -5,9 +5,7 @@ import { formatearFecha } from "@renderer/functions/fechas";
 import useAppContext from "@renderer/hooks/useAppContext"
 import { contenedoresType } from "@renderer/types/contenedoresType";
 import { useEffect, useState } from "react";
-import { IoSaveSharp } from "react-icons/io5";
-import { GiCancel } from "react-icons/gi";
-import { PiNotePencilDuotone } from "react-icons/pi";
+import BotonesSeleccionarItemTabla from "@renderer/components/UI/BotonesSeleccionarItemTabla";
 
 const headers = [
     "Contenedor",
@@ -31,7 +29,7 @@ export default function TransporteExportacionRegistros(): JSX.Element {
     const { messageModal } = useAppContext();
 
     const [data, setData] = useState<contenedoresType[]>()
-    const [itemSeleccionado, setItemSeleccionado] = useState<contenedoresType>()
+    const [itemSeleccionado, setItemSeleccionado] = useState<string>()
     const [formState, setFormState] = useState<formStateType>()
     //page navigator
     const [page, setPage] = useState<number>(1);
@@ -56,7 +54,7 @@ export default function TransporteExportacionRegistros(): JSX.Element {
     const obtenerData = async (): Promise<void> => {
         try {
             const request = {
-                action: "get_transporte_registro_exportacion",
+                action: "get_transporte_registros_exportacion",
                 page: page
             }
             const response = await window.api.server2(request);
@@ -101,8 +99,8 @@ export default function TransporteExportacionRegistros(): JSX.Element {
                 })
             }
             const request = {
-                action: "post_transporte_programacion_exportacion_modificar",
-                _id: itemSeleccionado?._id,
+                action: "put_transporte_registros_exportacion",
+                _id: itemSeleccionado,
                 data: query
             }
             const response = await window.api.server2(request);
@@ -112,6 +110,7 @@ export default function TransporteExportacionRegistros(): JSX.Element {
             setFormState(undefined)
             obtenerData()
             setModificando(false)
+            setItemSeleccionado(undefined)
         } catch (err) {
             if (err instanceof Error) {
                 messageModal("error", err.message)
@@ -119,6 +118,10 @@ export default function TransporteExportacionRegistros(): JSX.Element {
         }
     }
 
+    const handleCancelar = (): void => {
+        setItemSeleccionado(undefined)
+        setModificando(false)
+    }
     if (!data) {
         return (
             <div className="componentContainer">
@@ -133,101 +136,87 @@ export default function TransporteExportacionRegistros(): JSX.Element {
             <h2>Registros transporte exportación</h2>
             <hr />
             <div className="table-container">
-            <table className="table-main">
-                <thead>
-                    <tr>
-                        {headers.map(item => (
-                            <th key={item}>{item}</th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((cont, index) => (
-                        <tr key={cont._id} className={`${index % 2 === 0 ? 'fondo-par' : 'fondo-impar'}`}>
-                            <td>{cont.numeroContenedor}</td>
-                            <td>{typeof cont.infoContenedor.clienteInfo === 'object' &&
-                                cont.infoContenedor.clienteInfo.CLIENTE
-                            }</td>
-
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
-                                <td>
-                                    <input
-                                        name="agencia"
-                                        type="text"
-                                        value={(formState && formState.agencia) ?
-                                            formState?.agencia : cont.infoExportacion?.agencia}
-                                        onChange={handleChange} />
-                                </td>
-                                :
-                                <td>{cont.infoExportacion?.agencia || 'N/A'}</td>
-                            }
-
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
-                                <td>
-                                    <input
-                                        name="naviera"
-                                        type="text"
-                                        value={(formState && formState.naviera) ?
-                                            formState?.naviera : cont.infoExportacion?.naviera}
-                                        onChange={handleChange} />
-                                </td>
-                                :
-                                <td>{cont.infoExportacion?.naviera || 'N/A'}</td>
-                            }
-
-
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
-                                <td>
-                                    <input
-                                        name="puerto"
-                                        type="text"
-                                        value={(formState && formState.puerto) ?
-                                            formState?.puerto : cont.infoExportacion?.puerto}
-                                        onChange={handleChange} />
-                                </td>
-                                :
-                                <td>{cont.infoExportacion?.puerto || 'N/A'}</td>
-                            }
-
-                            {itemSeleccionado && (itemSeleccionado._id === cont._id) && modificando ?
-                                <td>
-                                    <input
-                                        name="expt"
-                                        type="text"
-                                        value={(formState && formState.expt) ?
-                                            formState?.expt : cont.infoExportacion?.expt}
-                                        onChange={handleChange} />
-                                </td>
-                                :
-                                <td>{cont.infoExportacion?.expt || 'N/A'}</td>
-                            }
-                            <td>{cont.infoExportacion?.fecha && formatearFecha(cont.infoExportacion?.fecha)}</td>
-                            <td>
-                                {((itemSeleccionado ? itemSeleccionado._id : '') !== cont._id) &&
-                                    <button
-                                        style={{ color: "blue" }}
-                                        onClick={(): void => handleModificar(cont)}
-                                    >
-                                        <PiNotePencilDuotone />
-                                    </button>}
-
-                                {((itemSeleccionado ? itemSeleccionado._id : '') === cont._id) && modificando &&
-                                    <button style={{ color: 'green' }} onClick={modificarData} >
-                                        <IoSaveSharp />
-                                    </button>}
-                                {((itemSeleccionado ? itemSeleccionado._id : '') === cont._id) && modificando &&
-                                    <button style={{ color: 'red' }} onClick={(): void => {
-                                        setItemSeleccionado(undefined)
-                                        setModificando(false)
-
-                                    }}>
-                                        <GiCancel />
-                                    </button>}
-                            </td>
+                <table className="table-main">
+                    <thead>
+                        <tr>
+                            {headers.map(item => (
+                                <th key={item}>{item}</th>
+                            ))}
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {data.map((cont, index) => (
+                            <tr key={cont._id} className={`${index % 2 === 0 ? 'fondo-par' : 'fondo-impar'}`}>
+                                <td>{cont.numeroContenedor}</td>
+                                <td>{typeof cont.infoContenedor.clienteInfo === 'object' &&
+                                    cont.infoContenedor.clienteInfo.CLIENTE
+                                }</td>
+
+                                {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
+                                    <td>
+                                        <input
+                                            name="agencia"
+                                            type="text"
+                                            value={(formState && formState.agencia) ?
+                                                formState?.agencia : cont.infoExportacion?.agencia}
+                                            onChange={handleChange} />
+                                    </td>
+                                    :
+                                    <td>{cont.infoExportacion?.agencia || 'N/A'}</td>
+                                }
+
+                                {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
+                                    <td>
+                                        <input
+                                            name="naviera"
+                                            type="text"
+                                            value={(formState && formState.naviera) ?
+                                                formState?.naviera : cont.infoExportacion?.naviera}
+                                            onChange={handleChange} />
+                                    </td>
+                                    :
+                                    <td>{cont.infoExportacion?.naviera || 'N/A'}</td>
+                                }
+
+
+                                {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
+                                    <td>
+                                        <input
+                                            name="puerto"
+                                            type="text"
+                                            value={(formState && formState.puerto) ?
+                                                formState?.puerto : cont.infoExportacion?.puerto}
+                                            onChange={handleChange} />
+                                    </td>
+                                    :
+                                    <td>{cont.infoExportacion?.puerto || 'N/A'}</td>
+                                }
+
+                                {itemSeleccionado && (itemSeleccionado === cont._id) && modificando ?
+                                    <td>
+                                        <input
+                                            name="expt"
+                                            type="text"
+                                            value={(formState && formState.expt) ?
+                                                formState?.expt : cont.infoExportacion?.expt}
+                                            onChange={handleChange} />
+                                    </td>
+                                    :
+                                    <td>{cont.infoExportacion?.expt || 'N/A'}</td>
+                                }
+                                <td>{cont.infoExportacion?.fecha && formatearFecha(cont.infoExportacion?.fecha)}</td>
+
+                                <BotonesSeleccionarItemTabla
+                                    itemId={cont._id}
+                                    itemSeleccionadoID={itemSeleccionado}
+                                    handleModificar={(): void => handleModificar(cont._id)}
+                                    handleCancelar={handleCancelar}
+                                    handleAceptar={modificarData}
+                                />
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
 
             <BotonesPasarPaginas

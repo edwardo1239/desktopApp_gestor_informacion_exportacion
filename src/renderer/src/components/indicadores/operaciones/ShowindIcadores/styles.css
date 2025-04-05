@@ -4,24 +4,27 @@
     grid-template-rows: .8fr .8fr;
     grid-template-areas:
         "item1 item3"
-        "item2 item3";
+        "item2 item2";
     gap: 10px;
 }
 
 .item1 {
     grid-area: item1;
     overflow-y: hidden;
-    padding-top: 2rem;
+    padding-top: 2.8rem;
     padding-bottom: 8rem;
 }
 
 .item2 {
+    grid-area: item2;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
     gap: 1.5rem;
     justify-content: center;
-    align-items: center;
-    margin: 1rem 0;
+    align-items: flex-start;
+    margin: 01rem 0;
 }
 
 .item2>div {
@@ -30,6 +33,7 @@
     border-radius: 8px;
     padding: 1rem 1.5rem;
     min-width: 180px;
+    max-width: 250px;
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -59,6 +63,7 @@
 .item3 {
     grid-area: item3;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 100%;

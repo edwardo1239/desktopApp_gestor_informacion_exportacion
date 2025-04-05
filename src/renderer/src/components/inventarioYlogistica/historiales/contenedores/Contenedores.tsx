@@ -21,7 +21,7 @@ export default function Contenedores():JSX.Element{
     ):Promise<void> => {
         try{
             const query = {
-                action: "obtener_contenedores_historial_buscar",
+                action: "get_inventarios_historiales_contenedores",
                 contenedores: numeroContenedor,
                 fechaInicio: fechainicio,
                 fechaFin:fechaFin,

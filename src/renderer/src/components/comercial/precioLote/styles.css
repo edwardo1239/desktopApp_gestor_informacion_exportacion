@@ -1,0 +1,69 @@
+
+
+.comercial-precios-ingreso-lote {
+  width: 100%;
+  margin: 2rem auto; /* Centra el contenedor en la página */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+/* Cada fila de input */
+.comercial-precios-ingreso-lote .fila {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+/* Etiquetas */
+.comercial-precios-ingreso-lote .fila label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Campos de texto */
+.comercial-precios-ingreso-lote .fila input[type="text"] {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  color: black;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+  outline: none;
+}
+
+.comercial-precios-ingreso-lote .fila textarea {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  color: black;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out;
+  outline: none;
+}
+
+
+/* Efecto focus */
+.comercial-precios-ingreso-lote .fila input[type="text"]:focus {
+  border-color: #3a7ef8;
+  box-shadow: 0 0 0 2px rgba(58,126,248,0.2);
+}
+
+.btn-guardar {
+  background-color: var(--color-Celifrut);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 1rem;
+}
+
+.btn-guardar:hover {
+  background-color: var(--color-Celifrut-dark);
+}

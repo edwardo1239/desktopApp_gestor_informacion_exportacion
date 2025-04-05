@@ -56,7 +56,7 @@ export default function HistorialContenedoresFiltros(props:propsType): JSX.Eleme
     }
     const obtenerClientes = async (): Promise<void> => {
         try {
-            const request = { action: "obtener_clientes_historial_contenedores" }
+            const request = { action: "get_inventarios_historiales_contenedores_clientes" }
             const response = await window.api.server2(request);
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`);

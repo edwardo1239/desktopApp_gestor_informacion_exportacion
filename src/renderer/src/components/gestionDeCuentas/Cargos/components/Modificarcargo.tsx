@@ -15,7 +15,7 @@ type propsType = {
 }
 
 export default function ModificarCargo(props: propsType): JSX.Element {
-    const { messageModal } = useAppContext();
+    const { messageModal, setLoading } = useAppContext();
     const [copiaCargo, setCopiaCargo] = useState<cargoType>();
     const [addPermiso, setAddPermiso] = useState<boolean>(false);
     useEffect(() => {
@@ -82,11 +82,11 @@ export default function ModificarCargo(props: propsType): JSX.Element {
     }
     const guardarCambios = async (): Promise<void> => {
         try {
+            setLoading(true)
             const request = {
-                action: 'modificar_cargo',
+                action: 'put_gestionCuentas_cargos',
                 cargo: copiaCargo
             }
-            console.log(request)
             const response = await window.api.server2(request);
             if(response.status !== 200) 
                 throw new Error(`Code ${response.status}: ${response.message}`)
@@ -97,6 +97,8 @@ export default function ModificarCargo(props: propsType): JSX.Element {
             if(err instanceof Error){
                 messageModal("error", err.message)
             }
+        } finally {
+            setLoading(false)
         }
     }
     if (props.cargoSeleccionado === undefined) {

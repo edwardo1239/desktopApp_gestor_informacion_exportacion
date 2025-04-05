@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 
+import { descarte_nopago, descarte_pagos } from "@renderer/functions/informesLotes"
 import { contenedoresType } from "@renderer/types/contenedoresType"
 import { lotesType } from "@renderer/types/lotesType"
 import React from "react"
-import { descarte_nopago, descarte_pagos } from "../functions/data"
 
 type propsType = {
     lote: lotesType
@@ -16,28 +16,7 @@ export default function ResumenKilosFruta(props: propsType): JSX.Element {
     // useEffect(() => { console.log(props.lote) }, [])
     const sumardescartes_pagos = (): JSX.Element => {
 
-        let total = descarte_pagos(props.lote)
-        Object.entries(props.lote.exportacionDetallada.any).map(([key, value]) => {
-            const contenedor = props.contenedores.find(item => item._id === key);
-            if (props.lote.flag_is_favorita) {
-
-                if (typeof contenedor?.infoContenedor.clienteInfo === 'object' &&
-                    contenedor?.infoContenedor.clienteInfo._id === "659dbd9a347a42d899293411") {
-                    if (typeof value === 'object' && value !== null) {
-                        const kilos_restar = Object.values(value).reduce((acu, item2) => {
-
-                            if (typeof item2 === 'string') {
-                                return acu += 0;
-                            } else if (typeof item2 === 'number') {
-                                return acu += item2
-                            }
-                        }, 0)
-                        total -= Number(kilos_restar);
-                    }
-                }
-            }
-
-        })
+        const total = descarte_pagos(props.lote)
 
         return (
             <tr>
@@ -120,82 +99,75 @@ export default function ResumenKilosFruta(props: propsType): JSX.Element {
         // Helper to ensure numbers come out with comma decimal
         const decimalToComma = (num: number): string => {
             // Adjust precision if needed, here we use 2 decimals as an example
+            if (typeof num !== 'number') return num
             return num.toFixed(2).replace('.', '.');
         };
-
+        let textCopy = ''
         // Build up your lines
-        const textCopyArrCont = Object.entries(props.lote.exportacionDetallada.any ?? {}).map(
-            ([key, value]) => {
-                const contenedor = props.contenedores.find(item => item._id === key);
+        if (props.lote.exportacionDetallada) {
+            const textCopyArrCont = Object.entries(props.lote.exportacionDetallada.any ?? {}).map(
+                ([key, value]) => {
+                    const contenedor = props.contenedores.find(item => item._id === key);
 
-                return Object.entries(value as Record<string, unknown>).map(
-                    ([keyCalidad, valueCalidad]) => {
-                        if (props.lote.flag_is_favorita) {
-                            if (
-                                typeof contenedor?.infoContenedor?.clienteInfo === 'object' &&
-                                contenedor.infoContenedor?.clienteInfo?._id === '659dbd9a347a42d899293411'
-                            ) {
-                                if (contenedor && keyCalidad !== '_id') {
-                                    // Descarte
-                                    const kilos = decimalToComma(valueCalidad as number);
-                                    const precio = decimalToComma(props.lote.precio.descarte);
-                                    const subTotal = decimalToComma(props.lote.precio.descarte * (valueCalidad as number));
+                    return Object.entries(value as Record<string, unknown>).map(
+                        ([keyCalidad, valueCalidad]) => {
 
-                                    return (
-                                        `1\t${props.lote.tipoFruta === 'Limon' ? 'LN' : 'NN'}\tKg\t${kilos}\t${precio}\t\t${subTotal}\t\t${contenedor.numeroContenedor}\n`
-                                    );
-                                }
+                            if (contenedor && (keyCalidad !== '_id' && keyCalidad !== "2")) {
+                                console.log(keyCalidad, "-", valueCalidad)
+
+                                const kilos = decimalToComma(valueCalidad as number);
+                                const precioKey = decimalToComma(props.lote.precio[keyCalidad]);
+                                const subTotal = decimalToComma(
+                                    props.lote.precio[keyCalidad] * (valueCalidad as number)
+                                );
+
+                                return (
+                                    `2\t${props.lote.tipoFruta === 'Limon' ? 'LE' : 'NE'}\tKg\t${kilos}\t${precioKey}\t\t${subTotal}\t\t${contenedor.numeroContenedor}\n`
+                                );
+                            } else if (contenedor && keyCalidad === "2") {
+                                const kilos = decimalToComma(valueCalidad as number);
+                                const precioKey = decimalToComma(props.lote.precio[keyCalidad]);
+                                const subTotal = decimalToComma(
+                                    props.lote.precio[keyCalidad] * (valueCalidad as number)
+                                );
+
+                                return (
+                                    `2\t${props.lote.tipoFruta === 'Limon' ? 'LN' : 'NN'}\tKg\t${kilos}\t${precioKey}\t\t${subTotal}\t\t${contenedor.numeroContenedor}\n`
+                                );
                             }
+                            return undefined;
                         }
-
-                        // En caso contrario, exportación normal
-                        if (contenedor && keyCalidad !== '_id') {
-                            const kilos = decimalToComma(valueCalidad as number);
-                            const precioKey = decimalToComma(props.lote.precio[keyCalidad]);
-                            const subTotal = decimalToComma(
-                                props.lote.precio[keyCalidad] * (valueCalidad as number)
-                            );
-
-                            return (
-                                `1\t${props.lote.tipoFruta === 'Limon' ? 'LE' : 'NE'}\tKg\t${kilos}\t${precioKey}\t\t${subTotal}\t\t${contenedor.numeroContenedor}\n`
-                            );
-                        }
-                        return undefined;
-                    }
-                );
-            }
-        );
-
-        const textCopyCont = textCopyArrCont.map(item => item.filter(item2 => item2 !== undefined));
-
-        let total = descarte_pagos(props.lote);      
-        Object.entries(props.lote.exportacionDetallada.any).map(([key, value]) => {
-            const contenedor = props.contenedores.find(item => item._id === key);
-            if (props.lote.flag_is_favorita) {
-
-                if (typeof contenedor?.infoContenedor.clienteInfo === 'object' &&
-                    contenedor?.infoContenedor.clienteInfo._id === "659dbd9a347a42d899293411") {
-                    if (typeof value === 'object' && value !== null) {
-                        const kilos_restar = Object.values(value).reduce((acu, item2) => {
-
-                            if (typeof item2 === 'string') {
-                                return acu += 0;
-                            } else if (typeof item2 === 'number') {
-                                return acu += item2
-                            }
-                        }, 0)
-                        total -= Number(kilos_restar);
-                    }
+                    );
                 }
-            }
+            );
 
-        })
+            const textCopyCont = textCopyArrCont.map(item => item.filter(item2 => item2 !== undefined));
+
+            textCopy = textCopyCont.reduce((acu, item) => (acu += item.join('')), '');
+        }
+        let total = descarte_pagos(props.lote);
+
+        if (props.lote.flag_balin_free) {
+            total -= (props.lote.descarteEncerado?.balin ?? 0) + (props.lote.descarteLavado?.balin ?? 0)
+        }
+
         const totalNoPago = descarte_nopago(props.lote); // number
 
-        // Flatten everything into a single string
-        let textCopy = textCopyCont.reduce((acu, item) => (acu += item.join('')), '');
-
         // Líneas adicionales
+        const frutaNacional = props.lote.frutaNacional
+        if (frutaNacional) {
+            textCopy +=
+                `1\t${props.lote.tipoFruta === 'Limon' ? 'LN' : 'NN'}\tKilos\t${decimalToComma(frutaNacional)}\t${decimalToComma(props.lote.precio.frutaNacional)}\t\t${decimalToComma(props.lote.precio.frutaNacional * frutaNacional)}\n`;
+        }
+
+        const directoNacional = props.lote.directoNacional
+
+        if (directoNacional) {
+            textCopy +=
+                `1\t${props.lote.tipoFruta === 'Limon' ? 'LN' : 'NN'}\tKilos\t${decimalToComma(directoNacional)}\t${decimalToComma(props.lote.precio.frutaNacional)}\t\t${decimalToComma(props.lote.precio.frutaNacional * directoNacional)}\n`;
+        }
+
+
         textCopy +=
             `1\t${props.lote.tipoFruta === 'Limon' ? 'LN' : 'NN'}\tKilos\t${decimalToComma(total)}\t${decimalToComma(props.lote.precio.descarte)}\t\t${decimalToComma(props.lote.precio.descarte * total)}\n`;
 
@@ -230,49 +202,19 @@ export default function ResumenKilosFruta(props: propsType): JSX.Element {
                     </tr>
                 </thead>
                 <tbody>
-                    {Object.entries(props.lote.exportacionDetallada.any).map(([key, value], index) => {
+                    {props.lote.exportacionDetallada && Object.entries(props.lote.exportacionDetallada.any).map(([key, value], index) => {
                         const contenedor = props.contenedores.find(item => item._id === key);
-                        if (props.lote.flag_is_favorita) {
-
-                            if (typeof contenedor?.infoContenedor.clienteInfo === 'object' &&
-                                contenedor?.infoContenedor.clienteInfo._id === "659dbd9a347a42d899293411") {
-
-                                return Object.entries(value as Record<string, unknown>).map(([keyCalidad, valueCalidad]) => {
-
-                                    if (contenedor && keyCalidad !== '_id') {
-                                        return (
-                                            <tr key={`${key}-${keyCalidad}`} className={`${index % 2 === 0 ? 'fondo-par' : 'fondo-impar'}`}>
-                                                <td>{contenedor.numeroContenedor}</td>
-                                                <td>{props.lote.tipoFruta === 'Limon' ? 'LN' : 'NN'}</td>
-                                                <td>{valueCalidad as React.ReactNode}</td>
-                                                <td>{new Intl.NumberFormat('es-CO', {
-                                                    style: 'currency',
-                                                    currency: 'COP',
-                                                    minimumFractionDigits: 0,
-                                                    maximumFractionDigits: 0
-                                                }).format(props.lote.precio.descarte)}</td>
-                                                <td>
-                                                    {new Intl.NumberFormat('es-CO', {
-                                                        style: 'currency',
-                                                        currency: 'COP',
-                                                        minimumFractionDigits: 0,
-                                                        maximumFractionDigits: 0,
-                                                    }).format(props.lote.precio.descarte * (valueCalidad as number))}
-                                                </td>
-                                            </tr>
-                                        );
-                                    } else {
-                                        return null
-                                    }
-                                });
-                            }
-                        }
                         return Object.entries(value as Record<string, unknown>).map(([keyCalidad, valueCalidad]) => {
                             if (contenedor && keyCalidad !== '_id') {
                                 return (
                                     <tr key={`${key}-${keyCalidad}`} className={`${index % 2 === 0 ? 'fondo-par' : 'fondo-impar'}`}>
                                         <td>{contenedor.numeroContenedor}</td>
-                                        <td>{props.lote.tipoFruta === 'Limon' ? 'LE' : 'NE'}</td>
+                                        {keyCalidad === '2' ?
+                                            <td>{props.lote.tipoFruta === 'Limon' ? 'LN' : 'NN'}</td>
+
+                                            :
+                                            <td>{props.lote.tipoFruta === 'Limon' ? 'LE' : 'NE'}</td>
+                                        }
                                         <td>{valueCalidad as React.ReactNode}</td>
                                         <td>{new Intl.NumberFormat('es-CO', {
                                             style: 'currency',
@@ -298,6 +240,60 @@ export default function ResumenKilosFruta(props: propsType): JSX.Element {
                 </tbody>
 
             </table>
+            <h3>Fruta nacional</h3>
+            <table className="table-main-informe-proveedor">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Tipo de fruta</th>
+                        <th>Kilos</th>
+                        <th>Precio</th>
+                        <th>Precio total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr className={`fondo-par`}>
+                        <td>Directo nacional</td>
+                        <td>{props.lote.tipoFruta === 'Limon' ? 'LN' : 'NN'}</td>
+
+                        <td>{props.lote.directoNacional.toFixed(2)}</td>
+                        <td>{new Intl.NumberFormat('es-CO', {
+                            style: 'currency',
+                            currency: 'COP',
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0
+                        }).format(props.lote.precio.frutaNacional)}</td>
+                        <td>
+                            {new Intl.NumberFormat('es-CO', {
+                                style: 'currency',
+                                currency: 'COP',
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0,
+                            }).format(props.lote.precio.frutaNacional * props.lote.directoNacional)}
+                        </td>
+                    </tr>
+                    <tr className={`fondo-impar`}>
+                        <td>Fruta nacional</td>
+                        <td>{props.lote.tipoFruta === 'Limon' ? 'LN' : 'NN'}</td>
+                        <td>{props.lote.frutaNacional?.toFixed(2) ?? '0'}</td>
+                        <td>{new Intl.NumberFormat('es-CO', {
+                            style: 'currency',
+                            currency: 'COP',
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0
+                        }).format(props.lote.precio.frutaNacional)}</td>
+                        <td>
+                            {new Intl.NumberFormat('es-CO', {
+                                style: 'currency',
+                                currency: 'COP',
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 0,
+                            }).format(props.lote.precio.frutaNacional * (props.lote.frutaNacional ?? 0))}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
             <h3>Descartes</h3>
 
             <table className="table-main-informe-proveedor">

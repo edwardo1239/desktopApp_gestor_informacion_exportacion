@@ -15,7 +15,7 @@ export default function CreacionFormulariosCalidad(): JSX.Element {
     }, [])
     const obtener_tipo_formularios = async (): Promise<void> => {
         try {
-            const request = { action: "obtener_tipos_formularios_calidad" }
+            const request = { action: "get_calidad_ingresos_tiposFormularios" }
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`)
@@ -29,7 +29,7 @@ export default function CreacionFormulariosCalidad(): JSX.Element {
     const crear_formulario = async (): Promise<void> => {
         try{
             const request = {
-                action: "crear_formulario_calidad",
+                action: "post_calidad_ingresos_crearFormulario",
                 data:{
                     tipoSeleccionado,
                     fechaInicio,

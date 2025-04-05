@@ -22,7 +22,7 @@ export default function ViewInformeObservaciones(props: propsType): JSX.Element 
     }, [])
     const obtenerObservacionesCalidad = async (): Promise<void> => {
         try {
-            const request = { action: "obtener_observaciones_calidad" }
+            const request = { action: "get_calidad_informes_observacionesCalidad" }
             const response = await window.api.server2(request)
             if (response.status !== 200) throw new Error(`Code ${response.status}: ${response.message}`);
             setDataObservaciones(response.data)
@@ -68,22 +68,30 @@ export default function ViewInformeObservaciones(props: propsType): JSX.Element 
     return (
         <div>
             <div className="informe-calida-lote-div-calidad-interna">
-                {props.loteSeleccionado &&
+                {props.loteSeleccionado && props.loteSeleccionado.calidad && props.loteSeleccionado.calidad?.calidadInterna &&
                     Object.entries(dataCalidadInterna).map(([key, value]) => {
                         if(key === 'zumo'){
                             if(props.loteSeleccionado.calidad?.calidadInterna !== undefined){
                                 return(
                                     <div key={key}>
                                     <h4>{value}:</h4>
-                                    <p>{((props.loteSeleccionado.calidad?.calidadInterna.zumo 
+                                    <p>{
+                                    props.loteSeleccionado.calidad?.calidadInterna?.peso !== 0 ?
+                                    (
+                                        (props.loteSeleccionado.calidad?.calidadInterna.zumo 
                                         / 
-                                        props.loteSeleccionado.calidad?.calidadInterna?.peso) * 100).toFixed(2)}%</p>
+                                        props.loteSeleccionado.calidad?.calidadInterna?.peso) * 100).toFixed(2) + '%'
+                                            :
+                                            "NaN"
+                                    }</p>
                                 </div>
                                 )
                             } else {
                                 return null
                             }
-                        } else if(Object.prototype.hasOwnProperty.call(
+                        } else if(
+                            props.loteSeleccionado && props.loteSeleccionado.calidad?.calidadInterna &&
+                            Object.prototype.hasOwnProperty.call(
                             props.loteSeleccionado.calidad?.calidadInterna, key
                         )){
                             return (

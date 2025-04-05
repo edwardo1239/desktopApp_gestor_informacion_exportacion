@@ -37,7 +37,7 @@ export default function IngresoInsumoContenedor(): JSX.Element {
     }, [])
     const obtenerContenedores = async (): Promise<void> => {
         try {
-            const request = { action: "obtener_contenedores_to_add_insumos" }
+            const request = { action: "get_inventarios_insumos_contenedores" }
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`);
@@ -50,7 +50,7 @@ export default function IngresoInsumoContenedor(): JSX.Element {
     }
     const obtenerInsumos = async (): Promise<void> => {
         try {
-            const request = { action: "obtener_tipo_insumos" }
+            const request = { action: "get_inventarios_insumos" }
             const response = await window.api.server2(request)
             if (response.status !== 200)
                 throw new Error(`Code ${response.status}: ${response.message}`)
@@ -113,7 +113,7 @@ export default function IngresoInsumoContenedor(): JSX.Element {
             }
             const request = {
                 _id: contenedor?._id,
-                action: "add_contenedor_insumos_items",
+                action: "put_inventarios_insumos_contenedores",
                 data: info
             }
             const response = await window.api.server2(request);

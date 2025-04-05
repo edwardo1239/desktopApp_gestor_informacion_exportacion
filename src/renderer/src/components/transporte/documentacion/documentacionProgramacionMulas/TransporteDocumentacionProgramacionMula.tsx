@@ -15,7 +15,7 @@ const headers = [
 ]
 
 export default function TransporteDocumentacionProgramacionMula(): JSX.Element {
-    const { messageModal } = useAppContext();
+    const { messageModal, setLoading } = useAppContext();
     const [data, setData] = useState<contenedoresType[]>()
 
     //page navigator
@@ -39,6 +39,7 @@ export default function TransporteDocumentacionProgramacionMula(): JSX.Element {
     }
     const obtenerData = async (): Promise<void> => {
         try {
+            setLoading(true)
             const request = {
                 action: "get_transporte_documentos_programacionMula_contenedores",
                 page: page
@@ -51,6 +52,8 @@ export default function TransporteDocumentacionProgramacionMula(): JSX.Element {
             if (err instanceof Error) {
                 messageModal("error", err.message)
             }
+        } finally {
+            setLoading(false)
         }
     }
 

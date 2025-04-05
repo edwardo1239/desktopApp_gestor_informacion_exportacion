@@ -8,12 +8,12 @@ import { contenedoresType } from '@renderer/types/contenedoresType';
 import ViewInformeDatosGenerales from './ViewInformeDatosGenerales';
 import ViewInformeResultados from './ViewInformeResultados';
 import ViewInformeDescarte from './ViewInformeDescarte';
-import { dataInformeInit, dataInformeType, obtenerPorcentage, totalLote } from '../functions/data';
 import ViewInformeObservaciones from './ViewInformeObservaciones';
 import ViewInformeFotos from './ViewInformeFotos';
-import { totalPrecios } from '../functions/totalPrecios'
 import ModificarPrecios from './ModificarPrecios';
 import ResumenKilosFruta from './ResumenKilosFruta';
+import MostrarPrecios from "./MostrarPrecios";
+import { dataInformeInit, dataInformeType, obtenerPorcentage, totalLote, totalPrecios } from "@renderer/functions/informesLotes";
 type propsType = {
     handleVolverTabla: () => void
     loteSeleccionado: lotesType | undefined
@@ -47,7 +47,7 @@ export default function ViewInformeData(props: propsType): JSX.Element {
         if (!props.loteSeleccionado.exportacionDetallada) return
         if (props.loteSeleccionado.flag_is_favorita) {
             const cont = contenedores.filter(
-                item => typeof item.infoContenedor.clienteInfo === 'object' && 
+                item => typeof item.infoContenedor.clienteInfo === 'object' &&
                     item.infoContenedor.clienteInfo._id === contenedor_favorita
             );
             let kilos = 0;
@@ -55,7 +55,7 @@ export default function ViewInformeData(props: propsType): JSX.Element {
                 if (props.loteSeleccionado === undefined) return
 
                 const data = props.loteSeleccionado.exportacionDetallada.any[key._id]
-                if(!data) return;
+                if (!data) return;
 
                 Object.keys(data).forEach(item => {
                     if (item !== "_id") {
@@ -80,7 +80,7 @@ export default function ViewInformeData(props: propsType): JSX.Element {
 
     const buscarContenedores = async (): Promise<void> => {
         try {
-            const request = { action: "obtener_contenedores_lotes", data: props.loteSeleccionado?.contenedores }
+            const request = { action: "get_calidad_informes_contenedoresLote", data: props.loteSeleccionado?.contenedores }
             const response = await window.api.server2(request)
             if (response.status !== 200) throw new Error(`Code ${response.status}: ${response.message}`);
             setContenedores(response.data)
@@ -196,6 +196,16 @@ export default function ViewInformeData(props: propsType): JSX.Element {
                         <tbody>
                             <ViewInformeResultados loteSeleccionado={props.loteSeleccionado} />
                             <ViewInformeDescarte loteSeleccionado={props.loteSeleccionado} />
+                            <tr>
+                                <td>Directo Nacional</td>
+                                <td>{props.loteSeleccionado.directoNacional?.toFixed(2)} Kg</td>
+                                <td>{props.loteSeleccionado.kilos !== 0 ? ((props.loteSeleccionado.directoNacional * 100)
+                                    / props.loteSeleccionado.kilos).toFixed(2) : '0'}%</td>
+                                <MostrarPrecios
+                                    loteSeleccionado={props.loteSeleccionado}
+                                    tipoPrecio="frutaNacional"
+                                    kilosFruta={(props.loteSeleccionado.directoNacional)} />
+                            </tr>
                             <tr className='informe-calidad-total-fila fondo-impar'>
                                 <td>Total</td>
                                 <td>
@@ -238,7 +248,6 @@ export default function ViewInformeData(props: propsType): JSX.Element {
                 <button className='defaulButtonAgree' onClick={props.captureComponent}>Generar informe</button>
             </div>
             <ModificarPrecios
-                modificarPrecios={props.modificarPrecios}
                 loteSeleccionado={props.loteSeleccionado} />
         </div>
     )
